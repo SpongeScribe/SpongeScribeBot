@@ -1,0 +1,2 @@
+# SpongeScribeBot
+strangetext transcription
