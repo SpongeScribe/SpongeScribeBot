@@ -3,13 +3,16 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-FROM node AS base
-ENV NPM_CONFIG_LOGLEVEL info
+#!/bin/bash
 
-FROM base AS build
-COPY . .
-RUN /bin/bash build.sh
-
-FROM build AS deploy
-RUN /bin/bash entrypoint.sh
+rm ./version;
+touch version;
+printf "node=" >> version;
+node -v >> version;
+printf "npm=" >>version;
+npm -v >> version;
+printf "app=" >>version;
+cat appversion >> version;
+cat version; 
+npm install text2png
 

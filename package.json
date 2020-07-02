@@ -4,6 +4,7 @@
   "description": "strangetest transcription",
   "main": "text2png.js",
   "scripts": {
+    "start": "node text2png.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/SpongeScribe/SpongeScribeBot/issues"
   },
-  "homepage": "https://github.com/SpongeScribe/SpongeScribeBot#readme"
+  "homepage": "https://github.com/SpongeScribe/SpongeScribeBot#readme",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "text2png": "^2.3.0"
+  }
 }
