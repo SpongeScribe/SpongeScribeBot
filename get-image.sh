@@ -5,4 +5,6 @@
 
 #!/bin/bash
 
+set -ex
+
 docker cp $(docker run -d $(docker build . -q) entrypoint.sh $1; sleep 1):/usr/local/app/out.png ./out.png
