@@ -6,5 +6,5 @@
 #!/bin/bash
 
 set -ex
-
+IMAGE_TEXT=$1
 npm run start
