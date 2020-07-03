@@ -27,10 +27,14 @@ COPY sleep*.js sleep*.sh ./
 ENTRYPOINT ["/bin/bash", "sleep.sh"]
 CMD ["10"]
 
-FROM sleep as install
-COPY install*.sh ./
+FROM sleep as installDev
+COPY install*.sh version*.sh appversion* ./
+ENTRYPOINT [""]
+CMD ["/bin/bash"]
+
+FROM installDev as install
 ENTRYPOINT ["/bin/bash", "install.sh"]
-CMD [""]
+CMD ["update"]
 
 FROM dependencies AS build
 ARG BUILD_SCRIPT

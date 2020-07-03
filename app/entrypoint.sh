@@ -4,4 +4,7 @@
 
 set -ex
 
-docker run -it $(docker build app -q --target sleep) $*
+IMAGE_TEXT="$*"
+export IMAGE_TEXT=$IMAGE_TEXT
+echo "IMAGE_TEXT=$IMAGE_TEXT" | tee --append .env
+npm run start

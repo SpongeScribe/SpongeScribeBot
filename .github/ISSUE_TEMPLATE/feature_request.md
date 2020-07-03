@@ -1,3 +1,6 @@
+    Any copyright is dedicated to the Public Domain.
+    https://creativecommons.org/publicdomain/zero/1.0/
+
 ---
 name: Feature request
 about: Suggest an idea for this project
