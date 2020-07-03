@@ -5,6 +5,8 @@
 
 #!/bin/bash
 
+set -ex
+
 rm -f ./version;
 touch version;
 printf "node=" >> version;

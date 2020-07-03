@@ -6,6 +6,7 @@
 #!/bin/bash
 
 set -ex
+
 rm -f package.json.temp
 rm -f package-lock.json.temp
 docker cp $(docker run -d $(docker build . -q)):/usr/local/app/package.json ./package.json.temp
