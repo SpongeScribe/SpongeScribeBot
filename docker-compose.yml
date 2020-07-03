@@ -1,0 +1,61 @@
+# Copyright 2020 Drewry Pope
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+version: '3.8'
+services:
+  app:
+    build:
+      context: 'app'
+      args:
+        VERSION: 'latest'
+        LOG_LEVEL: 'info'
+        WORKDIR: '/usr/local/app'
+        BUILD_SCRIPT: 'build.sh'
+        ENTRYPOINT_SCRIPT: 'entrypoint.sh'
+    command: 'entrypoint.sh "TEST\n\n\tDOCKER\n\t\tCOMPOSE\n\t\t\t.yml"'
+    image: 'app'
+    container_name: 'app'
+    restart: unless-stopped
+    environment:
+      IMAGE_TEXT: 'TEST\n\n\tDOCKER\n\t\tCOMPOSE\n\t\t\t.yml'
+      MONGO_INITDB_DATABASE: 'MONGODB'
+      MONGO_INITDB_USERNAME: 'MONGOUSER'
+      MONGO_INITDB_PASSWORD:
+      MONGO_HOSTNAME: 'mongo'
+      MONGO_PORT: '27017'
+      MONGO_DB: 'MONGODB'
+    env_file: .env
+    depends_on:
+      - 'mongo'
+    volumes:
+      - './appdata:/usr/local/app/out'
+    expose:
+      - '27017-27019'
+    networks:
+      - 'backend'
+
+  mongo:
+    image: 'mongo'
+    container_name: 'mongo'
+    environment:
+      MONGO_INITDB_DATABASE: 'MONGODB'
+      MONGO_INITDB_USERNAME: 'MONGOUSER'
+      MONGO_INITDB_PASSWORD:
+      MONGO_INITDB_ROOT_USERNAME: 'MONGOROOTUSER'
+      MONGO_INITDB_ROOT_PASSWORD:
+    volumes:
+      - './mongo/init-mongo.js:/docker-netrypoint-initdb.d/init-mongo.js:ro'
+      - './mongodata:/data/db'
+    ports:
+      - '27017-27019:27017-27019'
+    expose:
+      - '27017-27019'
+    networks:
+      - "backend"
+networks:
+  backend:
+
+volumes:
+  appdata:

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "sleep": "node sleep",
-    "start": "node .; npm sleep",
+    "start": "node .; npm run sleep",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/SpongeScribe/SpongeScribeBot#readme",
   "dependencies": {
+    "mongodb": "^3.5.9",
     "text2png": "^2.3.0",
     "unescape-js": "^1.1.4"
   }

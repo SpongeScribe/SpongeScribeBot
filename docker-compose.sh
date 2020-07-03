@@ -6,4 +6,5 @@
 
 set -ex
 
-docker cp $(docker run -d $(docker build app -q) entrypoint.sh $*; sleep 1):/usr/local/app/out.png ./out/$(uuidgen).png
+docker-compose -f docker-compose.yml build  --compress --parallel --pull
+docker-compose -f docker-compose.yml up --build $1
