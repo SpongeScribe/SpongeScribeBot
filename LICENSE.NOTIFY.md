@@ -58,9 +58,15 @@ Source Code Form License Notice and any relevant Copyright or other notices.
     https://creativecommons.org/publicdomain/zero/1.0/
 ### Applies For The Below-Listed File(s) Within The Parent Directory Of This File:
 -
-      appversion
+      .dockerignore
 -
       .gitignore
+-
+      appversion
+-
+      out.png
+-
+      package-lock.json
 -
       version
 
