@@ -6,4 +6,10 @@
 
 set -ex
 
-docker cp $(docker run -d $(docker build . -q) entrypoint.sh $1; sleep 1):/usr/local/app/out.png ./out.png
+if [ "$1" == "install" ] || [ "$1" == "-override" ]; then
+  npm $*
+else
+  npm install $*
+fi
+
+npm run sleep

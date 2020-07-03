@@ -18,13 +18,18 @@ WORKDIR $WORKDIR
 COPY package.json package*-lock.json ./
 RUN ["npm", "install"]
 COPY *LICENSE* *README* ./
+CMD ["/bin/bash"]
 
 FROM dependencies AS build
 ARG BUILD_SCRIPT
-COPY * ./
+COPY . .
 RUN /bin/bash $BUILD_SCRIPT
+
+FROM dependencies as install
+COPY install*.sh ./
+ENTRYPOINT ["/bin/bash", "install.sh"]
+CMD [""]
 
 FROM build AS deploy
 ENTRYPOINT ["/bin/bash"]
 CMD ["entrypoint.sh"]
-
