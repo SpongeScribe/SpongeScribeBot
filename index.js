@@ -5,5 +5,6 @@
 
 let fs = require('fs');
 let text2png = require('text2png');
-let imageText = process.env.IMAGE_TEXT || 'Hello!\nPotato.'
+let unescapeJs = require('unescape-js');
+let imageText = unescapeJs(process.env.IMAGE_TEXT) || 'Hello!\nPotato.'
 fs.writeFileSync('out.png', text2png(imageText, {color: 'blue'}));
