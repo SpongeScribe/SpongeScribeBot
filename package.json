@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/SpongeScribe/SpongeScribeBot#readme",
   "dependencies": {
-    "text2png": "^2.3.0"
+    "text2png": "^2.3.0",
+    "unescape-js": "^1.1.4"
   }
 }
