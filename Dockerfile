@@ -6,10 +6,17 @@
 FROM node AS base
 ENV NPM_CONFIG_LOGLEVEL info
 
-FROM base AS build
-COPY . .
+FROM base AS deps
+WORKDIR /usr/local/app
+COPY package.json package*-lock.json ./
+RUN ["npm", "install"]
+COPY *LICENSE* *README* ./
+
+FROM deps AS build
+COPY * ./
 RUN /bin/bash build.sh
 
 FROM build AS deploy
-RUN /bin/bash entrypoint.sh
+ENTRYPOINT ["/bin/bash"]
+CMD ["entrypoint.sh"]
 

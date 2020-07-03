@@ -5,7 +5,7 @@
 
 #!/bin/bash
 
-rm ./version;
+rm -f ./version;
 touch version;
 printf "node=" >> version;
 node -v >> version;
@@ -14,5 +14,4 @@ npm -v >> version;
 printf "app=" >>version;
 cat appversion >> version;
 cat version; 
-npm install text2png
 

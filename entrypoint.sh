@@ -5,5 +5,4 @@
 
 #!/bin/bash
 
-. ./text2png.js
-
+npm run start
