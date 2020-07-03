@@ -4,4 +4,4 @@
 
 set -ex
 
-docker run -v $PWD/in:/usr/local/app/in -it $(docker build app -q --target build) $*
+docker run -v $PWD/appdata/in:/usr/local/app/in -v $PWD/appdata/out:/usr/local/app/out -it $(docker build app -q --target build) $*

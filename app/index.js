@@ -2,18 +2,7 @@
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
-var readJson = function (path, cb) {
-    'use strict';
-    const fs = require('fs');
-    fs.readFile(require.resolve(path), function (err, data) {
-        if (err) {
-            cb(err);
-        } else {
-            cb(null, JSON.parse(data));
-        }
-    });
-};
-readJson('./in/input.json', function (err, input) {
+const parseToImage = function (err, input) {
     'use strict';
     if (err) {
         console.error(err);
@@ -39,6 +28,34 @@ readJson('./in/input.json', function (err, input) {
                 console.error("ERROR. Invalid JSON.");
                 console.error(input);
             }
+        }
+    }
+};
+const readJson = function (path, cb) {
+    'use strict';
+    const fs = require('fs');
+    fs.readFile(require.resolve(path), function (err, data) {
+        if (err) {
+            cb(err);
+        } else {
+            cb(null, JSON.parse(data));
+        }
+    });
+};
+const fs = require('fs');
+fs.readdir('./in/', function (err, list) {
+    'use strict';
+    if (err) {
+        console.error(err);
+    }
+    var i;
+    for (i = 0; i < list.length; i += 1) {
+        const filename = list[i];
+        if (filename.match(/^.*\.json$/)) {
+            readJson('./in/' + filename, parseToImage);
+        } else {
+            console.log("Filename does not match regex. '/^.*\.json$/' ");
+            console.log('{ "filename" : "' + filename + '" }');
         }
     }
 });
