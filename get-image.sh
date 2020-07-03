@@ -6,4 +6,4 @@
 
 set -ex
 
-docker cp $(docker run -d $(docker build app -q) entrypoint.sh $*; sleep 1):/usr/local/app/out.png ./out/$(uuidgen).png
+docker cp $(docker run -v $PWD/in:/usr/local/app/in -d $(docker build app -q) entrypoint.sh $*; sleep 5):/usr/local/app/out/. ./out/

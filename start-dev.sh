@@ -4,4 +4,4 @@
 
 set -ex
 
-docker run -it $(docker build app -q --target build) $*
+docker run -v $PWD/in:/usr/local/app/in -it $(docker build app -q --target build) $*

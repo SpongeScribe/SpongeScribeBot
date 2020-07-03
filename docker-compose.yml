@@ -16,7 +16,6 @@ services:
         ENTRYPOINT_SCRIPT: 'entrypoint.sh'
     command: 'entrypoint.sh "TEST\n\n\tDOCKER\n\t\tCOMPOSE\n\t\t\t.yml"'
     image: 'app'
-    container_name: 'app'
     restart: unless-stopped
     environment:
       IMAGE_TEXT: 'TEST\n\n\tDOCKER\n\t\tCOMPOSE\n\t\t\t.yml'
@@ -31,6 +30,7 @@ services:
       - 'mongo'
     volumes:
       - './appdata:/usr/local/app/out'
+      - './in:/usr/local/app/in'
     expose:
       - '27017-27019'
     networks:
@@ -38,7 +38,6 @@ services:
 
   mongo:
     image: 'mongo'
-    container_name: 'mongo'
     environment:
       MONGO_INITDB_DATABASE: 'MONGODB'
       MONGO_INITDB_USERNAME: 'MONGOUSER'
