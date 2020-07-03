@@ -6,4 +6,4 @@
 
 set -ex
 
-docker cp $(docker run -v $PWD/in:/usr/local/app/in -d $(docker build app -q) entrypoint.sh $*; sleep 5):/usr/local/app/out/. ./out/
+docker cp $(docker run -v $PWD/appdata/in:/usr/local/app/in -v $PWD/appdata/out:/usr/local/app/out -d $(docker build app -q) entrypoint.sh $*; sleep 5):/usr/local/app/out/. ./out/
