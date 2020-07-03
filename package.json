@@ -1,10 +1,10 @@
 {
   "name": "spongescribe",
   "version": "0.0.1",
-  "description": "strangetest transcription",
-  "main": "text2png.js",
+  "description": "strangetext transcription",
+  "main": "index.js",
   "scripts": {
-    "start": "node text2png.json",
+    "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/SpongeScribe/SpongeScribeBot#readme",
   "dependencies": {
-    "fs": "0.0.1-security",
     "text2png": "^2.3.0"
   }
 }

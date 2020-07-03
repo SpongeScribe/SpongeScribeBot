@@ -4,5 +4,9 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 var fs = require('fs');
-var text2png = require('text2png');
+var text2png = require('./node_modules/text2png');
 fs.writeFileSync('out.png', text2png('Hello! Potato.', {color: 'blue'}));
+async function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+sleep(2000);
