@@ -2,7 +2,7 @@ if [ -z $IMAGE_TEXT]; then
 	IMAGE_TEXT="Hello!\nPotato."
 fi
 
-FILENAME=in/input.random.`uuidgen`.json
+FILENAME=./appdata/in/input.random.`uuidgen`.json
 echo "{
     \"items\": [
         { \"username\" : \"TEST\", \"imageText\" : \"$IMAGE_TEXT\" }" > $FILENAME;

@@ -43,7 +43,7 @@ const readJson = function (path, cb) {
     });
 };
 const fs = require('fs');
-fs.readdir('./in/', function (err, list) {
+fs.readdir('./data/in/', function (err, list) {
     'use strict';
     if (err) {
         console.error(err);
@@ -52,7 +52,29 @@ fs.readdir('./in/', function (err, list) {
     for (i = 0; i < list.length; i += 1) {
         const filename = list[i];
         if (filename.match(/^.*\.json$/)) {
-            readJson('./in/' + filename, parseToImage);
+            try {
+                const moveFile = require('move-file');
+                const originalPath = './data/in/' + filename;
+                const intermediatePath = './data/' + filename;
+                const finalPath = './data/out/' + filename;
+                console.log('{ "moveFile" : { "originalPath" : "' + originalPath + '", "intermediatePath" : "' + intermediatePath + '", "finalPath" : "' + finalPath + '" } }' );
+
+                (async () => {
+                    await moveFile(originalPath, intermediatePath);
+                    console.log('intermediate move complete, beginning read.');
+                })();
+                const {sleep} = require('./modules/util');
+                sleep(3 * 1000);
+                readJson(intermediatePath, parseToImage);
+                console.log('read complete, beginning final move.');
+
+                (async () => {
+                    await moveFile(intermediatePath, finalPath);
+                    console.log('final move complete, job complete.');
+                })();
+            } catch (error) {
+                console.error(error);
+            }
         } else {
             console.log("Filename does not match regex. '/^.*\.json$/' ");
             console.log('{ "filename" : "' + filename + '" }');
