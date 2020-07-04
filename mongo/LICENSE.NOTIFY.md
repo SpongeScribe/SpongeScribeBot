@@ -24,6 +24,16 @@ using a file mask, wild cards, or other standard methods of grouping file names.
 ### NOTICE OF PARTICULAR FILES WITHIN THE PARENT DIRECTORY OF THIS FILE WHICH ARE
 ### MPL-2.0 LICENSED FILES WITH "Drewry Pope" COPYRIGHT
 ### AND WHICH DON'T HAVE NOTICES WITHIN THEM:
+
+https://github.com/SpongeScribe/SpongeScribeBot/blob/main/LICENSE
+
+https://www.mozilla.org/en-US/MPL/2.0/
+https://www.mozilla.org/en-US/MPL/headers/
+https://www.mozilla.org/en-US/MPL/2.0/FAQ/
+https://www.mozilla.org/en-US/MPL/
+https://www.mozilla.org/media/MPL/2.0/index.815ca599c9df.txt
+https://www.mozilla.org/en-US/foundation/licensing/
+
 ### This Notice:
     Copyright 2020 Drewry Pope
     This Source Code Form is subject to the terms of the Mozilla Public
