@@ -79,6 +79,8 @@ https://www.mozilla.org/en-US/foundation/licensing/
 ### Copyright ContributorCovenant
 ### Creative Commons Attribution 4.0 International Public License
 
+### Minor Alterations Authored By: Drewry Pope on 2020-07-04
+
 https://github.com/orgs/ContributorCovenant
 https://github.com/ContributorCovenant/contributor_covenant/blob/release/LICENSE.md
 https://www.contributor-covenant.org/
