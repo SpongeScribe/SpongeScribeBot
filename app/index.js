@@ -59,19 +59,15 @@ fs.readdir('./data/in/', function (err, list) {
                 const finalPath = './data/out/' + filename;
                 console.log('{ "moveFile" : { "originalPath" : "' + originalPath + '", "intermediatePath" : "' + intermediatePath + '", "finalPath" : "' + finalPath + '" } }' );
 
-                (async () => {
-                    await moveFile(originalPath, intermediatePath);
+                moveFile(originalPath, intermediatePath).then( function () {
                     console.log('intermediate move complete, beginning read.');
-                })();
-                const {sleep} = require('./modules/util');
-                sleep(3 * 1000);
-                readJson(intermediatePath, parseToImage);
-                console.log('read complete, beginning final move.');
-
-                (async () => {
-                    await moveFile(intermediatePath, finalPath);
+                    readJson(intermediatePath, parseToImage);
+                }).then ( function () {
+                    console.log('read complete, beginning final move.');
+                    return moveFile(intermediatePath, finalPath);
+                }).then ( function () {
                     console.log('final move complete, job complete.');
-                })();
+                });
             } catch (error) {
                 console.error(error);
             }

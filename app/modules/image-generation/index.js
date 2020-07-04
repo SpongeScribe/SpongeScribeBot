@@ -25,7 +25,7 @@ module.exports = {
         const uuidRandom = uuidv4();
 
         console.log(
-            '{ "output" : "out/' +
+            '{ "output" : "data/out/' +
                     isoDateTime + '_' +
                     uuidRunTime + '.' +
                     uuidUserRunTime + '.' +
@@ -44,7 +44,7 @@ module.exports = {
         );
 
         fs.writeFileSync(
-            'out/' +
+            'data/out/' +
                     isoDateTime + '_' +
                     uuidRunTime + '.' +
                     uuidUserRunTime + '.' +
