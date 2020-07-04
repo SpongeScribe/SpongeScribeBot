@@ -22,7 +22,6 @@ Thank you for your participation.
 
 https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CODE_OF_CONDUCT.md
 
-
 ----
 
 
