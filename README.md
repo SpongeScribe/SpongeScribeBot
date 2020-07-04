@@ -9,6 +9,14 @@ strangetext transcription
 ----
 
 
+# IMPORTANT NOTE:
+Please note that this project is released with a Contributor Code of Conduct, located in the same parent directory as this file under the file name `CODE_OF_CONDUCT.md`.
+By participating in this project you agree to abide by its terms.
+
+
+----
+
+
 ## Source Code Form License Notice Attached Outside The Particular File
 
 If it is not possible or desirable to put the notice in a particular file,
