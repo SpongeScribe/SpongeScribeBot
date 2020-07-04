@@ -23,6 +23,7 @@
   "homepage": "https://github.com/SpongeScribe/SpongeScribeBot#readme",
   "dependencies": {
     "mongodb": "^3.5.9",
+    "move-file": "^2.0.0",
     "text2png": "^2.3.0",
     "unescape-js": "^1.1.4",
     "uuid": "^8.2.0"
