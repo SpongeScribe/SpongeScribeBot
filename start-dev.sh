@@ -4,4 +4,4 @@
 
 set -ex
 
-docker run -it $(docker build . -q --target build) $*
+docker run -it $(docker build app -q --target build) $*

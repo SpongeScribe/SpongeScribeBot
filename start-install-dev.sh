@@ -4,4 +4,4 @@
 
 set -ex
 
-docker run -it $(docker build app -q --target sleep) $*
+docker run -it $(docker build app -q --target installDev) $*

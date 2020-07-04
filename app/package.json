@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "sleep": "node sleep",
-    "start": "node .; npm sleep",
+    "start": "node .",
+    "start-slow": "node .; npm run sleep",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,7 +23,12 @@
   },
   "homepage": "https://github.com/SpongeScribe/SpongeScribeBot#readme",
   "dependencies": {
+    "hashish": "0.0.4",
+    "mongodb": "^3.5.9",
+    "move-file": "^2.0.0",
+    "seq": "^0.3.5",
     "text2png": "^2.3.0",
-    "unescape-js": "^1.1.4"
+    "unescape-js": "^1.1.4",
+    "uuid": "^8.2.0"
   }
 }
