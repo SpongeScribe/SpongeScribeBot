@@ -18,7 +18,7 @@ ARG WORKDIR
 WORKDIR $WORKDIR
 COPY package.json package*-lock.json ./
 RUN ["npm", "install"]
-COPY *LICENSE* *README* ./
+COPY *LICENSE* *READ* *CODE* *CONTRIB* ./
 CMD ["/bin/bash"]
 
 FROM dependencies as sleep
