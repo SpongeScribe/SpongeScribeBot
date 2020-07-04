@@ -4,4 +4,4 @@
 
 set -ex
 
-docker run -it $(docker build app -q --target sleep) $*
+./version.sh

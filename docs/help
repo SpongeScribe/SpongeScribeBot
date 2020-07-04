@@ -1,0 +1,24 @@
+help
+TWEET=
+COMMANDS: (with or with hyphen)
+help = this list
+opt-out = never get tagged again
+untag-me = never get tagged again
+tag-me = get tag normally (undo 'untag me' || do nothing)
+always-reply = will auto-reply to all "ats" from you
+
+to get an all lowercase transcription of a tweet:
+
+"at" this bot including one or more of these words:
+- transcribe this here plz please thx thanks thank
+
+to get a DM:
+- dm me the tweet
+- at me including: "dm"
+
+FOOTER=
+hope this helps!
+untag forever: reply/dm "opt out" or "untag me"
+thx!
+
+EMOJI=<random emoji>
