@@ -5,6 +5,26 @@
 
 # SpongeScribeBot
 strangetext transcription
+source: https://github.com/SpongeScribe/SpongeScribeBot/
+bot: https://twitter.com/SpongeScribe/
+
+
+----
+
+
+# IMPORTANT NOTE:
+Please note that this project is released with a
+Contributor Code of Conduct, located in the root
+directory of this project under the file name:
+
+ - `CODE_OF_CONDUCT.md`
+
+By participating in this project you agree to abide by its terms.
+
+Thank you for your participation.
+
+https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CODE_OF_CONDUCT.md
+
 
 ----
 
@@ -20,4 +40,5 @@ Source Code Form License Notice and any relevant Copyright or other notices.
 
 
 ----
+
 
