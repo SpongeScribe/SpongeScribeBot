@@ -27,6 +27,8 @@ using a file mask, wild cards, or other standard methods of grouping file names.
 
 https://github.com/SpongeScribe/SpongeScribeBot/blob/main/LICENSE
 
+https://www.mozilla.org/en-US/MPL/2.0/permissive-code-into-mpl/
+
 https://www.mozilla.org/en-US/MPL/2.0/
 https://www.mozilla.org/en-US/MPL/headers/
 https://www.mozilla.org/en-US/MPL/2.0/FAQ/
