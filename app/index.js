@@ -24,9 +24,6 @@ const parseToImage = function (err, input) {
                     console.error(error);
                     console.error(results);
                 }
-            } else {
-                console.error("ERROR. Invalid JSON.");
-                console.error(input);
             }
         }
     }
@@ -71,9 +68,6 @@ fs.readdir('./data/in/', function (err, list) {
             } catch (error) {
                 console.error(error);
             }
-        } else {
-            console.log("Filename does not match regex. '/^.*\.json$/' ");
-            console.log('{ "filename" : "' + filename + '" }');
         }
     }
 });

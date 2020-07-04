@@ -14,11 +14,11 @@ services:
         WORKDIR: '/usr/local/app'
         BUILD_SCRIPT: 'build.sh'
         ENTRYPOINT_SCRIPT: 'entrypoint.sh'
-    command: 'entrypoint.sh "TEST\n\n\tDOCKER\n\t\tCOMPOSE\n\t\t\t.yml"'
+    command: 'entrypoint.sh'
     image: 'app'
     restart: unless-stopped
     environment:
-      IMAGE_TEXT: 'TEST\n\n\tDOCKER\n\t\tCOMPOSE\n\t\t\t.yml'
+      IMAGE_TEXT: 'DEFAULT'
       MONGO_INITDB_DATABASE: 'MONGODB'
       MONGO_INITDB_USERNAME: 'MONGOUSER'
       MONGO_INITDB_PASSWORD:
