@@ -14,7 +14,6 @@ if  [ -n "$branch_name" ]; then
 	gh pr create --fill  2>/dev/null
 	if  [ "$HEADLESS" -eq 0 ]; then
 		gh pr view --web
-
 	else
 		echo ' all good'
 	fi
