@@ -64,9 +64,10 @@ export function text2pngFile (imageText, user, isoDateTime, uuidNSRootInput) {
                 color: 'blue'
             }
         )
-    ).then ( function () {
-                    console.info('Create png complete.');
-                });;
+    );
+    // .then ( function () {
+    //                 console.info('Create png complete.');
+    //             });
 };
 export function parseToImage (err, input) {
 

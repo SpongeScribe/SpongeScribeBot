@@ -29,7 +29,7 @@ services:
     depends_on:
       - 'mongo'
     volumes:
-      - './appdata:/usr/local/app/data'
+      - './data:/usr/local/app/data'
     expose:
       - '27017-27019'
     networks:
@@ -56,4 +56,4 @@ networks:
   backend:
 
 volumes:
-  appdata:
+  data:

@@ -1,5 +1,5 @@
 mongodata/
-appdata/
+data/
 .env
 
 # Logs
