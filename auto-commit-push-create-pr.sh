@@ -1,8 +1,8 @@
 #!/bin/bash
 # Author: Drewry Pope
 set -ex
-HEADLESS=$1
-if  [ "$HEADLESS" = "--headless" ]; then
+HEADLESS=0
+if  [ "$1" = "--headless" ]; then
 	shift
 else
 	HEADLESS=1
