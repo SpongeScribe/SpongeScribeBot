@@ -2,7 +2,7 @@
 # Author: Drewry Pope
 set -ex
 HEADLESS=$1
-if  [ "$HEADLESS" -eq "--headless" ]; then
+if  [ "$HEADLESS" = "--headless" ]; then
 	shift
 else
 	HEADLESS=1
