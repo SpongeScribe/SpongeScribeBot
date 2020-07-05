@@ -3,7 +3,7 @@
 # Any copyright is dedicated to the Public Domain.
 # https://creativecommons.org/publicdomain/zero/1.0/
 if  [ "$1" = "--headless" ]; then
-	HEADLESS=1
+	HEADLESS=0
 	shift
 fi
 git add . 2>/dev/null
