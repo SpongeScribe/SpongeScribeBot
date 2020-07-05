@@ -15,8 +15,8 @@ echo "Sleep for: $SLEEP_SECONDS"
 
 if command -v npm &> /dev/null
 then
-	echo "npm found, using 'npm run sleep' action."
-	npm run sleep
+	echo "npm found, using 'npm run-script sleep' action."
+	npm run-script sleep
 else
     echo "npm not found, using 'sleep' command"
     sleep $SLEEP_SECONDS

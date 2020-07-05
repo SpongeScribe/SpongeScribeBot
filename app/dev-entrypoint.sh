@@ -4,7 +4,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 set -ex
-IMAGE_TEXT="$*"
+IMAGE_TEXT="$@"
 export IMAGE_TEXT=$IMAGE_TEXT
 echo "IMAGE_TEXT=$IMAGE_TEXT" | tee --append .env /etc/environment
 if [ ! -z $IMAGE_TEXT ]; then
