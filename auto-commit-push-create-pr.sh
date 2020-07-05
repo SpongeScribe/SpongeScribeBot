@@ -26,9 +26,10 @@ else
 	branch_name=${branch_name##refs/heads/}
 	if  [ -n "$branch_name" ]; then
 		if  [ "$1" = "--headless" ]; then
-			HEADLESS=0
 			printf 'Headless mode activated. Skipping first argument, skipping browser launch. \n'
 			shift
+		else
+			GUI_COMMAND=--web
 		fi
 		printf 'git add \n'
 		git add . 2>/dev/null
@@ -39,8 +40,8 @@ else
 		printf 'gh pr create --fill \n'
 		gh pr create --fill
 		if  [ -z $HEADLESS ]; then
-			printf 'gh pr view --web \n'
-			gh pr view --web
+			echo "gh pr view $HEADLESS "
+			gh pr view $HEADLESS
 		fi
 	else
 		printf 'No "branch_name" found. Are you detached? \n'
