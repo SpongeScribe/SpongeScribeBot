@@ -1,2 +1,8 @@
+.github
+.*
+*.*
+docs/
 node_modules/
-out.png
+*.png
+*/*.png
+**/*.png
