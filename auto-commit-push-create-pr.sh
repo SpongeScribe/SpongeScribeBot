@@ -13,8 +13,8 @@ if  [ -n "$branch_name" ]; then
 	git push --set-upstream origin $branch_name 2>/dev/null
 	gh pr create --fill  2>/dev/null
 	if  [ "$HEADLESS" = 0 ]; then
-		gh pr view --web
+		1/0 # gh pr view --web
 	else
-		echo ' all good'
+		2/0 #echo ' all good'
 	fi
 fi
