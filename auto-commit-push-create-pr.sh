@@ -1,6 +1,5 @@
 #!/bin/bash
 # Author: Drewry Pope
-set -e
 if  [ "$1" = "--headless" ]; then
 	HEADLESS=0
 	shift
