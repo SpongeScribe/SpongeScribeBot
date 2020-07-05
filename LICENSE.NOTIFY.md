@@ -25,6 +25,8 @@ using a file mask, wild cards, or other standard methods of grouping file names.
 ### MPL-2.0 LICENSED FILES WITH "Drewry Pope" COPYRIGHT
 ### AND WHICH DON'T HAVE NOTICES WITHIN THEM:
 
+https://github.com/SpongeScribe/SpongeScribeBot/blob/main/LICENSE
+
 https://www.mozilla.org/en-US/MPL/2.0/
 https://www.mozilla.org/en-US/MPL/headers/
 https://www.mozilla.org/en-US/MPL/2.0/FAQ/
