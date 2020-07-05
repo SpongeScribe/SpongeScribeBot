@@ -11,7 +11,7 @@ git commit -am "$*"
 branch_name="$(git symbolic-ref HEAD 2>/dev/null)"
 branch_name=${branch_name##refs/heads/}
 if  [ -n "$branch_name" ]; then
-	git push --set-upstream origin $branch_name &>/dev/null
+	git push --set-upstream origin $branch_name 2>/dev/null
 	gh pr create --fill
 	if  [ "$HEADLESS" = 0 ]; then
 		gh pr view --web 2>/dev/null
