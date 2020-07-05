@@ -1,0 +1,23 @@
+{
+  "name": "util",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "strangetext transcription - utility",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpongeScribe/SpongeScribeBot.git"
+  },
+  "keywords": [
+    "yes"
+  ],
+  "author": "dezren39",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/SpongeScribe/SpongeScribeBot/issues"
+  },
+  "homepage": "https://github.com/SpongeScribe/SpongeScribeBot#readme"
+}
