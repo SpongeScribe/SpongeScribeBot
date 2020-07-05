@@ -27,6 +27,7 @@ FROM dependencies AS devDependencies
 RUN ["npm", "install", "--only=dev"]
 RUN DEBIAN_FRONTEND=noninteractive apt install -y uuid-runtime vim
 
+#TODO build / babell
 FROM dependencies AS build
 ARG BUILD_SCRIPT
 COPY $FILES ./
@@ -43,8 +44,8 @@ CMD ["10"]
 
 FROM devBuild as dev
 COPY .env .
-ENTRYPOINT [""]
-CMD ["/bin/bash"]
+ENTRYPOINT ["/bin/bash"]
+CMD [""]
 
 FROM devBuild as install
 ENTRYPOINT ["/bin/bash", "install.sh"]
@@ -57,8 +58,8 @@ CMD ["post hello-world"]
 
 FROM devBuild as devCopyAll
 COPY . .
-ENTRYPOINT [""]
-CMD ["/bin/bash"]
+ENTRYPOINT ["/bin/bash"]
+CMD [""]
 
 FROM build AS deploy
 ENTRYPOINT ["/bin/bash"]

@@ -4,7 +4,7 @@
     file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 ----
-
+todo: rename appdata to dat
 # SpongeScribeBot
 strangetext transcription
  - source: https://github.com/SpongeScribe/SpongeScribeBot#readme
