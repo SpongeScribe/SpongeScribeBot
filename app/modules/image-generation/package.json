@@ -1,0 +1,33 @@
+{
+  "name": "image-generation",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "strangetext transcription - image-generation",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpongeScribe/SpongeScribeBot.git"
+  },
+  "keywords": [
+    "yes"
+  ],
+  "author": "dezren39",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/SpongeScribe/SpongeScribeBot/issues"
+  },
+  "homepage": "https://github.com/SpongeScribe/SpongeScribeBot#readme",
+  "dependencies": {
+    "hashish": "0.0.4",
+    "move-file": "^2.0.0",
+    "seq": "^0.3.5",
+    "text2png": "^2.3.0",
+    "uuid": "^8.2.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0"
+  }
+}
