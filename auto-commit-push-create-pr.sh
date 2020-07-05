@@ -14,7 +14,7 @@ branch_name=${branch_name##refs/heads/}
 if  [ -n "$branch_name" ]; then
 	git push --set-upstream origin $branch_name
 	gh pr create --fill
-	if  [ "$HEADLESS" -ne "--headless" ]; then
+	if  [ "$HEADLESS" ]; then
 		gh pr view --web # same as link output, don't include in headless scripts, autoselect pr based on your branch
 	fi
 fi
