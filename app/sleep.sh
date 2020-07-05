@@ -6,7 +6,7 @@ set -ex
 if [[ -n $1 ]]; then
 	SLEEP_SECONDS="$1"
 else
-	SLEEP_SECONDS=30
+	SLEEP_SECONDS=300
 fi
 
 export SLEEP_SECONDS=$SLEEP_SECONDS

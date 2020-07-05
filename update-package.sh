@@ -22,36 +22,42 @@ if [[ -f "./app/package.json" ]]; then
         COMMANDS="update"
     fi
 
-    echo "Updating ./app/package.json..."
 
+    echo "Updating ./app/package.json..."
     if [[ -f "./app/package.json.temp" ]]; then
         echo "Previous './app/package.json.temp' found. Deleting..."
         rm ./app/package.json.temp
     fi
 
-    echo "Build Image, Run Image, Copy File: container:'./app/package.json' to local:'./app/package.json.temp'"
-    docker cp $(docker run -d $(docker build app -q --target install) "$COMMANDS"; sleep 2):/usr/local/app/package.json ./app/package.json.temp
+    echo "Build Image, Run Image."
+    docker build app --target install
+    DOCKER_CONTAINER_ID=$(docker run -d $(docker build app -q --target install) "$COMMANDS");
+
+    timeout 20 docker logs --details --follow --timestamps $DOCKER_CONTAINER_ID
+
+    echo "Copy File: container:'./app/package.json' to local:'./app/package.json.temp'"
+    docker cp $DOCKER_CONTAINER_ID:/usr/local/app/package.json ./app/package.json.temp
+
 
     echo "Updating ./app/package-lock.temp.json..."
-
     if [[ -f "./app/package-lock.json.temp" ]]; then
         echo "Previous './app/package-lock.json.temp' found. Deleting..."
         rm ./app/package-lock.json.temp
     fi
 
-    echo "Build Image, Run Image, Copy File: container:'./app/package-lock.json' to local:'./app/package-lock.json.temp'"
-    docker cp $(docker run -d $(docker build app -q --target install) "$COMMANDS"; sleep 2):/usr/local/app/package-lock.json ./app/package-lock.json.temp
+    echo "Copy File: container:'./app/package-lock.json' to local:'./app/package-lock.json.temp'"
+    docker cp $DOCKER_CONTAINER_ID:/usr/local/app/package-lock.json ./app/package-lock.json.temp
+
 
 
     echo "Updating version..."
-
     if [[ -f "./app/version.temp" ]]; then
         echo "Previous './app/version.temp' found. Deleting..."
         rm ./app/version.temp
     fi
 
-    echo "Build Image, Run Image, Copy File: container:'./app/version' to local:'./app/version.temp'"
-    docker cp $(docker run -d $(docker build app -q --target install); sleep 2):/usr/local/app/version ./app/version.temp
+    echo "Run Image, Copy File: container:'./app/version' to local:'./app/version.temp'"
+    docker cp $DOCKER_CONTAINER_ID:/usr/local/app/version ./app/version.temp
 
     echo "Moving temp files to permanent locations..."
 
@@ -61,7 +67,8 @@ if [[ -f "./app/package.json" ]]; then
         echo "Deleting './app/package.json'..."
         rm ./app/package.json
         echo "Moving './app/package.json.temp'..."
-        mv ./app/package.json.temp ./app/package.json
+        cp ./app/package.json.temp ./app/package.json
+        rm ./app/package.json.temp
     else
         echo "ERROR: './app/package.json.temp' not found."
         exit 1
@@ -73,7 +80,8 @@ if [[ -f "./app/package.json" ]]; then
         echo "Deleting './app/package-lock.json'..."
         rm -f ./app/package-lock.json
         echo "Moving './app/package-lock.json.temp'..."
-        mv ./app/package-lock.json.temp ./app/package-lock.json
+        cp ./app/package-lock.json.temp ./app/package-lock.json
+        rm ./app/package-lock.json.temp
     else
         echo "ERROR: './app/package-lock.json.temp' not found."
         exit 1
@@ -87,7 +95,8 @@ if [[ -f "./app/package.json" ]]; then
         echo "Deleting './app/version'..."
         rm -f ./app/version
         echo "Moving './app/version.temp'..."
-        mv ./app/version.temp ./app/version
+        cp ./app/version.temp ./app/version
+        rm ./app/version.temp
     else
         echo "ERROR: './app/version.temp' not found."
         exit 1

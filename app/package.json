@@ -1,13 +1,18 @@
 {
   "name": "spongescribe",
+  "type": "module",
   "version": "0.1.0",
   "description": "strangetext transcription",
   "main": "index.js",
+  "module": "main.js",
   "scripts": {
+    "dev": "node -r dotenv/config .",
     "sleep": "node sleep",
-    "start": "node .",
+    "build": "rm -rf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
+    "start": "npm run build;node distr/.; npm run sleep",
     "start-slow": "node .; npm run sleep",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "twitter": "node -r dotenv/config twitter"
   },
   "repository": {
     "type": "git",
@@ -23,12 +28,21 @@
   },
   "homepage": "https://github.com/SpongeScribe/SpongeScribeBot#readme",
   "dependencies": {
+    "esm": "^3.2.25",
     "hashish": "0.0.4",
     "mongodb": "^3.5.9",
     "move-file": "^2.0.0",
     "seq": "^0.3.5",
     "text2png": "^2.3.0",
+    "twitter-lite": "^0.14.0",
     "unescape-js": "^1.1.4",
     "uuid": "^8.2.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.10.4",
+    "@babel/node": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "dotenv": "^8.2.0"
   }
 }

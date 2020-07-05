@@ -14,5 +14,6 @@ npm -v >> version;
 
 printf "app=" >>version;
 cat appversion >> version;
+echo '' >> version;
 
 cat version;
