@@ -3,7 +3,7 @@
 # Any copyright is dedicated to the Public Domain.
 # https://creativecommons.org/publicdomain/zero/1.0/
 set -ex
-if  [ "$1" == "--headless" ]; then
+if  [ "$1" -eq "--headless" ]; then
 	HEADLESS=0
 	shift
 	echo "0"
