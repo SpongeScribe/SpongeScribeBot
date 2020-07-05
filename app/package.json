@@ -9,14 +9,16 @@
   ],
   "module": "main.js",
   "scripts": {
-    "dev": "node -r dotenv/config dist/index.js ;",
-    "sleep": "node sleep.js ; ",
-    "build": "rm -rf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files ; ",
-    "start": "npm run-script build ; npm run-script start-dist ; ",
-    "start-dist": "node dist/index.js ; ",
+    "dev": "node --unhandled-rejections=strict --trace-warnings -r dotenv/config index.js ;",
+    "sleep": "node --unhandled-rejections=strict --trace-warnings sleep.js ; ",
+    "build": "babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log,./dist/dist,./dist/node_modules --copy-files ; rm -f dist/package.json; echo \"{ \\\"type\\\": \\\"commonjs\\\" }\" > dist/package.json",
+    "start": "npm run-script build ; npm run-script start ; ",
+    "build-start": "npm run-script build ; npm run-script start-dist ; ",
+    "start": "node index.js ; ",
+    "start-dist": "node --unhandled-rejections=strict --trace-warnings dist/index.js ; ",
     "start-slow": "npm run-script start-dist ; npm run-script sleep ; ",
     "test": "echo \"Error: no test specified\" && exit 1 ; ",
-    "twitter": "npm run-script build ; node -r dotenv/config dist/twitter.js ; ",
+    "twitter": "npm run-script build ; node --unhandled-rejections=strict --trace-warnings -r dotenv/config twitter.js ; ",
     "version": "echo $npm_package_version"
   },
   "repository": {
