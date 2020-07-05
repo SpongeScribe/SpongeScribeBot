@@ -13,7 +13,7 @@ printf "npm=" >>version;
 npm -v >> version;
 
 printf "app=" >>version;
-#TODO:auto-incr, pull from package.json, delete appversion file.
+#TODO:auto-incr, pull from package.json (choose option from version-check.sh), delete appversion file.
 cat appversion >> version;
 echo '' >> version;
 

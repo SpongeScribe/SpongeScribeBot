@@ -13,7 +13,7 @@ Thank you for your participation.
 
 # SpongeScribeBot
 strangetext transcription
- - source: https://github.com/SpongeScribe/SpongeScribeBot
+ - source: https://github.com/SpongeScribe/SpongeScribeBot#readme
  - bot: https://twitter.com/SpongeScribe
  - owner/author/contact: https://twitter.com/dezren39
  - code_of_conduct: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CODE_OF_CONDUCT.md
