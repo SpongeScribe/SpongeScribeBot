@@ -1,3 +1,7 @@
+mongodata/
+appdata/
+.env
+
 # Logs
 logs
 *.log
