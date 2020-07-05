@@ -26,7 +26,7 @@ else
 	branch_name=${branch_name##refs/heads/}
 	if  [ -n "$branch_name" ]; then
 		if  [ "$1" = "--headless" ]; then
-			printf 'Headless mode activated. Skipping first argument, skipping browser launch. \n'
+			printf 'Headless mode activated. Skipping first argument, text-based gh pr view. \n'
 			shift
 		else
 			GUI_COMMAND=--web
@@ -39,10 +39,10 @@ else
 		git push --set-upstream origin $branch_name
 		printf 'gh pr create --fill \n'
 		gh pr create --fill
-		if  [ -z $HEADLESS ]; then
-			echo "gh pr view $HEADLESS "
-			gh pr view $HEADLESS
+		if  [ -z $GUI_COMMAND ]; then
+			echo "gh pr view $GUI_COMMAND "
 		fi
+		gh pr view $GUI_COMMAND
 	else
 		printf 'No "branch_name" found. Are you detached? \n'
 	fi
