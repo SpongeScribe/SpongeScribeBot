@@ -12,7 +12,7 @@ branch_name=${branch_name##refs/heads/}
 if  [ -n "$branch_name" ]; then
 	git push --set-upstream origin $branch_name 2>/dev/null
 	gh pr create --fill  2>/dev/null
-	if  [ "$HEADLESS" ]; then
+	if  [ "$HEADLESS" -eq 0 ]; then
 		gh pr view --web
 	else
 		echo ' all good'
