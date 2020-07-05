@@ -21,7 +21,6 @@ if  [ -n "$branch_name" ]; then
 	gh pr create --fill | echo
 
 	if  [ $HEADLESS -eq 0 ]; then
-	echo "3"
 		gh pr view --web # same as link output, don't include in headless scripts, autoselect pr based on your branch
 	fi
 else
