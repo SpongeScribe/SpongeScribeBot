@@ -5,4 +5,4 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 set -ex
 
-npm run twitter
+npm run-script twitter

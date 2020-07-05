@@ -5,6 +5,18 @@
 
 ----
 
+# SpongeScribeBot
+strangetext transcription
+ - source: https://github.com/SpongeScribe/SpongeScribeBot
+ - bot: https://twitter.com/SpongeScribe
+ - owner/author/contact: https://twitter.com/dezren39
+ - code_of_conduct: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CODE_OF_CONDUCT.md
+ - contributors: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CONTRIBUTORS.md
+ - license: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/LICENSE
+ - license.notify: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/LICENSE.NOTIFY.md
+
+----
+
 
 ## Source Code Form License Notice Attached Outside The Particular File
 
@@ -12,7 +24,7 @@ If it is not possible or desirable to put the notice in a particular file,
 a License file named 'LICENSE' or 'LICENSE.md' or 'LICENSE.NOTIFY.md' will
 be present in each directory which has particular file(s) in that directory.
 
-The License file will associate each particular file's name with the appropriate 
+The License file will associate each particular file's name with the appropriate
 Source Code Form License Notice and any relevant Copyright or other notices.
 
 When referring to group of files, it is possible for multiple files to be noted
@@ -73,26 +85,6 @@ https://www.mozilla.org/en-US/foundation/licensing/
 
 ----
 
-
-### NOTICE OF PARTICULAR FILES WITHIN THE PARENT DIRECTORY OF THIS FILE WHICH ARE
-### Creative Commons Attribution 4.0 International Public License LICENSED FILES
-### AND WHICH DON'T HAVE NOTICES WITHIN THEM:
-
-### Copyright ContributorCovenant
-### Creative Commons Attribution 4.0 International Public License
-
-### Minor Alterations Authored By: Drewry Pope on 2020-07-04
-
-https://github.com/orgs/ContributorCovenant
-https://github.com/ContributorCovenant/contributor_covenant/blob/release/LICENSE.md
-https://www.contributor-covenant.org/
-
-### Applies For The Below Listed File(s) Within The Parent Directory Of This File WHICH DON'T HAVE NOTICES WITHIN THEM:
--
-      CODE_OF_CONDUCT.md
-
-
-----
 
 
 ### NOTICE OF PARTICULAR FILES WITHIN THE PARENT DIRECTORY OF THIS FILE WHICH ARE

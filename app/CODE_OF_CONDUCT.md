@@ -9,7 +9,30 @@ By participating in this project you agree to abide by its terms.
 
 Thank you for your participation.
 
-https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CODE_OF_CONDUCT.md
+----
+
+# SpongeScribeBot
+strangetext transcription
+ - source: https://github.com/SpongeScribe/SpongeScribeBot
+ - bot: https://twitter.com/SpongeScribe
+ - owner/author/contact: https://twitter.com/dezren39
+ - code_of_conduct: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CODE_OF_CONDUCT.md
+ - contributors: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CONTRIBUTORS.md
+ - license: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/LICENSE
+ - license.notify: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/LICENSE.NOTIFY.md
+
+
+### Copyright ContributorCovenant
+### Creative Commons Attribution 4.0 International Public License
+### Minor Alterations Authored By: Drewry Pope on 2020-07-04,2020-07-05
+
+ - https://github.com/orgs/ContributorCovenant
+ - https://github.com/ContributorCovenant/contributor_covenant/blob/release/LICENSE.md
+ - https://www.contributor-covenant.org/
+
+----
+----
+----
 
 # Contributor Covenant Code of Conduct
 

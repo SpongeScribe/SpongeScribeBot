@@ -2,6 +2,8 @@
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+import * as uuid from 'uuid/v4';
+import { readdir } from 'fs';
 
 export function text2png (imageText, user, isoDateTime, uuidNSRootInput) {
     'use strict';
@@ -9,7 +11,6 @@ export function text2png (imageText, user, isoDateTime, uuidNSRootInput) {
 
     const fs = require('fs');
     const text2pngOriginal = require('text2png');
-import * as uuid from 'uuid/v4';
 
 
     const userName = user || process.env.UUID_USER_NAME || 'default user';
@@ -144,7 +145,6 @@ export function json2png (filePath) {
 };
 export function jsonDir2pngMoveJson (inputDir, intermediateDir, outputDir) {
     'use strict';
-    import { readdir } from 'fs';
     readdir(inputDir, function (err, list) {
         'use strict';
         if (err) {

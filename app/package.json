@@ -6,13 +6,14 @@
   "main": "index.js",
   "module": "main.js",
   "scripts": {
-    "dev": "node -r dotenv/config .",
-    "sleep": "node sleep",
-    "build": "rm -rf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
-    "start": "npm run build;node distr/.; npm run sleep",
-    "start-slow": "node .; npm run sleep",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "twitter": "node -r dotenv/config twitter"
+    "dev": "node -r dotenv/config dist/index.js ;",
+    "sleep": "node sleep.js ; ",
+    "build": "rm -rf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files ; ",
+    "start": "npm run-script build ; npm run-script start-dist ; ",
+    "start-dist": "node dist/index.js ; ",
+    "start-slow": "npm run-script start-dist ; npm run-script sleep ; ",
+    "test": "echo \"Error: no test specified\" && exit 1 ; ",
+    "twitter": "node -r dotenv/config dist/twitter.js ; "
   },
   "repository": {
     "type": "git",

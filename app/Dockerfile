@@ -6,50 +6,59 @@
 ARG VERSION=latest
 ARG LOG_LEVEL=
 ARG WORKDIR=/usr/local/app
-ARG BUILD_SCRIPT=build.sh
-ARG ENTRYPOINT_SCRIPT=entrypoint.sh
+ARG FILES='modules* appversion* babel.config*.json build*.sh entrypoint*.sh install*.sh index*.js sleep*.js twitter*.js version*.sh .babelrc*'
+
 FROM node:$VERSION AS base
 ARG LOG_LEVEL
 ENV NPM_CONFIG_LOGLEVEL $LOG_LEVEL
 RUN export DEBIAN_FRONTEND=noninteractive && apt update -y && apt upgrade -y
 RUN ["npm", "install", "-g", "npm", "n"]
 RUN ["n", "latest"]
-RUN ["npm", "install", "--only=prod"]
 
 FROM base AS dependencies
 ARG WORKDIR
 WORKDIR $WORKDIR
 COPY package.json package*-lock.json ./
+RUN ["npm", "install", "--only=prod"]
 COPY *LICENSE* *READ* *CODE* *CONTRIB* ./
 CMD ["/bin/bash"]
 
-FROM dependencies AS build
-ARG BUILD_SCRIPT
-COPY . .
-RUN /bin/bash $BUILD_SCRIPT
-
-FROM build AS devDependencies
+FROM dependencies AS devDependencies
 RUN ["npm", "install", "--only=dev"]
 RUN DEBIAN_FRONTEND=noninteractive apt install -y uuid-runtime vim
 
-FROM devDependencies as sleepDev
-COPY modules/util/* modules/util/
-COPY sleep*.js sleep*.sh ./
+FROM dependencies AS build
+ARG BUILD_SCRIPT
+COPY $FILES ./
+RUN /bin/bash $BUILD_SCRIPT
+
+FROM devDependencies AS devBuild
+ARG BUILD_SCRIPT
+COPY $FILES ./
+RUN /bin/bash $BUILD_SCRIPT
+
+FROM build as sleep
 ENTRYPOINT ["/bin/bash", "sleep.sh"]
 CMD ["10"]
 
-FROM sleepDev as dev
-COPY install*.sh version*.sh appversion* ./
+FROM devBuild as dev
+COPY .env .
 ENTRYPOINT [""]
 CMD ["/bin/bash"]
 
-FROM dev as install
+FROM devBuild as install
 ENTRYPOINT ["/bin/bash", "install.sh"]
 CMD ["update"]
 
-FROM dev as twitter
+FROM devBuild as twitter
+COPY .env .
 ENTRYPOINT ["/bin/bash", "twitter.sh"]
 CMD ["post hello-world"]
+
+FROM devBuild as devCopyAll
+COPY . .
+ENTRYPOINT [""]
+CMD ["/bin/bash"]
 
 FROM build AS deploy
 ENTRYPOINT ["/bin/bash"]
