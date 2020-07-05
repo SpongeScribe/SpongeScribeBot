@@ -18,7 +18,7 @@ branch_name=${branch_name##refs/heads/}
 if  [ -n "$branch_name" ]; then
 	echo "2"
 	git push --set-upstream origin $branch_name
-	PR_URL=$(gh pr create --fill)
+	gh pr create --fill | echo
 
 	if  [ $HEADLESS -eq 0 ]; then
 	echo "3"
@@ -27,4 +27,3 @@ if  [ -n "$branch_name" ]; then
 else
 	echo "ERROR: no branch found. Are you detached?"
 fi
-PR_URL
