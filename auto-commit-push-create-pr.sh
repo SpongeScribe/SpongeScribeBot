@@ -14,13 +14,14 @@ if [ -z "$*" ] || [ -z "$1" ] || [ "$1" = "help" ] || [ "$1" = "-help" ] || [ "$
 	printf '    git push --set-upstream origin $branch_name \n\n'
 	printf '  # \/ \/ PR details automatically filled by commit details. \n'
 	printf '    gh pr create --fill \n\n'
-	printf '  # \/ \/ Skipped if you provide '"'"'--headless'"'"'. !! \n'
+	printf '  # \/ \/ Text-only CLI output if you provide '"'"'--headless'"'"'. !! \n'
 	printf '    gh pr view --web \n\n'
 	printf 'You may be prompted to sign your commits or authenticate to GitHub. \n'
 	printf 'Some information about git/gh commands executed will be displayed. \n'
 	printf 'At the bottom of the output should be a PR url. \n'
 	printf 'Headless mode is recommended if running as root . \n'
-	printf 'Headless mode is recommended if browser capabilities are limited. \n\n\n'
+	printf 'Headless mode is recommended if browser capabilities are limited. \n'
+	printf 'Headless mode is recommended in general because text is better. \n\n\n'
 else
 	branch_name="$(git symbolic-ref HEAD 2>/dev/null)"
 	branch_name=${branch_name##refs/heads/}
