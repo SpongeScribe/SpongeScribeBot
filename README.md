@@ -56,3 +56,25 @@ todo: lib vs dist
 	https://gist.github.com/ncochard/6cce17272a069fdb4ac92569d85508f4
 	# Allow files and folders with a pattern starting with !
 	!lib/**/*.js
+
+
+check files merge
+
+docker env script merge
+docker mount-nomount merge
+
+confirm docker, docker-compose, manual, sleep, twitter, random run, random1krun, drop N files, get N*M images
+
+
+get twitter autoreply webhook going
+
+post image
+post image with alt text
+post image with alt text as reply to webhook
+
+.lower sponge text
+ascii cursive sarcastric bold heavy
+ascii strange/crypt text
+ascii pictures with words
+describe pictures with words
+build general ai
