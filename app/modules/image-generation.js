@@ -2,12 +2,12 @@
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
-import { v1 as uuidv1, v4 as uuidv4, v5 as uuidv5 } from 'uuid'
-import { readdir } from 'fs';
-import moveFile from 'move-file';
 import fs from 'fs';
 import path from 'path';
+
+import moveFile from 'move-file';
 import text2png from 'text2png';
+import { v1 as uuidv1, v4 as uuidv4, v5 as uuidv5 } from 'uuid'
 
 export function text2pngFile (imageText, user, isoDateTime, uuidNSRootInput) {
     console.log('{ "text2pngFile" : { "parameters: [ { "imageText" : "' + imageText + '" }, { "user" : "' + user?user:'ERROR=UNDEFINED' + '" }, { "isoDateTime" : "' + isoDateTime + '" }, { "uuidNSRootInput" : "' + ((uuidNSRootInput && uuidNSRootInput.length >= 13) ? uuidNSRootInput.substring(9,13) : uuidNSRootInput ? uuidNSRootInput : 'ERROR=UNDEFINED') + '" } ] } }' );
@@ -185,7 +185,7 @@ export function json2png (filePath) {
 };
 export function json2pngDirMoveJson (inputDir, intermediateDir, outputDir) {
     console.log('{ "json2pngMoveJson" : { "parameters: [ { "inputDir" : "' + inputDir + '" }, { "intermediateDir" : "' + intermediateDir + '" }, { "outputDir" : "' + outputDir + '" } ] } }' );
-    readdir(inputDir, function (err, list) {
+    fs.readdir(inputDir, function (err, list) {
         if (err) {
             console.error(err);
         }

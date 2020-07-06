@@ -32,7 +32,6 @@ if [[ -f "./app/package.json" ]]; then
     docker cp $DOCKER_CONTAINER_ID:/usr/local/app/package-lock.json ./app/package-lock.json.temp
 
 
-
     echo "Updating version..."
     if [[ -f "./app/version.temp" ]]; then
         echo "Previous './app/version.temp' found. Deleting..."
