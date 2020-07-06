@@ -1,8 +1,0 @@
-.git
-.github
-dist/
-docs/
-node_modules/
-*.png
-*/*.png
-**/*.png

@@ -5,7 +5,14 @@
   "description": "Strangetext Transcription",
   "main": "index.js",
   "files": [
-    "package.json"
+    "package.json",
+    "package-lock.json",
+    "index.js",
+    "sleep.js",
+    "twitter.js",
+    "twitter.autohook.js",
+    "modules/image-generation.js",
+    "modules/sleep.js"
   ],
   "module": "main.js",
   "scripts": {

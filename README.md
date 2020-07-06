@@ -48,3 +48,9 @@ Source Code Form License Notice and any relevant Copyright or other notices.
 ----
 
 
+todo: lib vs dist
+	src: (uncompiled)
+	lib: compiled-node
+	dist: compiled-browser
+	https://2ality.com/2017/07/npm-packages-via-babel.html
+	https://gist.github.com/ncochard/6cce17272a069fdb4ac92569d85508f4

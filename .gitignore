@@ -1,6 +1,10 @@
-mongodata/
-data/
-.env*
+**/node_modules/
+**/data/
+**/data/
+**/dist/
+**/.env*
+**/*.env
+**/*.png
 
 # Logs
 logs

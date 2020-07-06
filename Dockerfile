@@ -6,7 +6,7 @@
 ARG VERSION=latest
 ARG LOG_LEVEL=
 ARG WORKDIR=/usr/local/app
-ARG FILES='modules* appversion* babel.config*.json build*.sh entrypoint*.sh install*.sh index*.js sleep*.js twitter*.js version*.sh .babelrc*'
+ARG FILES='app/modules/*.js app/babel.config*.json scripts/app/build*.sh scripts/app/entrypoint*.sh scripts/app/install*.sh app/index.js app/sleep.js app/twitter.js scripts/app/version.sh app/.babelrc*'
 
 FROM node:$VERSION AS base
 ARG LOG_LEVEL
@@ -18,9 +18,9 @@ RUN ["n", "latest"]
 FROM base AS dependencies
 ARG WORKDIR
 WORKDIR $WORKDIR
-COPY package.json package*-lock.json ./
+COPY app/package.json app/package*-lock.json ./
 RUN ["npm", "install", "--only=prod"]
-COPY *LICENSE* *READ* *CODE* *CONTRIB* ./
+COPY LICENSE LICENSE.NOTIFY.md README.md CODE_OF_CONDUCT.md CONTRIBUTORS.md ./
 CMD ["/bin/bash"]
 
 FROM dependencies AS devDependencies
@@ -43,7 +43,6 @@ ENTRYPOINT ["/bin/bash", "sleep.sh"]
 CMD ["10"]
 
 FROM devBuild as dev
-COPY .env .
 ENTRYPOINT ["/bin/bash"]
 CMD [""]
 
@@ -52,7 +51,6 @@ ENTRYPOINT ["/bin/bash", "install.sh"]
 CMD ["update"]
 
 FROM devBuild as twitter
-COPY .env .
 ENTRYPOINT ["/bin/bash", "twitter.sh"]
 CMD ["post hello-world"]
 
