@@ -1,6 +1,6 @@
 mongodata/
 data/
-.env
+.env*
 
 # Logs
 logs

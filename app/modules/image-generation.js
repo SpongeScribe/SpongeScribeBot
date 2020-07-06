@@ -12,8 +12,8 @@ import text2png from 'text2png';
 export function text2pngFile (imageText, user, isoDateTime, uuidNSRootInput) {
     console.log('{ "text2pngFile" : { "parameters: [ { "imageText" : "' + imageText + '" }, { "user" : "' + user?user:'ERROR=UNDEFINED' + '" }, { "isoDateTime" : "' + isoDateTime + '" }, { "uuidNSRootInput" : "' + ((uuidNSRootInput && uuidNSRootInput.length >= 13) ? uuidNSRootInput.substring(9,13) : uuidNSRootInput ? uuidNSRootInput : 'ERROR=UNDEFINED') + '" } ] } }' );
     const uuidNSRoot = uuidNSRootInput || '13381dc1-fc4e-4b97-9bee-f04ddcc7fea1';
-    // const username = user || process.env.UUID_USER_NAME || 'default user';
-    // const username = user?user:process.env.UUID_USER_NAME?process.env.UUID_USER_NAME:'default user';
+    // const username = user || process.env.USER_NAME || 'default user';
+    // const username = user?user:process.env.USER_NAME?process.env.USER_NAME:'default user';
     // const uuidNSRoot = uuidNSRootInput?uuidNSRootInput:'13381dc1-fc4e-4b97-9bee-f04ddcc7fea1';
     const username = 'defaultio'
     console.log('{ "text2pngFile" : { "parameters: [ { "imageText" : "' + imageText + '" }, { "username" : "' + username?username:'ERROR=UNDEFINED' + '" }, { "isoDateTime" : "' + isoDateTime + '" }, { "uuidNSRootInput" : "' + ((uuidNSRoot && uuidNSRoot.length >= 13) ? uuidNSRoot.substring(9,13) : uuidNSRoot ? uuidNSRoot : 'ERROR=UNDEFINED') + '" } ] } }' );
