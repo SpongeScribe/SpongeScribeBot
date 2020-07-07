@@ -3,8 +3,10 @@
     License, v. 2.0. If a copy of the MPL was not distributed with this
     file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+
 ----
-todo: rename data to dat
+
+
 # SpongeScribeBot
 strangetext transcription
  - source: https://github.com/SpongeScribe/SpongeScribeBot#readme
@@ -13,7 +15,9 @@ strangetext transcription
  - code_of_conduct: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CODE_OF_CONDUCT.md
  - contributors: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CONTRIBUTORS.md
  - license: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/LICENSE
- - license.notify: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/LICENSE.NOTIFY.md
+ - license.NOTICE: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/NOTICE.LICENSE.md
+ - changelog: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CHANGELOG.md
+
 
 ----
 
@@ -29,7 +33,8 @@ By participating in this project you agree to abide by its terms.
 
 Thank you for your participation.
 
-https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CODE_OF_CONDUCT.md
+ - code_of_conduct: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CODE_OF_CONDUCT.md
+ - contributors: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CONTRIBUTORS.md
 
 
 ----
@@ -38,15 +43,33 @@ https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CODE_OF_CONDUCT.md
 ## Source Code Form License Notice Attached Outside The Particular File
 
 If it is not possible or desirable to put the notice in a particular file,
-a License file named 'LICENSE' or 'LICENSE.md' or 'LICENSE.NOTIFY.md' will
+a License file named 'LICENSE' or 'LICENSE.md' or 'NOTICE.LICENSE.md' will
 be present in each directory which has particular file(s) in that directory.
 
 The License file will associate each particular file's name with the appropriate
 Source Code Form License Notice and any relevant Copyright or other notices.
 
+ - license: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/LICENSE
+ - license.NOTICE: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/NOTICE.LICENSE.md
+
 
 ----
 
+
+All scripts and calls expected to come from a `pwd` of the project root.
+Scripts in `app/scripts` should be ran by docker.
+
+If you ever find files aren't making it into docker, check: `.dockerignore` ALLOW LIST
+If you ever find files aren't making it into git, check: `.gitignore` BLOCK LIST
+If you ever find files aren't making it into `npm pack`, check: `.gitignore`
+
+To run `app/scripts` locally, run `scripts/init-local-app-scripts-symlinks.sh`
+If you add new `app/scripts`, you may need to rerun: `init-gitignore-local-app-symlinks.sh`
+
+----
+
+
+todo: rename data to dat
 
 todo: lib vs dist
 	src: (uncompiled)
@@ -78,3 +101,6 @@ ascii strange/crypt text
 ascii pictures with words
 describe pictures with words
 build general ai
+humans robots website blog blog post static ?
+
+
