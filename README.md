@@ -61,13 +61,16 @@ Scripts in `app/scripts` should be ran by docker.
 
 If you ever find files aren't making it into docker, check: `.dockerignore` ALLOW LIST
 If you ever find files aren't making it into git, check: `.gitignore` BLOCK LIST
-If you ever find files aren't making it into `npm pack`, check: `.npmignore`
+If you ever find files aren't making it into `npm pack`, check: `app/.npmignore` BLOCK LIST
+
+`.env` files are blocked from docker container images, but they can be brought in for dev environments with `docker` `--volume`, `docker-compose`, etc. 
 
 To run `app/scripts` locally, run `scripts/init-local-app-scripts-symlinks.sh`
 If you add new `app/scripts`, you may need to rerun: `init-gitignore-local-app-symlinks.sh`
 
 ----
 
+# TODO / NOTES
 
 todo: rename data to dat
 
@@ -101,6 +104,24 @@ ascii strange/crypt text
 ascii pictures with words
 describe pictures with words
 build general ai
-humans robots website blog blog post static ?
+humans.txt robots.txt website blog blog post static ? keybase auth? lets encrypt? security.txt
+
+
+TODO + manual still: https://github.com/github-changelog-generator/github-changelog-generator
+https://github.com/skywinder/gitlab-changelog-generator/blob/master/CHANGELOG.md
+automate package.json npm pack, npm publish
+automate version increase ticker
+semver2.0
+
+
+
+
+
+
+
+
+
+
+
 
 

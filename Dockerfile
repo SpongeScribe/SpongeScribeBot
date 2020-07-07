@@ -27,7 +27,7 @@ RUN ["npm", "install", "--only=dev"]
 RUN DEBIAN_FRONTEND=noninteractive apt install -y uuid-runtime vim
 
 FROM dependencies AS build
-COPY app/scripts/build.sh app/scripts/entrypoint.sh app/scripts/install.sh app/index.js app/sleep.js app/twitter.js app/scripts/sleep.sh app/scripts/twitter.sh app/scripts/version.sh app/.babelrc ./
+COPY app/scripts/build.sh app/scripts/entrypoint.sh app/scripts/install.sh app/index.js app/sleep.js app/twitter.js app/twitter.autohook.js app/scripts/sleep.sh app/scripts/twitter.sh app/scripts/version.sh app/.babelrc ./
 COPY app/modules/image-generation.js app/modules/sleep.js modules/
 ARG BUILD
 ENV BUILD $BUILD
@@ -37,7 +37,7 @@ CMD ["/bin/bash"]
 FROM devDependencies as twitter
 ARG WORKDIR
 ENV WORKDIR $WORKDIR
-COPY --from=build $WORKDIR/package.json $WORKDIR/package-lock.json $WORKDIR/twitter.js $WORKDIR/VERSION $WORKDIR/twitter.sh ./
+COPY --from=build $WORKDIR/package.json $WORKDIR/package-lock.json $WORKDIR/twitter.js $WORKDIR/twitter.autohook.js $WORKDIR/VERSION $WORKDIR/twitter.sh ./
 ENTRYPOINT ["/bin/bash", "twitter.sh"]
 CMD ["post hello-world"]
 

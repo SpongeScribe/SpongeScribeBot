@@ -38,21 +38,20 @@
 
 
 !.babelrc
-!babel.config.json
 !CODE_OF_CONDUCT.md
 !CONTRIBUTORS.md
 !LICENSE
 !NOTICE.LICENSE.md
 !README.md
-!app/index.js
-!app/package-lock.json
-!app/package.json
-!app/sleep.js
-!app/twitter.autohook.js
-!app/twitter.js
-!app/modules/image-generation.js
-!app/modules/sleep.js
-
+!babel.config.json
+!index.js
+!modules/image-generation.js
+!modules/sleep.js
+!package-lock.json
+!package.json
+!sleep.js
+!twitter.autohook.js
+!twitter.js
 
 
 #######################
