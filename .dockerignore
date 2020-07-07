@@ -37,9 +37,11 @@
 ###########################################
 
 
+!*.temp.*
 !CHANGELOG.md
 !CODE_OF_CONDUCT.md
 !CONTRIBUTORS.md
+!Dockerfile
 !LICENSE
 !NOTICE.LICENSE.md
 !README.md

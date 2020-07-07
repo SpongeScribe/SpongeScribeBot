@@ -3,18 +3,18 @@
 # Any copyright is dedicated to the Public Domain.
 # https://creativecommons.org/publicdomain/zero/1.0/
 set -ex
-rm -f ./version;
-touch version;
+rm -f VERSION;
+touch VERSION;
 
-printf "node=" >> version;
-node -v >> version;
+printf "node=" >> VERSION;
+node -v >> VERSION;
 
-printf "npm=" >>version;
-npm -v >> version;
+printf "npm=" >> VERSION;
+npm -v >> VERSION;
 
-printf "app=" >>version;
+printf "app=" >>VERSION;
 #TODO:auto-incr, pull from package.json (choose option from version-check.sh), delete appversion file.
-npm run version --silent >> version;
+npm run version --silent >> VERSION;
 echo '' >> VERSION;
 
 cat VERSION;
