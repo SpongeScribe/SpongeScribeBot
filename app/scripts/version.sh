@@ -14,7 +14,7 @@ npm -v >> version;
 
 printf "app=" >>version;
 #TODO:auto-incr, pull from package.json (choose option from version-check.sh), delete appversion file.
-cat appversion >> version;
+npm run version --silent >> version;
 echo '' >> version;
 
 cat version;

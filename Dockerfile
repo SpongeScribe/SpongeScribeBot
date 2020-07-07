@@ -4,16 +4,16 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 ARG VERSION=latest
-ARG LOG_LEVEL=
+ARG LOGLEV=
 ARG WORKDIR=/usr/local/app
-ARG FILES='app/modules/*.js app/babel.config*.json scripts/app/build*.sh scripts/app/entrypoint*.sh scripts/app/install*.sh app/index.js app/sleep.js app/twitter.js scripts/app/version.sh app/.babelrc*'
+ARG BUILD='./build.sh'
 
 FROM node:$VERSION AS base
-ARG LOG_LEVEL
-ENV NPM_CONFIG_LOGLEVEL $LOG_LEVEL
+ARG LOGLEV
+ENV NPM_CONFIG_LOGLEVEL $LOGLEV
 RUN export DEBIAN_FRONTEND=noninteractive && apt update -y && apt upgrade -y
-RUN ["npm", "install", "-g", "npm", "n"]
-RUN ["n", "latest"]
+RUN	npm install -g npm n
+RUN n latest
 
 FROM base AS dependencies
 ARG WORKDIR
@@ -27,37 +27,34 @@ FROM dependencies AS devDependencies
 RUN ["npm", "install", "--only=dev"]
 RUN DEBIAN_FRONTEND=noninteractive apt install -y uuid-runtime vim
 
-#TODO build / babell
 FROM dependencies AS build
-ARG BUILD_SCRIPT
-COPY $FILES ./
-RUN /bin/bash $BUILD_SCRIPT
+COPY app/modules ./app/scripts/build.sh ./app/scripts/entrypoint.sh ./app/scripts/install.sh ./app/index.js ./app/sleep.js ./app/twitter.js ./app/scripts/version.sh ./app/.babelrc ./
+ARG BUILD
+RUN /bin/bash $BUILD
 
 FROM devDependencies AS devBuild
-ARG BUILD_SCRIPT
-COPY $FILES ./
-RUN /bin/bash $BUILD_SCRIPT
+ARG BUILD
+COPY app/modules ./app/scripts/*.sh ./app/*.js ./app/.babelrc ./
+RUN /bin/bash $BUILD
 
 FROM build as sleep
 ENTRYPOINT ["/bin/bash", "sleep.sh"]
 CMD ["10"]
 
 FROM devBuild as dev
-ENTRYPOINT ["/bin/bash"]
-CMD [""]
+CMD ["/bin/bash"]
 
-FROM devBuild as install
+FROM devBuild as devInstall
 ENTRYPOINT ["/bin/bash", "install.sh"]
 CMD ["update"]
 
-FROM devBuild as twitter
+FROM devBuild as devTwitter
 ENTRYPOINT ["/bin/bash", "twitter.sh"]
 CMD ["post hello-world"]
 
 FROM devBuild as devCopyAll
 COPY . .
-ENTRYPOINT ["/bin/bash"]
-CMD [""]
+CMD ["/bin/bash"]
 
 FROM build AS deploy
 ENTRYPOINT ["/bin/bash"]
