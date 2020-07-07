@@ -60,7 +60,7 @@
 !app/scripts/twitter.sh
 !app/scripts/version.sh
 !app/sleep.js
-!app/twitter.autohook.json
+!app/twitter.autohook.js
 !app/twitter.js
 !modules/image-generation.js
 !modules/sleep.js
