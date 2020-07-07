@@ -61,7 +61,7 @@ Scripts in `app/scripts` should be ran by docker.
 
 If you ever find files aren't making it into docker, check: `.dockerignore` ALLOW LIST
 If you ever find files aren't making it into git, check: `.gitignore` BLOCK LIST
-If you ever find files aren't making it into `npm pack`, check: `.gitignore`
+If you ever find files aren't making it into `npm pack`, check: `.npmignore`
 
 To run `app/scripts` locally, run `scripts/init-local-app-scripts-symlinks.sh`
 If you add new `app/scripts`, you may need to rerun: `init-gitignore-local-app-symlinks.sh`

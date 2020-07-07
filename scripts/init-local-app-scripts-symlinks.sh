@@ -4,4 +4,5 @@
 # https://creativecommons.org/publicdomain/zero/1.0/
 find -type l -delete
 ln -s `pwd`/app/* .
+ln -s `pwd`/app/.* .
 ln -s `pwd`/app/scripts/* scripts
