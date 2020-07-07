@@ -13,7 +13,7 @@ strangetext transcription
  - code_of_conduct: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CODE_OF_CONDUCT.md
  - contributors: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CONTRIBUTORS.md
  - license: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/LICENSE
- - license.notify: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/LICENSE.NOTIFY.md
+ - license.NOTICE: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/NOTICE.LICENSE.md
 
 ----
 
@@ -21,7 +21,7 @@ strangetext transcription
 ## Source Code Form License Notice Attached Outside The Particular File
 
 If it is not possible or desirable to put the notice in a particular file,
-a License file named 'LICENSE' or 'LICENSE.md' or 'LICENSE.NOTIFY.md' will
+a License file named 'LICENSE' or 'LICENSE.md' or 'NOTICE.LICENSE.md' will
 be present in each directory which has particular file(s) in that directory.
 
 The License file will associate each particular file's name with the appropriate

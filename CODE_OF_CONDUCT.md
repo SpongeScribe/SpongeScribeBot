@@ -19,7 +19,7 @@ strangetext transcription
  - code_of_conduct: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CODE_OF_CONDUCT.md
  - contributors: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CONTRIBUTORS.md
  - license: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/LICENSE
- - license.notify: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/LICENSE.NOTIFY.md
+ - license.NOTICE: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/NOTICE.LICENSE.md
 
 
 ### Copyright ContributorCovenant
