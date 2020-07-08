@@ -5,4 +5,4 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 set -ex
 WORKDIR=/usr/local/app
-docker cp $(docker run -v $PWD/.env:/$WORKDIR/.env -v $PWD/data:$WORKDIR/data -d $(docker build . -q) entrypoint.sh "$@"; sleep 5):$WORKDIR/data/out/. data/out/
+docker cp $(docker run -v $PWD/.env:$WORKDIR/.env -v $PWD/data:$WORKDIR/data -d $(docker build . -q) entrypoint.sh "$@"; sleep 5):$WORKDIR/data/out/. data/out/
