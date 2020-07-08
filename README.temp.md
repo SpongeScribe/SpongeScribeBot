@@ -85,7 +85,7 @@ todo: lib vs dist
 	!lib/**/*.js
 
 
-check files merge
+check files count merge to one script
 
 docker env script merge
 docker mount-nomount merge
@@ -116,11 +116,3 @@ semver2.0
 
 
 todo: update all scripts to reference `pwd`/scripts then remove the ln -s pwd . from build.sh
-
-
-
-
-
-
-
-

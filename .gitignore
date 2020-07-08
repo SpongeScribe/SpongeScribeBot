@@ -118,6 +118,7 @@ dist
 .tern-port
 
 # symlinks added by `./scripts/init-local-app-symlinks.sh`
+tweet
 version.sh
 .npmignore
 build.sh
@@ -126,6 +127,8 @@ git-commit-push-create-pr.sh
 in-files-count.sh
 app/data
 install.sh
+text2png-random.sh
+count-data-files.sh
 .babelrc
 randomInput.sh
 cleanup-data-folder.sh
@@ -137,6 +140,7 @@ index.js
 dev.sh
 out-files-count.sh
 npm.sh
+count-data-files
 tweet.sh
 scripts/version.sh
 scripts/build.sh
