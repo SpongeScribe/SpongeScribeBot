@@ -4,4 +4,3 @@
 # https://creativecommons.org/publicdomain/zero/1.0/
 set -x
 find -type l -delete
-
