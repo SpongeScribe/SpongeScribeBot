@@ -2,5 +2,5 @@
 # Author: Drewry Pope
 # Any copyright is dedicated to the Public Domain.
 # https://creativecommons.org/publicdomain/zero/1.0/
-find -type l -delete
-
+set -ex
+docker run -it $(docker build app -q --target sleep) "$@"
