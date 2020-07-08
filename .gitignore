@@ -118,7 +118,6 @@ dist
 .tern-port
 
 # symlinks added by `./scripts/init-local-app-symlinks.sh`
-tweet
 version.sh
 .npmignore
 build.sh
@@ -140,7 +139,6 @@ index.js
 dev.sh
 out-files-count.sh
 npm.sh
-count-data-files
 tweet.sh
 scripts/version.sh
 scripts/build.sh
