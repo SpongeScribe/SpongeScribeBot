@@ -118,12 +118,12 @@ dist
 .tern-port
 
 # symlinks added by `./scripts/init-local-app-symlinks.sh`
-package-lock.json
-package.json
+.npmignore
+app/data
+.babelrc
 twitter.autohook.js
 index.js
 scripts/version.sh
-scripts/dev-entrypoint.sh
 scripts/build.sh
 scripts/in-files-count.sh
 scripts/install.sh
@@ -132,7 +132,6 @@ scripts/cleanup-data-folder.sh
 scripts/npm-pack-check.sh
 scripts/out-files-count.sh
 scripts/entrypoint.sh
-scripts/version
 scripts/twitter.sh
 scripts/sleep.sh
 modules
