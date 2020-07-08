@@ -28,7 +28,7 @@ else
 	if  [ -n "$branch_name" ]; then
 		if  [ "$1" = "--gui" ]; then
 			GUI_COMMAND=--web
-			printf 'Headless mode activated. Skipping first argument, text-based gh pr view. \n'
+			printf 'GUI mode activated. Skipping first argument, will open gh pr in browser. \n'
 			shift
 		fi
 		printf 'git add \n'
