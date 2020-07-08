@@ -65,9 +65,9 @@ If you ever find files aren't making it into `npm pack`, check: `app/.npmignore`
 
 `.env` files are blocked from docker container images, but they can be brought in for dev environments with `docker` `--volume`, `docker-compose`, etc. 
 
-To run `app/scripts` locally, run `scripts/etc/init-symlinks.sh`
-If you add new `app/scripts`, you may need to rerun: `scripts/etc/init-symlinks-append-gitignore.sh`
-To cleanup symlinks, run `scripts/etc/cleanup-delete-all-symlinks.sh`
+To run `app/scripts` locally, run `scripts/etc/create-data-dirs-and-symlinks.sh`
+If you add new `app/scripts`, you may need to rerun: `scripts/etc/append-symlinks-to-gitignore.sh`
+To cleanup symlinks, run `scripts/etc/delete-symlinks.sh`
 
 ----
 
