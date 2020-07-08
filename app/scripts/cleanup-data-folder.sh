@@ -19,10 +19,12 @@ if [ -n "$1" ] ; then
 	fi
 fi
 
-./in-files-count.sh
-./out-files-count.sh
+`pwd`/scripts/in-files-count.sh
+`pwd`/scripts/out-files-count.sh
+
+ls -d data/* | sed s/://g | xargs -I {} sh -c "touch {}/$dir.temp.png"
 
 find data/$dir/*.* -name "*.$fileExtension1" -delete -o -name "*.$fileExtension2" -delete
 
-./in-files-count.sh
-./out-files-count.sh
+`pwd`/scripts/in-files-count.sh
+`pwd`/scripts/out-files-count.sh
