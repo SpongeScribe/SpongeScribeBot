@@ -118,11 +118,26 @@ dist
 .tern-port
 
 # symlinks added by `./scripts/init-local-app-symlinks.sh`
+version.sh
 .npmignore
+build.sh
+compose.sh
+git-commit-push-create-pr.sh
+in-files-count.sh
 app/data
+install.sh
 .babelrc
+randomInput.sh
+cleanup-data-folder.sh
+wait.sh
 twitter.autohook.js
+text2png.sh
+npm-pack-check.sh
 index.js
+dev.sh
+out-files-count.sh
+npm.sh
+tweet.sh
 scripts/version.sh
 scripts/build.sh
 scripts/in-files-count.sh
@@ -135,5 +150,10 @@ scripts/entrypoint.sh
 scripts/twitter.sh
 scripts/sleep.sh
 modules
+etc
+entrypoint.sh
+twitter.sh
+sleep.sh
 sleep.js
 twitter.js
+docker.sh
