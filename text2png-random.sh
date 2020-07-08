@@ -1,0 +1,1 @@
+/usr/local/src/SpongeScribeBot/scripts/text2png-random.sh

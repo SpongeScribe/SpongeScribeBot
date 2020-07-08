@@ -1,0 +1,1 @@
+/usr/local/src/SpongeScribeBot/scripts/count-data-files.sh
