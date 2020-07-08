@@ -37,37 +37,21 @@
 ###########################################
 
 
-!*.temp.*
-!CHANGELOG.md
+!.babelrc
 !CODE_OF_CONDUCT.md
 !CONTRIBUTORS.md
-!Dockerfile
 !LICENSE
 !NOTICE.LICENSE.md
 !README.md
-!app/.babelrc
-!app/babel.config.json
-!app/index.js
-!app/modules/image-generation.js
-!app/modules/sleep.js
-!app/scripts/build.sh
-!app/scripts/cleanup-data-folder.sh
-!app/scripts/dev-entrypoint.sh
-!app/scripts/entrypoint.sh
-!app/scripts/in-files-count.sh
-!app/scripts/install.sh
-!app/scripts/out-files-count.sh
-!app/scripts/randomInput.sh
-!app/scripts/sleep.sh
-!app/scripts/twitter.sh
-!app/scripts/version.sh
-!app/sleep.js
-!app/twitter.autohook.js
-!app/twitter.js
+!babel.config.json
+!index.js
 !modules/image-generation.js
 !modules/sleep.js
 !package-lock.json
 !package.json
+!sleep.js
+!twitter.autohook.js
+!twitter.js
 
 
 #######################
@@ -125,3 +109,4 @@
 ## # been previously excluded at a higher level
 ## !src
 #### EXAMPLES #####################################################################
+

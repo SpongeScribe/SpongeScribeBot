@@ -1,3 +1,17 @@
+**/node_modules/
+**/data/
+**/data/
+**/dist/
+**/.env*
+**/*.env
+**/*.png
+data
+app/data
+.*
+!.git
+!.github
+!.gitignore
+
 # Logs
 logs
 *.log
@@ -102,3 +116,25 @@ dist
 
 # TernJS port file
 .tern-port
+
+# symlinks added by `./scripts/init-local-app-symlinks.sh`
+package-lock.json
+package.json
+twitter.autohook.js
+index.js
+scripts/version.sh
+scripts/dev-entrypoint.sh
+scripts/build.sh
+scripts/in-files-count.sh
+scripts/install.sh
+scripts/randomInput.sh
+scripts/cleanup-data-folder.sh
+scripts/npm-pack-check.sh
+scripts/out-files-count.sh
+scripts/entrypoint.sh
+scripts/version
+scripts/twitter.sh
+scripts/sleep.sh
+modules
+sleep.js
+twitter.js

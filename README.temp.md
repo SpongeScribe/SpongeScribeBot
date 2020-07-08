@@ -115,9 +115,7 @@ automate version increase ticker
 semver2.0
 
 
-
-
-
+todo: update all scripts to reference `pwd`/scripts then remove the ln -s pwd . from build.sh
 
 
 
