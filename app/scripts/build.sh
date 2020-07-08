@@ -4,4 +4,6 @@
 # https://creativecommons.org/publicdomain/zero/1.0/
 set -ex
 
+ln -s . scripts
+
 ./version.sh
