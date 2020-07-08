@@ -12,3 +12,5 @@ MAX_TWEET_PER_3_HOUR_GLOBAL=300
 MAX_TWEET_PER_3_HOUR_USER=180
 MAX_TWEET_PER_DAY_GLOBAL=2400
 MAX_TWEET_PER_DAY_USER=1440
+MAX_MENTIONS_PER_DAY="100000// 100,000 requests per day to the /statuses/mentions_timeline endpoint."
+MAX_USER_PER_15_MINUTES_GLOBAL="75 - This is in addition to existing user-level rate limits (75 requests / 15-minutes"

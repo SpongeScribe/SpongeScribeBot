@@ -4,4 +4,5 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 set -ex
-docker cp $(docker run -v $PWD/data:/usr/local/app/data -d $(docker build . -q) entrypoint.sh "$@"; sleep 5):/usr/local/app/data/out/. data/out/
+WORKDIR=/usr/local/app
+docker cp $(docker run -v $PWD/.env:/$WORKDIR/.env -v $PWD/data:$WORKDIR/data -d $(docker build . -q) entrypoint.sh "$@"; sleep 5):$WORKDIR/data/out/. data/out/

@@ -4,6 +4,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 set -ex
+WORKDIR=/usr/local/app
 echo "Update started."
 if [[ -f "package.json" ]]; then
     echo "Updating package.json..."
@@ -13,13 +14,13 @@ if [[ -f "package.json" ]]; then
     fi
 
     echo "Build Image, Run Image."
-    docker build app --target install
-    DOCKER_CONTAINER_ID=$(docker run -d $(docker build app -q --target install) "$@");
+    docker build . --target install
+    DOCKER_CONTAINER_ID=$(docker run -d $(docker build . -q --target install) "$@");
 
     { sed /sleep/q; kill $!; } < <(exec docker logs --details --follow --timestamps $DOCKER_CONTAINER_ID)
 
     echo "Copy File: container:'package.json' to local:'package.json.temp'"
-    docker cp $DOCKER_CONTAINER_ID:/usr/local/app/package.json package.json.temp
+    docker cp $DOCKER_CONTAINER_ID:$WORKDIR/package.json package.json.temp
 
 
     echo "Updating package-lock.temp.json..."
@@ -29,7 +30,7 @@ if [[ -f "package.json" ]]; then
     fi
 
     echo "Copy File: container:'package-lock.json' to local:'package-lock.json.temp'"
-    docker cp $DOCKER_CONTAINER_ID:/usr/local/app/package-lock.json package-lock.json.temp
+    docker cp $DOCKER_CONTAINER_ID:$WORKDIR/package-lock.json package-lock.json.temp
 
 
     echo "Updating version..."
@@ -39,7 +40,7 @@ if [[ -f "package.json" ]]; then
     fi
 
     echo "Run Image, Copy File: container:'VERSION' to local:'VERSION.temp'"
-    docker cp $DOCKER_CONTAINER_ID:/usr/local/app/VERSION VERSION.temp
+    docker cp $DOCKER_CONTAINER_ID:$WORKDIR/VERSION VERSION.temp
 
     echo "Moving temp files to permanent locations..."
 
