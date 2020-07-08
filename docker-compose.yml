@@ -18,7 +18,7 @@ services:
     image: 'app'
     restart: unless-stopped
     environment:
-      IMAGE_TEXT: 'DEFAULT'
+      TEXT: 'DEFAULT'
       MONGO_INITDB_DATABASE: 'MONGODB'
       MONGO_INITDB_USERNAME: 'MONGOUSER'
       MONGO_INITDB_PASSWORD:

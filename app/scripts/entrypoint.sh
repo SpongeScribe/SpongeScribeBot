@@ -13,12 +13,12 @@ if  [ "$1" = "--override" ]; then
 else
 	COMMAND=start
 fi
-IMAGE_TEXT="$@"
-export IMAGE_TEXT=$IMAGE_TEXT
-echo "IMAGE_TEXT=$IMAGE_TEXT" | tee --append .env /etc/environment
-if [ ! -z $IMAGE_TEXT ]; then
+TEXT="$@"
+export TEXT=$TEXT
+echo "TEXT=$TEXT" | tee --append .env /etc/environment
+if [ ! -z $TEXT ]; then
     FILENAME=./data/in/input.manual.`uuidgen`.json
-    echo "{ \"items\": [ { \"username\" : \"@@MANUAL\", \"imageText\" : \"$IMAGE_TEXT\" } ] }" >> $FILENAME
+    echo "{ \"items\": [ { \"NAME\" : \"@@MANUAL\", \"TEXT\" : \"$TEXT\" } ] }" >> $FILENAME
     cat $FILENAME
 fi
 
