@@ -21,11 +21,12 @@ ENV NPM_CONFIG_LOGLEVEL "$LOGLEVEL"
 FROM base AS dependencies
 COPY package.json package*-lock.json ./
 RUN ["npm", "install", "--only=prod"]
+RUN DEBIAN_FRONTEND=noninteractive apt install -y uuid-runtime
 CMD ["/bin/bash"]
 
 FROM dependencies AS devDependencies
 RUN ["npm", "install", "--only=dev"]
-RUN DEBIAN_FRONTEND=noninteractive apt install -y uuid-runtime vim
+RUN DEBIAN_FRONTEND=noninteractive apt install -y vim
 CMD ["/bin/bash"]
 
 FROM dependencies AS build
