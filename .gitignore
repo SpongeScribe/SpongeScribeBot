@@ -5,6 +5,12 @@
 **/.env*
 **/*.env
 **/*.png
+data
+app/data
+.*
+!.git
+!.github
+!.gitignore
 
 # Logs
 logs
