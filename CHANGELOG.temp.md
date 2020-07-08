@@ -19,6 +19,7 @@ https://github.com/olivierlacan/keep-a-changelog
 
 ## [Dev Unreleased] https://github.com/SpongeScribe/SpongeScribeBot/compare/v0.0.6...dev
 ### Added
+- things work now, can tweet very basically, can create any amount of images from json input.
 - moved dockerfile to root
 - changelog
 

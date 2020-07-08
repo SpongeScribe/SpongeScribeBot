@@ -126,6 +126,8 @@ git-commit-push-create-pr.sh
 in-files-count.sh
 app/data
 install.sh
+text2png-random.sh
+count-data-files.sh
 .babelrc
 randomInput.sh
 cleanup-data-folder.sh
