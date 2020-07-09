@@ -23,7 +23,7 @@
     "./lib": "./lib/index.js",
     "./lib/index": "./lib/index.js",
     "./lib/index.js": "./lib/index.js",
-    "./lib/package.json": "./lib/package.json"
+    "./lib/package.json": "./lib/package.json",
     "./lib/sleep": "./lib/sleep.js",
     "./lib/sleep.js": "./lib/sleep.js",
     "./lib/twitter": "./lib/twitter.js",
@@ -34,7 +34,7 @@
     "./lib/modules/sleep": "./lib/modules/sleep.js",
     "./lib/modules/sleep.js": "./lib/modules/sleep.js",
     "./lib/modules/image-generation": "./lib/modules/image-generation.js",
-    "./lib/modules/image-generation.js": "./lib/modules/image-generation.js",
+    "./lib/modules/image-generation.js": "./lib/modules/image-generation.js"
   },
   "files": [
     "package.json",
