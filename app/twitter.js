@@ -34,7 +34,7 @@ async function tweetThread(thread) {
 const thread = ["First tweet", "Second tweet", "Third tweet"];
 tweetThreadReply("", thread).catch(console.error);
 // 100,000 requests per day to the /statuses/mentions_timeline endpoint. This is in addition to existing user-level rate limits (75 requests / 15-minutes
-1279945534917263361
+// 1279945534917263361
 
 // client
 //     .get("statuses/mentions_timeline.json")
