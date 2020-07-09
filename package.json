@@ -42,7 +42,7 @@
     "index.js",
     "sleep.js",
     "twitter.js",
-    "twitter.autohook.js",
+    "twitter-autohook.js",
     "modules/image-generation.js",
     "modules/sleep.js"
   ],

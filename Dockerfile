@@ -30,7 +30,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y vim
 CMD ["/bin/bash"]
 
 FROM dependencies AS build
-COPY Dockerfile app/scripts/build.sh app/scripts/entrypoint.sh app/scripts/install.sh app/index.js app/sleep.js app/twitter.js app/twitter.autohook.js app/scripts/sleep.sh app/scripts/twitter.sh app/scripts/version.sh app/.babelrc ./
+COPY Dockerfile app/scripts/build.sh app/scripts/entrypoint.sh app/scripts/install.sh app/index.js app/sleep.js app/twitter.js app/twitter-autohook.js app/scripts/sleep.sh app/scripts/twitter.sh app/scripts/version.sh app/.babelrc ./
 COPY app/modules/image-generation.js app/modules/sleep.js modules/
 ARG BUILD
 ENV BUILD "$BUILD"
@@ -42,9 +42,16 @@ CMD ["/bin/bash"]
 FROM devDependencies as twitter
 ARG WORKDIR
 ENV WORKDIR "$WORKDIR"
-COPY --from=build "$WORKDIR/twitter.js" "$WORKDIR/twitter.autohook.js" "$WORKDIR/twitter.sh" "$WORKDIR/VERSION" ./
+COPY --from=build "$WORKDIR/twitter.js" "$WORKDIR/twitter.sh" "$WORKDIR/VERSION" ./
 ENTRYPOINT ["/bin/bash", "twitter.sh"]
-CMD ["post hello-world"]
+CMD [""]
+
+FROM devDependencies as twitter-autohook
+ARG WORKDIR
+ENV WORKDIR "$WORKDIR"
+COPY --from=build "$WORKDIR/twitter-autohook.js" "$WORKDIR/twitter-autohook.sh" "$WORKDIR/VERSION" ./
+ENTRYPOINT ["/bin/bash", "twitter-autohook.sh"]
+CMD [""]
 
 FROM devDependencies as sleep
 ARG WORKDIR

@@ -1,3 +1,6 @@
+import {} from 'dotenv/config.js'
+
+
 import pkg from 'twitter-autohook';
 const { Autohook } = pkg;
 
