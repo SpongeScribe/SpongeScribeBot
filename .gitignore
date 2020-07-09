@@ -6,7 +6,6 @@
 **/*.png
 data
 app/data
-init
 .git
 .*
 !.git
