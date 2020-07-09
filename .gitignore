@@ -161,6 +161,7 @@ dist
 /install
 /sleep
 /npm-pack-check.sh
+/init
 /docker
 /twitter
 /index.js
@@ -195,6 +196,7 @@ dist
 /scripts/twitter
 /scripts/out-files-count.sh
 /scripts/count-data-files
+/scripts/scripts
 /scripts/etc/create-data-dirs-and-symlinks
 /scripts/etc/init
 /scripts/etc/delete-symlinks
