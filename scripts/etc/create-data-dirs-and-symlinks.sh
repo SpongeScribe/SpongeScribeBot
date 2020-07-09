@@ -14,3 +14,5 @@ ln -s `pwd`/scripts/* `pwd`
 ln -s `pwd`/data `pwd`/app/data
 
 find -type l -not -path "./.git*" -name '*.sh' -exec sh -c 'cp -P `pwd`/{} `pwd`/$(echo "{}" | rev | cut -c 4- | rev)' \;
+
+ln -s ./scripts/etc/create-data-dirs-and-symlinks.sh init
