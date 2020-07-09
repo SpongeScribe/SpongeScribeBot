@@ -1,1 +1,1 @@
-./scripts/etc/create-data-dirs-and-symlinks.sh
+scripts/etc/create-data-dirs-and-symlinks.sh

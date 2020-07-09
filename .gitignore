@@ -120,6 +120,8 @@ dist
 # symlinks added by `./scripts/etc/append-symlinks-to-gitignore.sh`
 /tweet
 /version.sh
+/node_modules/object.assign/test/test.sh
+/node_modules/object.assign/test/test
 /build
 /in-files-count
 /npm
@@ -137,6 +139,7 @@ dist
 /app/scripts/cleanup-data-folder
 /app/scripts/npm-pack-check
 /app/scripts/out-files-count
+/app/scripts/twitter.autohook
 /app/scripts/randomInput
 /app/scripts/install
 /app/scripts/sleep
@@ -149,9 +152,11 @@ dist
 /out-files-count
 /count-data-files.sh
 /.babelrc
+/twitter.autohook.sh
 /wait
 /randomInput.sh
 /cleanup-data-folder.sh
+/twitter.autohook
 /wait.sh
 /randomInput
 /compose
@@ -183,9 +188,11 @@ dist
 /scripts/npm-pack-check
 /scripts/git-commit-push-create-pr
 /scripts/out-files-count
+/scripts/twitter.autohook.sh
 /scripts/wait
 /scripts/randomInput.sh
 /scripts/cleanup-data-folder.sh
+/scripts/twitter.autohook
 /scripts/randomInput
 /scripts/compose
 /scripts/dev
@@ -216,5 +223,6 @@ dist
 /sleep.sh
 /text2png
 /sleep.js
+/package
 /twitter.js
 /docker.sh
