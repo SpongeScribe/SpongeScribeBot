@@ -11,7 +11,10 @@ app/data
 !.git
 !.github
 !.gitignore
-
+!.yarn
+!.yarnrc
+!.yarnrc.yml
+!.pnp.cjs
 # Logs
 logs
 *.log

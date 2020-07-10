@@ -7,30 +7,41 @@ ARG LOGLEVEL=
 ARG WORKDIR=/usr/local/app
 ARG BUILD='./build.sh'
 ARG RELEASE=
+ARG NODE_ENV=
+ARG MANAGER=yarn
 
 FROM "node:$VERSION" AS base
 ARG WORKDIR
 WORKDIR "$WORKDIR"
 COPY LICENSE NOTICE.LICENSE.md README.md CHANGELOG.md CODE_OF_CONDUCT.md CONTRIBUTORS.md ./
-RUN export DEBIAN_FRONTEND=noninteractive && apt update -y && apt upgrade -y
+RUN export DEBIAN_FRONTEND=noninteractive && apt update -y && apt upgrade -y && apt install -y uuid-runtime
 RUN	npm install -g npm n
 RUN n latest
 ARG LOGLEV
 ENV NPM_CONFIG_LOGLEVEL "$LOGLEVEL"
 
-FROM base AS dependencies
+FROM base AS dependencies-yarn
+RUN curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+COPY .yarnrc .yarnrc.yml package.json yarn*.lock ./
+COPY .yarn .yarn
+RUN yarn install --immutable --immutable-cache --check-cache --inline-builds --json
+CMD ["/bin/bash"]
+
+FROM base AS dependencies-npm
 COPY package.json package*-lock.json ./
-RUN ["npm", "install", "--only=prod"]
-RUN DEBIAN_FRONTEND=noninteractive apt install -y uuid-runtime
+RUN ["npm", "ci", "--only=prod"]
 CMD ["/bin/bash"]
 
-FROM dependencies AS devDependencies
-RUN ["npm", "install", "--only=dev"]
-RUN DEBIAN_FRONTEND=noninteractive apt install -y vim
+FROM dependencies-yarn AS dev-dependencies-yarn
+RUN ["yarn", "up", "--verbose"]
 CMD ["/bin/bash"]
 
-FROM dependencies AS build
-COPY Dockerfile app/scripts/build.sh app/scripts/entrypoint.sh app/scripts/install.sh app/index.js app/sleep.js app/twitter.js app/twitter-autohook.js app/scripts/sleep.sh app/scripts/twitter.sh app/scripts/version.sh app/.babelrc ./
+FROM dependencies-npm AS dev-dependencies-npm
+RUN ["npm", "install"]
+CMD ["/bin/bash"]
+
+FROM dependencies-$MANAGER AS build
+COPY Dockerfile app/scripts/build.sh app/scripts/entrypoint.sh app/scripts/install.sh app/index.js app/sleep.js app/twitter.js app/twitter-autohook.js app/scripts/sleep.sh app/scripts/twitter.sh app/scripts/twitter-autohook.sh app/scripts/version.sh app/.babelrc ./
 COPY app/modules/image-generation.js app/modules/sleep.js modules/
 ARG BUILD
 ENV BUILD "$BUILD"
@@ -39,21 +50,21 @@ ENV RELEASE "$RELEASE"
 RUN /bin/bash "$BUILD" "$RELEASE"
 CMD ["/bin/bash"]
 
-FROM devDependencies as twitter
+FROM dev-dependencies-$MANAGER as twitter
 ARG WORKDIR
 ENV WORKDIR "$WORKDIR"
 COPY --from=build "$WORKDIR/twitter.js" "$WORKDIR/twitter.sh" "$WORKDIR/VERSION" ./
 ENTRYPOINT ["/bin/bash", "twitter.sh"]
 CMD [""]
 
-FROM devDependencies as twitter-autohook
+FROM dev-dependencies-$MANAGER as twitter-autohook
 ARG WORKDIR
 ENV WORKDIR "$WORKDIR"
 COPY --from=build "$WORKDIR/twitter-autohook.js" "$WORKDIR/twitter-autohook.sh" "$WORKDIR/VERSION" ./
 ENTRYPOINT ["/bin/bash", "twitter-autohook.sh"]
 CMD [""]
 
-FROM devDependencies as sleep
+FROM dev-dependencies-$MANAGER as sleep
 ARG WORKDIR
 ENV WORKDIR "$WORKDIR"
 COPY --from=build "$WORKDIR/modules/sleep.js" modules/
@@ -66,16 +77,17 @@ COPY app/scripts/install.sh ./
 ENTRYPOINT ["/bin/bash", "install.sh"]
 CMD ["update"]
 
-FROM devDependencies as dev
+FROM dev-dependencies-$MANAGER as dev
+RUN DEBIAN_FRONTEND=noninteractive apt install -y vim
 ARG WORKDIR
 ENV WORKDIR "$WORKDIR"
 COPY app/modules/* modules/
 COPY Dockerfile package.json package*-lock.json *.json *.yml *LICENSE* *README* *NOTICE* *.md *.temp.* app/* app/scripts/* ./
-COPY --from=build "$WORKDIR/*.*" "$WORKDIR/.*" ./
+# COPY --from=build "$WORKDIR/*" "$WORKDIR/*.*" "$WORKDIR/.*" ./
 COPY --from=build "$WORKDIR/modules/*" ./modules/
 CMD ["/bin/bash"]
 
-FROM dependencies AS deploy
+FROM dependencies-$MANAGER AS deploy
 ARG WORKDIR
 ENV WORKDIR "$WORKDIR"
 COPY --from=build "$WORKDIR/Dockerfile" "$WORKDIR/entrypoint.sh" "$WORKDIR/index.js" "$WORKDIR/sleep.js" "$WORKDIR/twitter.js" "$WORKDIR/.babelrc" ./

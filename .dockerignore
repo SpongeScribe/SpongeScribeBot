@@ -60,15 +60,19 @@
 !app/scripts/randomInput.sh
 !app/scripts/sleep.sh
 !app/scripts/twitter.sh
+!app/scripts/twitter-autohook.sh
 !app/scripts/version.sh
 !app/sleep.js
 !app/twitter-autohook.js
 !app/twitter.js
 !modules/image-generation.js
 !modules/sleep.js
-!package-lock.json
 !package.json
-
+!package-lock.json
+!yarn.lock
+!.yarnrc
+!.yarnrc.yml
+!.yarn/
 
 #######################
 #######################
@@ -94,7 +98,11 @@
 **/mongo/
 **/mongodata/
 **/node_modules/
-
+node_modules
+/node_modules
+*node_modules*
+**node_modules**
+**node_modules**
 
 #### EXAMPLES  ###################################################################
 #### ! = ALLOW ###################################################################

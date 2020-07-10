@@ -99,7 +99,6 @@
   },
   "homepage": "https://github.com/SpongeScribe/SpongeScribeBot#readme",
   "dependencies": {
-    "esm": "^3.2.25",
     "hashish": "0.0.4",
     "mongodb": "^3.5.9",
     "move-file": "^2.0.0",
