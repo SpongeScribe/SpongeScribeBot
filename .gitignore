@@ -13,7 +13,11 @@ app/data
 !.gitignore
 !.yarn
 !.yarnrc
+!.yarnrc.temp
+!.yarnrc.clean.temp
 !.yarnrc.yml
+!.yarnrc.yml.temp
+!.yarnrc.yml.clean.temp
 !.pnp.cjs
 # Logs
 logs

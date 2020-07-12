@@ -2,4 +2,25 @@
 # Author: Drewry Pope
 # Any copyright is dedicated to the Public Domain.
 # https://creativecommons.org/publicdomain/zero/1.0/
-echo "{ \"count\" : [ { \"*\" : \"$(ls ./data/out/* 2> /dev/null | wc -l)\" }, { \"*.json\" : \"$(ls ./data/out/*.json 2> /dev/null | wc -l)\" }, { \"*.png\" : \"$(ls ./data/out/*.png 2> /dev/null | wc -l)\" }, { \"*.md\" : \"$(ls ./data/out/*.md 2> /dev/null | wc -l)\" }, { \"-ar *\" : \"$(ls -ar ./data/out/* 2> /dev/null | wc -l)\" } ] }"
+FOLDER="out"
+FOLDER_SPACE_ADJUST=""
+
+if  [ "$1" == "--nonewline" ] ; then
+    NONEWLINE="$1"
+	shift
+fi
+if  [ "$1" == "--oneline" ] || [ "$1" == "--one-line" ] || [ "$1" == "-1" ] ; then
+    ONELINE="$1"
+	shift
+fi
+if  [ "$1" == "--nonewline" ] ; then
+    NONEWLINE="$1"
+	shift
+fi
+if  [ ! -z "$1" ] ; then
+    FOLDER="$1"
+fi
+if  [ ! -z "$2" ] ; then
+    FOLDER_SPACE_ADJUST="$2"
+fi
+./scripts/files-count.sh $ONELINE $NONEWLINE $FOLDER $FOLDER_SPACE_ADJUST

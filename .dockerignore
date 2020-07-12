@@ -62,6 +62,7 @@
 !app/scripts/twitter.sh
 !app/scripts/twitter-autohook.sh
 !app/scripts/version.sh
+!app/scripts/yarnloader.sh
 !app/sleep.js
 !app/twitter-autohook.js
 !app/twitter.js

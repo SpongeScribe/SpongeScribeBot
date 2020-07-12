@@ -8,6 +8,8 @@ touch scripts/etc/delete-symlinks.sh
 ./scripts/etc/delete-symlinks.sh
 mkdir -p data/in
 mkdir -p data/out
+mkdir -p data/secrets
+mkdir -p data/logs
 find -type f -xtype f -not -path "./.git*" -name '*.sh' -exec sh -c 'ln -s $(basename {}) $(echo "{}" | rev | cut -c 4- | rev)' \;
 mkdir -p app/scripts
 ln -s app/* `pwd`

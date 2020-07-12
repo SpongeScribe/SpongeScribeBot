@@ -13,7 +13,7 @@ printf "npm=" >> VERSION;
 npm -v >> VERSION;
 
 printf "yarn=" >> VERSION;
-npm -v >> VERSION;
+yarn -v >> VERSION;
 
 printf "app=" >>VERSION;
 #TODO:auto-incr, pull from package.json (choose option from version-check.sh), delete appversion file.

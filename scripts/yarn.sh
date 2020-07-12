@@ -5,6 +5,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 set -ex
 WORKDIR=/usr/local/app
-MANAGER=npm
+MANAGER=yarn
 echo "Update started. [$MANAGER]"
 MANAGER="$MANAGER" `pwd`/scripts/manager.sh --$MANAGER "$@"

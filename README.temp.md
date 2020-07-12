@@ -63,7 +63,7 @@ If you ever find files aren't making it into docker, check: `.dockerignore` ALLO
 If you ever find files aren't making it into git, check: `.gitignore` BLOCK LIST
 If you ever find files aren't making it into `npm pack`, check: `app/.npmignore` BLOCK LIST
 
-`.env` files are blocked from docker container images, but they can be brought in for dev environments with `docker` `--volume`, `docker-compose`, etc. 
+`.env` files are blocked from docker container images, but they can be brought in for dev environments with `docker` `--volume`, `docker-compose`, etc.
 
 To run `app/scripts` locally, run `scripts/etc/create-data-dirs-and-symlinks.sh`
 If you add new `app/scripts`, you may need to rerun: `scripts/etc/append-symlinks-to-gitignore.sh`
@@ -113,6 +113,8 @@ https://github.com/skywinder/gitlab-changelog-generator/blob/master/CHANGELOG.md
 automate package.json npm pack, npm publish
 automate version increase ticker
 semver2.0
+{    "installConfig": {     "pnp": true   }} pnp not working yet because es modules
+
 
 
 todo: update all scripts to reference `pwd`/scripts then remove the ln -s pwd . from build.sh
