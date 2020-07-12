@@ -3941,6 +3941,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"sleep-atomic@npm:^0.9.1":
+  version: 0.9.1
+  resolution: "sleep-atomic@npm:0.9.1"
+  checksum: dbc51b461a92b19428c8a6a638215a042d414a25d5fb2918332ce30d0d606cd58859a3cb4e194608c8ef18dca033f315eb72d22d63e921b2575a09b1788e2e09
+  languageName: node
+  linkType: hard
+
 "snapdragon-node@npm:^2.0.1":
   version: 2.1.1
   resolution: "snapdragon-node@npm:2.1.1"
@@ -4052,6 +4059,7 @@ fsevents@^1.2.7:
     mongodb: ^3.5.9
     move-file: ^2.0.0
     seq: ^0.3.5
+    sleep-atomic: ^0.9.1
     text2png: ^2.3.0
     twitter-autohook: ^1.7.1
     twitter-lite: ^0.14.0

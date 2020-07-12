@@ -1,0 +1,28 @@
+{
+  "name": "sleep-atomic",
+  "version": "0.9.1",
+  "description": "Sleep w/ Atomics.wait",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpongeScribe/SpongeScribeBot.git"
+  },
+  "keywords": [
+    "sleep",
+    "wait",
+    "timeout",
+    "accessibility",
+    "atomics",
+    "atomic",
+    "CC0-1.0"
+  ],
+  "author": "dezren39",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/SpongeScribe/SpongeScribeBot/issues"
+  },
+  "homepage": "https://github.com/SpongeScribe/SpongeScribeBot#readme"
+}

@@ -6,34 +6,38 @@ import fs from 'fs' ;
 // import moveFile from 'move-file' ;
 // import text2png from 'text2png' ;
 // import { v1 as uuidv1 , v4 as uuidv4 , v5 as uuidv5 } from 'uuid'
-try {
-  async function verifyCredentials(inputClient) {
-    inputClient
-      .get("account/verify_credentials")
-      .then(
-          results => {
-              console.log("results" , results) ;
+async function verifyCredentials(client) {
+  client
+    .get("account/verify_credentials")
+    .then(
+        results => {
+          if (process.env.HEADLESS === "TRUE") {
+            console.log( JSON.stringify(results) )
+          } else {
+            console.dir(results , { depth: null } )
           }
-      )
-      .catch(console.error) ;
-  } ;
-  async function tweetThreadReply(inputClient , inputTweetID , thread) {
-    var lastTweetID = inputTweetID ;
-    for (const status of thread) {
-      const tweet = await inputClient.post("statuses/update" , {
-        status: status ,
-        in_reply_to_status_id_str: lastTweetID ,
-        auto_populate_reply_metadata: true
-      }).catch(console.error) ;
-      lastTweetID = tweet.id_str ;
-    }
+        }
+    )
+    .catch(console.error) ;
+} ;
+async function tweetThreadReply(client , inputTweetID , thread) {
+  let lastTweetID = inputTweetID.toString() ;
+  for (const status of thread) {
+    const tweet = await client.post("statuses/update" , {
+      status: status + "\n[" + lastTweetID + "]" ,
+      in_reply_to_status_id_str: lastTweetID.toString() ,
+      auto_populate_reply_metadata: true
+    }).catch(console.error) ;
+    lastTweetID = tweet.id_str ;
   }
-  async function tweetThread(inputClient , thread) {
-      tweetThreadReply(inputClient , '' , thread) ;
-  }
-  function stringify(json) {
-    return JSON.stringify(json) + "\n" ;
-  }
+}
+async function tweetThread(client , thread) {
+    tweetThreadReply(client , '' , thread) ;
+}
+function stringify(json) {
+  return JSON.stringify(json) + "\n" ;
+}
+try {
   (async start => {
     try {
       const { Autohook } = pkg ,
@@ -45,7 +49,9 @@ try {
           access_token_key: process.env.ACCESS_TOKEN , // oauth
           access_token_secret: process.env.ACCESS_TOKEN_SECRET // oauth
       }) ,
-        webhook = new Autohook() ;
+      webhook = new Autohook() ;
+      console.log("Verifying credentials…") ;
+      verifyCredentials(client) ;
       await webhook.removeWebhooks() ;
       webhook.on('event' , async event => {
         try {
@@ -86,23 +92,29 @@ try {
                 }) ;
 
                 const extended_tweet = tweet.hasOwnProperty("extended_tweet") ? tweet.extended_tweet : tweet ,
-                 entities = extended_tweet.hasOwnProperty("entities") ? extended_tweet.entities : null ,
-                 user_mentions = entities.hasOwnProperty("user_mentions") ? entities.user_mentions : null ,
-                 bot_user_mentions = user_mentions === null || user_mentions === undefined ? null : user_mentions.find(obj => { return obj.id_str === bot_user_id }) ,
-                 bot_user_name = bot_user_mentions === null || bot_user_mentions === undefined || bot_user_mentions.length == 0 ? "Robot" : "@" + bot_user_mentions.screen_name ,
-                 tweet_text = extended_tweet.full_text ? extended_tweet.full_text : extended_tweet.text ;
+                  entities = extended_tweet.hasOwnProperty("entities") ? extended_tweet.entities : null ,
+                  user_mentions = entities.hasOwnProperty("user_mentions") ? entities.user_mentions : null ,
+                  bot_user_mentions = user_mentions === null || user_mentions === undefined ? null : user_mentions.find(obj => { return obj.id_str === bot_user_id }) ,
+                  bot_user_name = bot_user_mentions === null || bot_user_mentions === undefined || bot_user_mentions.length == 0 ? "Robot" : "@" + bot_user_mentions.screen_name ,
+                  tweet_text = extended_tweet.full_text ? extended_tweet.full_text : extended_tweet.text ,
+                  tweet_id = tweet.id ,
+                  tweet_id_str = tweet.id_str.toString() ,
+                  tweet_in_reply_to_status_id = tweet.in_reply_to_status_id ,
+                  tweet_in_reply_to_status_id_str = tweet.in_reply_to_status_id_str ,
+                  tweet_in_reply_to_user_id_str = tweet.in_reply_to_user_id_str ,
+                  tweet_in_reply_to_screen_name = tweet.in_reply_to_screen_name ;
 
-                console.log( "id " + tweet.id ) ;
-                console.log( "id_str " + tweet.id_str ) ;
-                console.log( "in_reply_to_status_id " + tweet.in_reply_to_status_id ) ;
-                console.log( "in_reply_to_status_id_str " + tweet.in_reply_to_status_id_str ) ;
-                console.log( "in_reply_to_user_id_str " + tweet.in_reply_to_user_id_str ) ;
-                console.log( "in_reply_to_screen_name " + tweet.in_reply_to_screen_name ) ;
+                console.log( "id " + tweet_id ) ;
+                console.log( "id_str " + tweet_id_str ) ;
+                console.log( "in_reply_to_status_id " + tweet_in_reply_to_status_id ) ;
+                console.log( "in_reply_to_status_id_str " + tweet_in_reply_to_status_id_str ) ;
+                console.log( "in_reply_to_user_id_str " + tweet_in_reply_to_user_id_str ) ;
+                console.log( "in_reply_to_screen_name " + tweet_in_reply_to_screen_name ) ;
                 tweetThreadReply(
                   client ,
-                  tweet.id_str,
+                  tweet_id_str ,
                   [
-                    "@" + tweet.user.screen_name.toString() + ": \"" +
+                    "@" + tweet.user.screen_name.toString() + " : \"" +
                       tweet_text.toString().toLowerCase() +
                     "\"\n\nThanks, " + tweet.user.name + "!\n\n" + bot_user_name + " " + bot_user_name.replace("\@", "#")
                   ]
@@ -166,7 +178,7 @@ try {
   //   screen_name: "TextSponge"
   // }) ;
   // const users = await client.post("users/lookup" , {
-  //   screen_name: "longScreenName1 ,longerScreeName2 ,... ,veryLongScreenName100"
+  //   screen_name: "longScreenName1 ,longerScreeName2 ,… ,veryLongScreenName100"
   // }) ;
 
   // const user = new Twitter({
@@ -440,7 +452,7 @@ try {
 
  //  it('should get details about 100 users with 18-character ids' , async () => {
  //    const userIds = [
- //      ...Array(99).fill('928759224599040001') ,
+ //      …Array(99).fill('928759224599040001') ,
  //      '711030662728437760' ,
  //    ].join(' ,') ;
  //    const expectedIds = [
