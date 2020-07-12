@@ -1,12 +1,17 @@
 {
   "name": "sleep-atomic",
-  "version": "0.9.1",
-  "description": "Sleep w/ Atomics.wait",
+  "type": "module",
+  "version": "0.9.3",
+  "description": "Sleep w/Atomics.wait (ES Module)",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
+  "exports": {
+    ".": "./index.js",
+    "./index": "./index.js",
+    "./index.js": "./index.js",
+    "./sleep": "./index.js",
+    "./sleep.js": "./index.js",
+    "./package.json": "./package.json"
+  }, "repository": {
     "type": "git",
     "url": "git+https://github.com/SpongeScribe/SpongeScribeBot.git"
   },
@@ -24,5 +29,5 @@
   "bugs": {
     "url": "https://github.com/SpongeScribe/SpongeScribeBot/issues"
   },
-  "homepage": "https://github.com/SpongeScribe/SpongeScribeBot#readme"
+  "homepage": "https://github.com/SpongeScribe/SpongeScribeBot/tree/main/modules/sleep-atomic#readme"
 }
