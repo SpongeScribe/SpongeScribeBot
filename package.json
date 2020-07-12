@@ -97,7 +97,7 @@
   "bugs": {
     "url": "https://github.com/SpongeScribe/SpongeScribeBot/issues"
   },
-  "homepage": "https://github.com/SpongeScribe/SpongeScribeBot#readme",
+  "homepage": "https://github.com/SpongeScribe/SpongeScribeBot/tree/main#readme",
   "dependencies": {
     "hashish": "0.0.4",
     "mongodb": "^3.5.9",

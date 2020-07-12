@@ -35,6 +35,6 @@ https://www.mozilla.org/en-US/foundation/licensing/
 
 One line per human contributor, or so. Whoever did the work.
 
-Add whatever you'd like on your one line, so long as it follows the CCoC and preferably keep it under 1K or so? 🤷 
+Add whatever you'd like on your one line, so long as it follows the CCoC and preferably keep it under 1K or so? 🤷
 
- - Name/Email: [Drewry Pope <drewrypope@gmail>](drewrypope@gmail.com) | Aliases: [drewrypope, dezren39, ketsif] | [twitter.com/dezren39](twitter.com/dezren39) | [drewrypope.com](drewrypope.com) 
+ - Name/Email: [Drewry Pope <drewrypope@gmail>](drewrypope@gmail.com) | Aliases: [drewrypope, dezren39, ketsif] | [twitter.com/dezren39](twitter.com/dezren39) | [drewrypope.com](drewrypope.com)

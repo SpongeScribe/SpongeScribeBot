@@ -3,9 +3,7 @@
     License, v. 2.0. If a copy of the MPL was not distributed with this
     file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-
 ----
-
 
 # Changelog
 All notable changes to this project will be documented in this file.
@@ -33,6 +31,7 @@ https://github.com/SpongeScribe/SpongeScribeBot/compare/v0.0.6...dev
 https://github.com/SpongeScribe/SpongeScribeBot/compare/v0.0.6...main
 [0.0.6]: https://github.com/olivierlacan/keep-a-changelog/releases/tag/v0.0.6
 
+----
 
 ##############################################################################
 ##############################################################################
@@ -190,3 +189,5 @@ notable changes.
 [0.0.3]: https://github.com/olivierlacan/keep-a-changelog/compare/v0.0.2...v0.0.3
 [0.0.2]: https://github.com/olivierlacan/keep-a-changelog/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/olivierlacan/keep-a-changelog/releases/tag/v0.0.1
+
+----

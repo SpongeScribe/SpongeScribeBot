@@ -3,13 +3,11 @@
     License, v. 2.0. If a copy of the MPL was not distributed with this
     file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-
 ----
-
 
 # SpongeScribeBot
 strangetext transcription
- - source: https://github.com/SpongeScribe/SpongeScribeBot#readme
+ - source: https://github.com/SpongeScribe/SpongeScribeBot/tree/main#readme
  - bot: https://twitter.com/SpongeScribe
  - owner/author/contact: https://twitter.com/dezren39
  - code_of_conduct: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CODE_OF_CONDUCT.md
@@ -18,9 +16,7 @@ strangetext transcription
  - license.NOTICE: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/NOTICE.LICENSE.md
  - changelog: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CHANGELOG.md
 
-
 ----
-
 
 # IMPORTANT NOTE:
 Please note that this project is released with a
@@ -36,9 +32,7 @@ Thank you for your participation.
  - code_of_conduct: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CODE_OF_CONDUCT.md
  - contributors: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CONTRIBUTORS.md
 
-
 ----
-
 
 ## Source Code Form License Notice Attached Outside The Particular File
 
@@ -52,9 +46,7 @@ Source Code Form License Notice and any relevant Copyright or other notices.
  - license: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/LICENSE
  - license.NOTICE: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/NOTICE.LICENSE.md
 
-
 ----
-
 
 All scripts and calls expected to come from a `pwd` of the project root.
 Scripts in `app/scripts` should be ran by docker.
@@ -82,16 +74,14 @@ todo: lib vs dist
 	https://2ality.com/2017/07/npm-packages-via-babel.html
 	https://gist.github.com/ncochard/6cce17272a069fdb4ac92569d85508f4
 	# Allow files and folders with a pattern starting with !
-	!lib/**/*.js
-
+	!lib/\*\*/\*.js
 
 check files count merge to one script
 
 docker env script merge
 docker mount-nomount merge
 
-confirm docker, docker-compose, manual, sleep, twitter, random run, random1krun, drop N files, get N*M images
-
+confirm docker, docker-compose, manual, sleep, twitter, random run, random1krun, drop N files, get N\*M images
 
 get twitter autoreply webhook going
 
@@ -107,7 +97,6 @@ describe pictures with words
 build general ai
 humans.txt robots.txt website blog blog post static ? keybase auth? lets encrypt? security.txt
 
-
 TODO + manual still: https://github.com/github-changelog-generator/github-changelog-generator
 https://github.com/skywinder/gitlab-changelog-generator/blob/master/CHANGELOG.md
 automate package.json npm pack, npm publish
@@ -115,6 +104,6 @@ automate version increase ticker
 semver2.0
 {    "installConfig": {     "pnp": true   }} pnp not working yet because es modules
 
-
-
 todo: update all scripts to reference `pwd`/scripts then remove the ln -s pwd . from build.sh
+
+----
