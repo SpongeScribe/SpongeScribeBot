@@ -13,25 +13,52 @@ Thank you for your participation.
 
 # SpongeScribeBot
 strangetext transcription
- - source: https://github.com/SpongeScribe/SpongeScribeBot#readme
+ - source: https://github.com/SpongeScribe/SpongeScribeBot/tree/main#readme
  - bot: https://twitter.com/SpongeScribe
  - owner/author/contact: https://twitter.com/dezren39
- - code_of_conduct: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CODE_OF_CONDUCT.md
+ - code\_of\_conduct: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CODE_OF_CONDUCT.md
  - contributors: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CONTRIBUTORS.md
  - license: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/LICENSE
  - license.NOTICE: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/NOTICE.LICENSE.md
 
-
 ### Copyright ContributorCovenant
 ### Creative Commons Attribution 4.0 International Public License
-### Minor Alterations Authored By: Drewry Pope on 2020-07-04,2020-07-05
+### Minor Alterations Authored By: Drewry Pope on 2020-07-12,2020-07-05,2020-07-04
 
  - https://github.com/orgs/ContributorCovenant
  - https://github.com/ContributorCovenant/contributor_covenant/blob/release/LICENSE.md
  - https://www.contributor-covenant.org/
+ - https://creativecommons.org/licenses/by/4.0/
 
 ----
+
+The Contributor Covenant Code of Conduct is this project's code of conduct.
+
+With that noted, this project's community agrees with all points of the Twitter Code of Conduct.
+
+ - https://github.com/twitter/code-of-conduct/blob/master/code-of-conduct.md
+
+In general, we believe that these codes of conduct are compatible.
+
+We feel that a welcoming community is important and we ask that you follow Twitter's [Open Source Code of Conduct](https://github.com/twitter/code-of-conduct/blob/master/code-of-conduct.md) in all interactions with the community.
+
+When deciding the validity of any action, we'd ask that you use the code of conduct which interprets the activity more strictly, or put another way, more respectfully.
+
+If the two codes of conduct's guidances are incompatible somehow, for example, if they directly contradict one another, please defer to the Contributor Covenant Code of Conduct's policy by default. Community leaders responsible for enforcement may provide further clarification upon review.
+
+In an incompatibility scenario, or for any other reason or concern:
+
+Please contact community leaders responsible for enforcement for at:
+ - drewrypope@gmail.com
+
+Instances of abusive, harassing, or otherwise unacceptable behavior will not be tolerated.
+
+All complaints and situations will be reviewed and investigated promptly and fairly.
+
 ----
+
+# This project's Code of Conduct:
+
 ----
 
 # Contributor Covenant Code of Conduct
@@ -95,8 +122,8 @@ representative at an online or offline event.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement at
-drewrypope@gmail.com.
+reported to the community leaders responsible for enforcement at:
+ - drewrypope@gmail.com
 All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the
@@ -163,3 +190,4 @@ For answers to common questions about this code of conduct, see the FAQ at
 https://www.contributor-covenant.org/faq. Translations are available at
 https://www.contributor-covenant.org/translations.
 
+----

@@ -15,10 +15,10 @@ else
 fi
 TEXT="$@"
 export TEXT=$TEXT
-echo "TEXT=$TEXT" | tee --append .env /etc/environment
+echo "TEXT=$TEXT"
 if [ ! -z "$TEXT" ]; then
     FILENAME=./data/in/input.manual.`uuidgen`.json
-    echo "{ \"items\": [ { \"NAME\" : \"@@MANUAL\", \"TEXT\" : \"$TEXT\" } ] }" >> $FILENAME
+    echo "{ \"items\": [ { \"name\" : \"@@MANUAL\", \"text\" : \"$TEXT\" } ] }" >> $FILENAME
     cat $FILENAME
 fi
 

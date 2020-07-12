@@ -1,3 +1,6 @@
+# Author: Drewry Pope
+# Any copyright is dedicated to the Public Domain.
+# https://creativecommons.org/publicdomain/zero/1.0/
 #######################
 #######################
 #######################
@@ -38,6 +41,7 @@
 
 
 !.babelrc
+!CHANGELOG.md
 !CODE_OF_CONDUCT.md
 !CONTRIBUTORS.md
 !LICENSE
@@ -47,10 +51,9 @@
 !index.js
 !modules/image-generation.js
 !modules/sleep.js
-!package-lock.json
 !package.json
 !sleep.js
-!twitter.autohook.js
+!twitter-autohook.js
 !twitter.js
 
 
@@ -73,6 +76,7 @@
 **/.env*
 **/.git*
 **/data/
+**/lib/
 **/dist/
 **/docs/
 **/mongo/
