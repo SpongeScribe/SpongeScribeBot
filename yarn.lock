@@ -1193,6 +1193,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"acorn-loose@npm:^6.0.0":
+  version: 6.1.0
+  resolution: "acorn-loose@npm:6.1.0"
+  dependencies:
+    acorn: ^6.2.0
+  checksum: 1eafebf266781a1cce1d91b18ced060c51758e9d26f6eb23e386e1afbd7b01ade617e46f60264630df9e214fa1a2466255b4334862c34d819dd118139a71f93c
+  languageName: node
+  linkType: hard
+
+"acorn-walk@npm:^6.0.0":
+  version: 6.2.0
+  resolution: "acorn-walk@npm:6.2.0"
+  checksum: 3bd8415090ecfcf0a40e9bdde722993104d209d8e7721b48d9c77c46fb1dd261cc29ae0ee47e6532db9fbfe96d911b19ec0d72a383b20ed331364ab18d35b75b
+  languageName: node
+  linkType: hard
+
+"acorn@npm:^6.0.0, acorn@npm:^6.2.0":
+  version: 6.4.1
+  resolution: "acorn@npm:6.4.1"
+  bin:
+    acorn: bin/acorn
+  checksum: 7aa4623c6d2705e9a26057ccfdd409154f8b634973ce109a63fa2c7e679af689bb50378379610794ec9744975db7a3a3b97e2b83f87fab1b635ad19b6c0ac3be
+  languageName: node
+  linkType: hard
+
 "ajv@npm:^6.5.5":
   version: 6.12.3
   resolution: "ajv@npm:6.12.3"
@@ -1910,10 +1935,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+"enhanced-resolve@npm:^2.2.2":
+  version: 2.3.0
+  resolution: "enhanced-resolve@npm:2.3.0"
+  dependencies:
+    graceful-fs: ^4.1.2
+    memory-fs: ^0.3.0
+    object-assign: ^4.0.1
+    tapable: ^0.2.3
+  checksum: 847f78c97e4c63048a98d6d6ffbe4cba3aaee85d5dc0ac56389f51bddad97ef33dfc03f73d2615bc4beccc3a70a41f97ec43fccd17fdba27695fe41759dde8ef
+  languageName: node
+  linkType: hard
+
 "env-paths@npm:^2.2.0":
   version: 2.2.0
   resolution: "env-paths@npm:2.2.0"
   checksum: 09de4fd1c068d5965aa8aede852a764b7fb6fa8f1299ba7789bc29c22840ab1985e0c9c55bc6bf40b4276834b8adfa1baf82ec9bc58445d9e75800dc32d78a4f
+  languageName: node
+  linkType: hard
+
+"errno@npm:^0.1.3":
+  version: 0.1.7
+  resolution: "errno@npm:0.1.7"
+  dependencies:
+    prr: ~1.0.1
+  bin:
+    errno: ./cli.js
+  checksum: 3d2da6fa1e3826dead7e06476cb4219555e8492c4ba8e0c40b2dc333e9b52e33223a414a394d7b9f18f82740aa69861c5fcef5b80798f08ff903c7c78916ce14
   languageName: node
   linkType: hard
 
@@ -2245,7 +2293,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"glob@npm:^7.0.0, glob@npm:^7.1.3, glob@npm:^7.1.4":
+"glob@npm:^7.0.0, glob@npm:^7.1.1, glob@npm:^7.1.3, glob@npm:^7.1.4":
   version: 7.1.6
   resolution: "glob@npm:7.1.6"
   dependencies:
@@ -2266,7 +2314,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"graceful-fs@npm:^4.1.11, graceful-fs@npm:^4.1.3, graceful-fs@npm:^4.2.3":
+"graceful-fs@npm:^4.1.11, graceful-fs@npm:^4.1.2, graceful-fs@npm:^4.1.3, graceful-fs@npm:^4.2.3":
   version: 4.2.4
   resolution: "graceful-fs@npm:4.2.4"
   checksum: d095ee4dc6eacc76814cd52d5d185b860119378a6fd4888e7d4e94983095c54d4f6369942a5e3d759cdbdd4e3ee7eaeb27a39ff938c6ee4610894fd9de46b6cb
@@ -2856,6 +2904,16 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"memory-fs@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "memory-fs@npm:0.3.0"
+  dependencies:
+    errno: ^0.1.3
+    readable-stream: ^2.0.1
+  checksum: b7f5ec824539c26872dc2ca354130030ad9982336134b90c8fde22fc00b6c14fdd91013e236f186443513b3467b5176563d6c37f8158b1eec165f5964d861821
+  languageName: node
+  linkType: hard
+
 "memory-pager@npm:^1.0.2":
   version: 1.5.0
   resolution: "memory-pager@npm:1.5.0"
@@ -2907,7 +2965,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"minimatch@npm:^3.0.4":
+"minimatch@npm:^3.0.3, minimatch@npm:^3.0.4":
   version: 3.0.4
   resolution: "minimatch@npm:3.0.4"
   dependencies:
@@ -3288,7 +3346,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"object-assign@npm:^4.1.0":
+"object-assign@npm:^4.0.1, object-assign@npm:^4.1.0":
   version: 4.1.1
   resolution: "object-assign@npm:4.1.1"
   checksum: 66cf021898fc1b13ea573ea8635fbd5a76533f50cecbc2fcd5eee1e8029af41bcebe7023788b6d0e06cbe4401ecea075d972f78ec74467cdc571a0f1a4d1a081
@@ -3520,6 +3578,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"prr@npm:~1.0.1":
+  version: 1.0.1
+  resolution: "prr@npm:1.0.1"
+  checksum: ac5c0986b46390140b920b8e7f6b56e769a00620af02b6bbdfc6658e8a36b876569c8f174a7c209843f5b9af3d13cbf847c2a9dded4d965b01afbfa5ea8d0761
+  languageName: node
+  linkType: hard
+
 "psl@npm:^1.1.28":
   version: 1.8.0
   resolution: "psl@npm:1.8.0"
@@ -3574,7 +3639,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"readable-stream@npm:^2.0.2, readable-stream@npm:^2.0.6, readable-stream@npm:^2.3.5":
+"readable-stream@npm:^2.0.1, readable-stream@npm:^2.0.2, readable-stream@npm:^2.0.6, readable-stream@npm:^2.3.5":
   version: 2.3.7
   resolution: "readable-stream@npm:2.3.7"
   dependencies:
@@ -3757,7 +3822,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"resolve-from@npm:^2.0.0":
+"resolve-from@npm:2.0.0, resolve-from@npm:^2.0.0":
   version: 2.0.0
   resolution: "resolve-from@npm:2.0.0"
   checksum: e2cfa9d4402ceb731ce14f639248c8a8a364db8710ba3360a4492046c6688084235645a4f4004ac7d9acf40bc0644fac6d8c24f9012c7e5773234a7c09d57cb4
@@ -4052,6 +4117,7 @@ fsevents@^1.2.7:
     mongodb: ^3.5.9
     move-file: ^2.0.0
     seq: ^0.3.5
+    tern: ^0.24.3
     text2png: ^2.3.0
     twitter-autohook: ^1.7.1
     twitter-lite: ^0.14.0
@@ -4196,6 +4262,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"tapable@npm:^0.2.3":
+  version: 0.2.9
+  resolution: "tapable@npm:0.2.9"
+  checksum: d585c134eff4414b2145546afe3dd7ca2e48804d5ac810efdcb809c143f9715696b74214642884df5058e98e5a9f167c3a08a69b57171e577742109483972fab
+  languageName: node
+  linkType: hard
+
 "tar@npm:^4":
   version: 4.4.13
   resolution: "tar@npm:4.4.13"
@@ -4222,6 +4295,23 @@ fsevents@^1.2.7:
     mkdirp: ^1.0.3
     yallist: ^4.0.0
   checksum: 7d28cc13d74a87d0dcd9fa89038225f171e506882f9e4d6f44bfd3943f868e6ae9f46a6f03c82cca8ad2d4dde3384862cb7e789bfa06e3af602eec561c765787
+  languageName: node
+  linkType: hard
+
+"tern@npm:^0.24.3":
+  version: 0.24.3
+  resolution: "tern@npm:0.24.3"
+  dependencies:
+    acorn: ^6.0.0
+    acorn-loose: ^6.0.0
+    acorn-walk: ^6.0.0
+    enhanced-resolve: ^2.2.2
+    glob: ^7.1.1
+    minimatch: ^3.0.3
+    resolve-from: 2.0.0
+  bin:
+    tern: bin/tern
+  checksum: 386bbde9d2e959079ae7443a94c8ede38a012f26e8f96d3b8edf7d95fc10d0743d6df7b84bd4c1fb653959d576f0145386f384b747d1c1d1a3faab9239026e3c
   languageName: node
   linkType: hard
 
