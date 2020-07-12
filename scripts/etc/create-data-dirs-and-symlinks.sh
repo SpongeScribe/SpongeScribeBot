@@ -1,7 +1,8 @@
 #!/bin/bash
-# Author: Drewry Pope
-# Any copyright is dedicated to the Public Domain.
-# https://creativecommons.org/publicdomain/zero/1.0/
+# Copyright 2020 Drewry Pope
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
 set -x
 mkdir -p scripts/etc
 touch scripts/etc/delete-symlinks.sh
@@ -10,16 +11,17 @@ mkdir -p data/in
 mkdir -p data/out
 mkdir -p data/secrets
 mkdir -p data/logs
-find -type f -xtype f -not -path "./.git*" -name '*.sh' -exec sh -c 'ln -s $(basename {}) $(echo "{}" | rev | cut -c 4- | rev)' \;
+find . -type f -xtype f -not -path "./modules/*" -not -path "*/data/*" -not -path "*/.yarn/*" -not -path "*/.git/*" -not -path "*/node_modules/*" -name '*.sh' -exec sh -c 'ln -s $(basename {}) $(echo "{}" | rev | cut -c 4- | rev)' \;
 mkdir -p app/scripts
-ln -s app/* `pwd`
-ln -s app/.* `pwd`
 ln -s ../app/scripts/ scripts/scripts
 cd scripts
-ln -s scripts/* `pwd`
+ln -s scripts/* ./
 cd ..
-ln -s scripts/* `pwd`
+rm scripts/scripts
+ln -s scripts/* ./
+ln -s ../app/scripts/ scripts/scripts
+find ./ -type d -not -path "./*/*" -not -path "./modules" -not -path "*/data" -not -path "./.yarn*" -not -path "./.git*" -not -path "*/node_modules" -not -path "./" -exec sh -c "find {} -type f -name \".*\"" \; | xargs -I % sh -c 'ln -s % ./'
+find ./ -type d -not -path "./*/*" -not -path "./modules" -not -path "*/data" -not -path "./.yarn*" -not -path "./.git*" -not -path "*/node_modules" -not -path "./" -exec sh -c "find {} -type f -name \"*.js\"" \; | xargs -I % sh -c 'ln -s % ./'
 ln -s ../data app/data
-find -type l -not -path "./.git*" -name '*.sh' -exec sh -c 'cp -P ./{} $(echo "{}" | rev | cut -c 4- | rev)' \;
 ln -s package.json package
 ln -s scripts/etc/create-data-dirs-and-symlinks.sh init

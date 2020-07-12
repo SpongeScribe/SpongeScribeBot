@@ -2,7 +2,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-
 **/node_modules/
 **/data/
 **/lib/
@@ -129,13 +128,9 @@ dist
 # TernJS port file
 .tern-port
 
-# SYMLINK-GITIGNORE-AUTOMATION-START - DATE="2020-07-12T11:25:55,429371230-05:00" NPM_USER="dezren39" GIT_USER_NAME="Drewry Pope" GIT_USER_EMAIL="drewrypope@gmail.com" GIT_USER_KEY="3D75ED07815F708A" LOCAL_USER="drew" SCRIPT="./scripts/etc/append-symlinks-to-gitignore.sh"
+# SYMLINK-GITIGNORE-AUTOMATION-START - DATE="2020-07-12T14:07:34,597518131-05:00" NPM_USER="dezren39" GIT_USER_NAME="Drewry Pope" GIT_USER_EMAIL="drewrypope@gmail.com" GIT_USER_KEY="3D75ED07815F708A" LOCAL_USER="drew" SCRIPT="./scripts/etc/append-symlinks-to-gitignore.sh"
 /tweet
 /version.sh
-/node_modules/object.assign/test/test.sh
-/node_modules/object.assign/test/test
-/node_modules/node-gyp/macOS_Catalina_acid_test
-/node_modules/node-gyp/gyp/tools/emacs/run-unit-tests
 /build
 /in-files-count
 /npm
@@ -149,7 +144,6 @@ dist
 /twitter-bearer-token.sh
 /in-files-count.sh
 /app/data
-/app/twitter-autohook/twitter-autohook.sh
 /app/scripts/build
 /app/scripts/in-files-count
 /app/scripts/twitter-bearer-token
@@ -174,6 +168,7 @@ dist
 /yarnloader
 /.babelrc
 /wait
+/image-generation.js
 /randomInput.sh
 /cleanup-data-folder.sh
 /wait.sh
@@ -181,6 +176,7 @@ dist
 /randomInput
 /compose
 /dev
+/twitter-autohook.js
 /twitter-autohook
 /text2png.sh
 /install
@@ -258,4 +254,4 @@ dist
 /package
 /twitter.js
 /docker.sh
-# SYMLINK-GITIGNORE-AUTOMATION-ENDED - DATE="2020-07-12T11:25:55,429371230-05:00" NPM_USER="dezren39" GIT_USER_NAME="Drewry Pope" GIT_USER_EMAIL="drewrypope@gmail.com" GIT_USER_KEY="3D75ED07815F708A" LOCAL_USER="drew" SCRIPT="./scripts/etc/append-symlinks-to-gitignore.sh"
+# SYMLINK-GITIGNORE-AUTOMATION-ENDED - DATE="2020-07-12T14:07:34,597518131-05:00" NPM_USER="dezren39" GIT_USER_NAME="Drewry Pope" GIT_USER_EMAIL="drewrypope@gmail.com" GIT_USER_KEY="3D75ED07815F708A" LOCAL_USER="drew" SCRIPT="./scripts/etc/append-symlinks-to-gitignore.sh"

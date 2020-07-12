@@ -15,6 +15,11 @@
 
 
 *
+**
+**/*
+*.*
+.*
+**/.*
 
 
 
@@ -50,7 +55,6 @@
 !babel.config.json
 !index.js
 !modules/image-generation.js
-!modules/sleep.js
 !package.json
 !sleep.js
 !twitter-autohook.js
@@ -82,7 +86,7 @@
 **/mongo/
 **/mongodata/
 **/node_modules/
-
+/modules
 
 #### EXAMPLES  ###################################################################
 #### ! = ALLOW ###################################################################
@@ -113,4 +117,3 @@
 ## # been previously excluded at a higher level
 ## !src
 #### EXAMPLES #####################################################################
-

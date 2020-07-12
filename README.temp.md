@@ -155,5 +155,14 @@ confirm need for deps:
     "@babel/node": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
     <!-- "dotenv": "^8.2.0" --> <!-- <-- docker mostly covers this but may be worthwhile in case? -->
-
+--linter
+--workspaces https://yarnpkg.com/features/workspaces https://classic.yarnpkg.com/en/docs/workspaces/ https://github.com/lerna/lerna/pull/899
+--lerna
+https://yarnpkg.com/features/zero-installs
+https://yarnpkg.com/features/release-workflow
+https://yarnpkg.com/features/protocols
+https://yarnpkg.com/features/pnp
+https://yarnpkg.com/features/plugins
+https://yarnpkg.com/features/constraints
+https://yarnpkg.com/features/offline-cache
 ----

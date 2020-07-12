@@ -1,7 +1,7 @@
 {
   "name": "sleep-atomic",
   "type": "module",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "Sleep w/Atomics.wait (ES Module)",
   "main": "index.js",
   "exports": {

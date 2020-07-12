@@ -2,7 +2,7 @@
   "name": "spongescribe",
   "type": "module",
   "version": "0.6.5",
-  "description": "Strangetext Transcription",
+  "description": "StrangeText Transcription",
   "main": "index.js",
   "exports": {
     ".": "./index.js",
@@ -16,8 +16,6 @@
     "./twitter-autohook": "./twitter-autohook.js",
     "./twitter-autohook.js": "./twitter-autohook.js",
     "./modules/": "./modules/",
-    "./modules/sleep": "./modules/sleep.js",
-    "./modules/sleep.js": "./modules/sleep.js",
     "./modules/image-generation": "./modules/image-generation.js",
     "./modules/image-generation.js": "./modules/image-generation.js",
     "./lib": "./lib/index.js",
@@ -31,8 +29,6 @@
     "./lib/twitter-autohook": "./lib/twitter-autohook.js",
     "./lib/twitter-autohook.js": "./lib/twitter-autohook.js",
     "./lib/modules/": "./lib/modules/",
-    "./lib/modules/sleep": "./lib/modules/sleep.js",
-    "./lib/modules/sleep.js": "./lib/modules/sleep.js",
     "./lib/modules/image-generation": "./lib/modules/image-generation.js",
     "./lib/modules/image-generation.js": "./lib/modules/image-generation.js"
   },

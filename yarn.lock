@@ -3941,10 +3941,10 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"sleep-atomic@npm:^0.9.1":
-  version: 0.9.1
-  resolution: "sleep-atomic@npm:0.9.1"
-  checksum: dbc51b461a92b19428c8a6a638215a042d414a25d5fb2918332ce30d0d606cd58859a3cb4e194608c8ef18dca033f315eb72d22d63e921b2575a09b1788e2e09
+"sleep-atomic@npm:^0.9.3":
+  version: 0.9.3
+  resolution: "sleep-atomic@npm:0.9.3"
+  checksum: 8133aa3752918311376420a801d5cd1e8a00232111528df2697fff723c2ac0ffb2db96d36d448bb999c3c71de864a267ebae1ea7360216de7333a2d89e7bcea6
   languageName: node
   linkType: hard
 
@@ -4059,7 +4059,7 @@ fsevents@^1.2.7:
     mongodb: ^3.5.9
     move-file: ^2.0.0
     seq: ^0.3.5
-    sleep-atomic: ^0.9.1
+    sleep-atomic: ^0.9.3
     text2png: ^2.3.0
     twitter-autohook: ^1.7.1
     twitter-lite: ^0.14.0

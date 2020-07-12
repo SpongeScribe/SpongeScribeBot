@@ -1,7 +1,8 @@
 #!/bin/bash
-# Author: Drewry Pope
-# Any copyright is dedicated to the Public Domain.
-# https://creativecommons.org/publicdomain/zero/1.0/
+# Copyright 2020 Drewry Pope
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
 if [ -z "$*" ] || [ -z "$1" ] || [ "$1" = "help" ] || [ "$1" = "-help" ] || [ "$1" = "--help" ] || [ "$1" = "-h" ] || [ "$1" = "--h" ] ; then
 	printf '\n\nUsage:\n\n./auto-commit-push-create-pr.sh [--headless] <commit-msg> \n\n'
 	printf 'Prerequisites: '"'"'git'"'"', '"'"'gh'"'"' \n\n'
