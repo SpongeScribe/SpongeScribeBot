@@ -106,4 +106,54 @@ semver2.0
 
 todo: update all scripts to reference `pwd`/scripts then remove the ln -s pwd . from build.sh
 
+fix this, do the node user thing, etc
+Warning: The home dir /run/uuidd you specified can't be accessed: No such file or directory
+Adding system user `uuidd' (UID 101) ...
+Adding new user `uuidd' (UID 101) with group `uuidd' ...
+Not creating home directory `/run/uuidd'.
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+
+confirm this
+> canvas@2.6.1 install /usr/local/app/node_modules/canvas
+> node-pre-gyp install --fallback-to-build
+
+node-pre-gyp WARN Using request for node-pre-gyp https download
+[canvas] Success: "/usr/local/app/node_modules/canvas/build/Release/canvas.node" is installed via remote
+
+and this
+> core-js@3.6.5 postinstall /usr/local/app/node_modules/core-js
+> node -e "try{require('./postinstall')}catch(e){}"
+
+Thank you for using core-js ( https://github.com/zloirock/core-js ) for polyfilling JavaScript standard library!
+
+The project needs your help! Please consider supporting of core-js on Open Collective or Patreon:
+> https://opencollective.com/core-js
+> https://www.patreon.com/zloirock
+
+Also, the author of core-js ( https://github.com/zloirock ) is looking for a good job -)
+
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.13 (node_modules/fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.13: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+
+confirm need for deps:
+  "dependencies": {
+    "hashish": "0.0.4",
+    "mongodb": "^3.5.9", <!-- <-- decide on mongo or not -->
+    "move-file": "^2.0.0",
+    "seq": "^0.3.5",
+    <!-- "sleep-atomic": "^0.9.1", -->
+    <!-- "text2png": "^2.3.0", -->
+    <!-- "twitter-autohook": "^1.7.1", -->
+    <!-- "twitter-lite": "^0.14.0", -->
+    "unescape-js": "^1.1.4",
+    "uuid": "^8.2.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.4", <!-- <-- decide on dual-publish cjs mjs or not -->
+    "@babel/core": "^7.10.4", <!-- <-- consider esm module instead or in addition to  -->
+    "@babel/node": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    <!-- "dotenv": "^8.2.0" --> <!-- <-- docker mostly covers this but may be worthwhile in case? -->
+
 ----

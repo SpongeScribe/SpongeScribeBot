@@ -70,10 +70,10 @@ If you add new `app/scripts`, you may need to:
 - Delete ALL lines in .gitignore BETWEEN lines BEGINNING WITH:
 
   -
-      # SYMLINK-GITIGNORE-AUTOMATION-START
+      # SYMLINK-GITIGNORE-AUTOMATION-START -
 
   -
-      # SYMLINK-GITIGNORE-AUTOMATION-END"
+      # SYMLINK-GITIGNORE-AUTOMATION-ENDED -
 
 - Then run the following:
       scripts/etc/append-symlinks-to-gitignore.sh

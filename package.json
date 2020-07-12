@@ -103,7 +103,7 @@
     "mongodb": "^3.5.9",
     "move-file": "^2.0.0",
     "seq": "^0.3.5",
-    "sleep-atomic": "^0.9.1",
+    "sleep-atomic": "^0.9.3",
     "text2png": "^2.3.0",
     "twitter-autohook": "^1.7.1",
     "twitter-lite": "^0.14.0",

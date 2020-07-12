@@ -129,7 +129,7 @@ dist
 # TernJS port file
 .tern-port
 
-# SYMLINK-GITIGNORE-AUTOMATION-START - DATE="2020-07-12T08:08:23,264579471-05:00" NPM_USER="" LOCAL_USER="root" SCRIPT="./scripts/etc/append-symlinks-to-gitignore.sh"
+# SYMLINK-GITIGNORE-AUTOMATION-START - DATE="2020-07-12T11:25:55,429371230-05:00" NPM_USER="dezren39" GIT_USER_NAME="Drewry Pope" GIT_USER_EMAIL="drewrypope@gmail.com" GIT_USER_KEY="3D75ED07815F708A" LOCAL_USER="drew" SCRIPT="./scripts/etc/append-symlinks-to-gitignore.sh"
 /tweet
 /version.sh
 /node_modules/object.assign/test/test.sh
@@ -258,4 +258,4 @@ dist
 /package
 /twitter.js
 /docker.sh
-# SYMLINK-GITIGNORE-AUTOMATION-END   - DATE="2020-07-12T08:08:23,264579471-05:00" NPM_USER="" LOCAL_USER="root" SCRIPT="./scripts/etc/append-symlinks-to-gitignore.sh"
+# SYMLINK-GITIGNORE-AUTOMATION-ENDED - DATE="2020-07-12T11:25:55,429371230-05:00" NPM_USER="dezren39" GIT_USER_NAME="Drewry Pope" GIT_USER_EMAIL="drewrypope@gmail.com" GIT_USER_KEY="3D75ED07815F708A" LOCAL_USER="drew" SCRIPT="./scripts/etc/append-symlinks-to-gitignore.sh"
