@@ -1,0 +1,114 @@
+CHOWN_SIGINT
+USER node
+COPY --chown=node:node
+RUN mkdir /home/node/app/ && chown -R node:node /home/node/app
+docker run --init -d yournodeappimage
+
+//-----
+const process = require('process');
+
+var app = {};
+
+process.on('SIGINT', function onSigint() {
+  app.shutdown();
+});
+
+process.on('SIGTERM', function onSigterm() {
+  app.shutdown();
+});
+
+app.shutdown = function () {
+  // clean up your resources and exit
+  process.exit();
+};
+
+module.exports = app;
+
+
+const server = stoppable(http.createServer(handler))
+
+app.shutdown = function () {
+  server.close(function onServerClosed(err) {
+    if (err) {
+      log.error('An error occurred while closing the server: ' + err);
+      process.exitCode = 1;
+    }
+  });
+  process.exit();
+};
+
+
+const http = require('http');
+const config = require('./config');
+const log = require('./log');
+const constants = require('./constants');
+
+const options = {
+  host: 'localhost',
+  port: config.httpPort,
+  timeout: 2000,
+  method: 'GET',
+  path: '/api/health/',
+};
+
+const request = http.request(options, (result) => {
+  log.info(`Performed health check, result ${result.statusCode}`);
+  if (result.statusCode === constants.HTTP_STATUS_OK) {
+    process.exit(0);
+  } else {
+    process.exit(1);
+  }
+});
+
+request.on('error', (err) => {
+  log.error(`An error occurred while performing health check, error: ${err}`);
+  process.exit(1);
+});
+
+request.end();
+
+HEALTHCHECK --interval=21s --timeout=3 --start-period=10s CMD node healthcheck.js
+
+
+/*
+ * Create and export configuration variables used by the API
+ *
+ */
+const constants = require('./constants');
+
+// Container for all environments
+const environments = {};
+
+environments.production = {
+  httpPort: 3000,
+  host: process.env.HOST || '0.0.0.0',
+  envName: 'production',
+  log: {
+    level: constants.LOG_LEVELS.DEBUG,
+  },
+
+  database: {
+    url: 'mongodb://localhost:27017/workflow-db',
+    name: 'workflow-db',
+    connectRetry: 5, // seconds
+  },
+  workflow: {
+    pollingInterval: 10, // Seconds
+  },
+};
+
+// Determine which environment was passed as a command-line argument
+const currentEnvironment = typeof process.env.NODE_ENV === 'string' ? process.env.NODE_ENV.toLowerCase() : '';
+
+// Check that the current environment is one of the environment defined above,
+// if not default to prodution
+const environmentToExport = typeof environments[currentEnvironment] === 'object' ? environments[currentEnvironment] : environments.production;
+
+// export the module
+module.exports = environmentToExport;
+// Container for all environments
+const environments = {};
+
+environments.production = {
+  httpPort: process.env.HTTP_PORT || 3000,
+  host: process.env.HOST || '0.0.0.0',
