@@ -72,7 +72,7 @@ CMD ["/bin/bash"]
 
 FROM dependencies-$MANAGER AS build
 COPY ./app/scripts/build.sh ./app/scripts/entrypoint.sh ./app/scripts/install.sh ./app/scripts/sleep.sh ./app/scripts/twitter.sh ./app/scripts/twitter-autohook.sh ./app/scripts/version.sh ./scripts/
-COPY ./app/modules/image-generation.js ./app/modules/sleep.js modules/
+COPY ./app/modules/image-generation.js modules/
 COPY ./Dockerfile ./app/index.js ./app/sleep.js ./app/twitter.js ./app/twitter-autohook.js ./app/.babelrc ./
 ARG BUILD
 ENV BUILD "$BUILD"
@@ -87,7 +87,7 @@ FROM dependencies-$MANAGER AS deploy
 ARG WORKDIR
 ENV WORKDIR "$WORKDIR"
 COPY --from=build "$WORKDIR/scripts/entrypoint.sh" ./
-COPY --from=build "$WORKDIR/modules/image-generation.js" "$WORKDIR/modules/sleep.js" modules/
+COPY --from=build "$WORKDIR/modules/image-generation.js" modules/
 COPY --from=build "$WORKDIR/Dockerfile" "$WORKDIR/index.js" "$WORKDIR/sleep.js" "$WORKDIR/twitter.js" "$WORKDIR/.babelrc" ./
 ENTRYPOINT ["/bin/bash"]
 CMD ["./scripts/entrypoint.sh"]
@@ -115,7 +115,6 @@ CMD [""]
 FROM dev-dependencies-$MANAGER as sleep
 ARG WORKDIR
 ENV WORKDIR "$WORKDIR"
-COPY --from=build "$WORKDIR/modules/sleep.js" modules/
 COPY --from=build "$WORKDIR/scripts/sleep.sh" ./scripts/
 COPY --from=build "$WORKDIR/sleep.js" "$WORKDIR/VERSION" ./
 ARG NODE_ENV_DEV
@@ -126,7 +125,6 @@ CMD ["10"]
 FROM sleep as install
 ARG WORKDIR
 ENV WORKDIR "$WORKDIR"
-COPY --from=build "$WORKDIR/modules/sleep.js" modules/
 COPY --from=build "$WORKDIR/scripts/install.sh" "$WORKDIR/scripts/version.sh" ./scripts/
 ARG MANAGER
 ENV MANAGER "$MANAGER"
