@@ -4,15 +4,14 @@
 
 ----
 
-# SpongeScribeBot
-strangetext transcription
- - source: https://github.com/SpongeScribe/SpongeScribeBot/tree/main#readme
- - bot: https://twitter.com/SpongeScribe
+# sleep-atomic
+sleep-atomic
+ - source: https://github.com/twitter-base/sleep-atomic/tree/main#readme
  - owner/author/contact: https://twitter.com/dezren39
- - code_of_conduct: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CODE_OF_CONDUCT.md
- - contributors: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CONTRIBUTORS.md
- - license: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/LICENSE
- - license.NOTICE: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/NOTICE.LICENSE.md
+ - code_of_conduct: https://github.com/twitter-base/sleep-atomic/blob/main/CODE_OF_CONDUCT.md
+ - contributors: https://github.com/twitter-base/sleep-atomic/blob/main/CONTRIBUTORS.md
+ - license: https://github.com/twitter-base/sleep-atomic/blob/main/LICENSE
+ - license.NOTICE: https://github.com/twitter-base/sleep-atomic/blob/main/NOTICE.LICENSE.md
 
 ----
 
@@ -46,5 +45,15 @@ using file masks, wildcards, or other standard methods of grouping file names.
       package.json
 -
       package-lock.json
+-
+      yarn.lock
+-
+      .yarnrc
+-
+      .yarnrc.yml
+-
+      VERSION.npm
+-
+      VERSION.yarn
 
 ----

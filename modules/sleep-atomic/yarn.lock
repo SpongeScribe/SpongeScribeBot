@@ -7,5 +7,7 @@ __metadata:
 "sleep-atomic@workspace:.":
   version: 0.0.0-use.local
   resolution: "sleep-atomic@workspace:."
+  bin:
+    sleep: index.js
   languageName: unknown
   linkType: soft
