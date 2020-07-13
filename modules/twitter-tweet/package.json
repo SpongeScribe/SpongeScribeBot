@@ -1,0 +1,15 @@
+{
+  "name": "twitter-tweet",
+  "version": "0.0.0",
+  "description": "a module to get and send tweets",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpongeScribe/SpongeScribeBot.git"
+  },
+  "author": "dezren39",
+  "bugs": {
+    "url": "https://github.com/SpongeScribe/SpongeScribeBot/issues"
+  },
+  "homepage": "https://github.com/SpongeScribe/SpongeScribeBot#readme"
+}

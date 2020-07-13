@@ -1,24 +1,20 @@
 {
-  "name": "sleep-atomic",
+  "name": "twitter-dm-bot",
   "type": "module",
   "version": "0.9.4",
-  "description": "Sleep w/Atomics.wait (ES Module)",
+  "description": "twitter bot to get and send DMs",
   "module": "index.js",
   "scripts": {
-    "sleep": "npm start",
     "start": "node --unhandled-rejections=strict --trace-warnings server.js",
-    "sleep-atomic": "npm start",
     "version": "echo \"$npm_package_version\""
-  },
-  "exports": {
+  }, "exports": {
     ".": "./server.js",
     "./index": "./server.js",
     "./server.js": "./server.js",
     "./sleep": "./server.js",
     "./sleep.js": "./server.js",
     "./package.json": "./package.json"
-  },
-  "files": [
+  }, "files": [
     "./CHANGELOG.md",
     "./CODE_OF_CONDUCT.md",
     "./CONTRIBUTORS.md",
@@ -27,12 +23,10 @@
     "./README.md",
     "./server.js",
     "./package.json"
-  ],
-  "repository": {
+  ], "repository": {
     "type": "git",
     "url": "git+https://github.com/SpongeScribe/SpongeScribeBot.git"
-  },
-  "keywords": [
+  }, "keywords": [
     "sleep",
     "wait",
     "timeout",
@@ -40,12 +34,10 @@
     "atomics",
     "atomic",
     "CC0-1.0"
-  ],
-  "author": "dezren39",
+  ], "author": "dezren39",
   "license": "CC0-1.0",
   "bugs": {
     "url": "https://github.com/SpongeScribe/SpongeScribeBot/issues",
-    "email": "dezren39@developing.today"
-  },
-  "homepage": "https://github.com/SpongeScribe/SpongeScribeBot/tree/main/modules/sleep-atomic#readme"
+    "email" : "dezren39@developing.today"
+  }, "homepage": "https://github.com/SpongeScribe/SpongeScribeBot/tree/main/modules/sleep-atomic#readme"
 }

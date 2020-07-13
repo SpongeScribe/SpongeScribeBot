@@ -66,8 +66,7 @@
 !app/sleep.js
 !app/twitter-autohook.js
 !app/twitter.js
-!modules/image-generation.js
-!modules/sleep.js
+!modules/*
 !package.json
 !package-lock.json
 !yarn.lock

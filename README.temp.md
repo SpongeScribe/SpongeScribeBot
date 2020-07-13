@@ -165,4 +165,78 @@ https://yarnpkg.com/features/pnp
 https://yarnpkg.com/features/plugins
 https://yarnpkg.com/features/constraints
 https://yarnpkg.com/features/offline-cache
+
+people fields: author, contributors§
+The “author” is one person. “contributors” is an array of people. A “person” is an object with a “name” field and optionally “url” and “email”, like this:
+
+{ "name" : "Barney Rubble"
+, "email" : "b@rubble.com"
+, "url" : "http://barnyrubble.tumblr.com/"
+}
+Or you can shorten that all into a single string, and npm will parse it for you:
+
+"Barney Rubble <b@rubble.com> (http://barnyrubble.tumblr.com/)"
+Both email and url are optional either way.
+
+npm also sets a top-level “maintainers” field with your npm user info.
+
+config§
+A “config” object can be used to set configuration parameters used in package scripts that persist across upgrades. For instance, if a package had the following:
+
+{ "name" : "foo"
+, "config" : { "port" : "8080" } }
+and then had a “start” command that then referenced the npm_package_config_port environment variable, then the user could override that by doing npm config set foo:port 8001.
+
+
+
+For build steps that are not platform-specific, such as compiling CoffeeScript or other languages to JavaScript, use the prepare script to do this, and make the required package a devDependency.
+
+For example:
+
+{ "name": "ethopia-waza",
+  "description": "a delightfully fruity coffee varietal",
+  "version": "1.2.3",
+  "devDependencies": {
+    "coffee-script": "~1.6.3"
+  },
+  "scripts": {
+    "prepare": "coffee -o lib/ -c src/waza.coffee"
+  },
+  "main": "lib/waza.js"
+}
+The prepare script will be run before publishing, so that users can consume the functionality without requiring them to compile it themselves. In dev mode (ie, locally running npm install), it’ll run this script as well, so that you can test it easily.
+
+
+peerDependencies§
+In some cases, you want to express the compatibility of your package with a host tool or library, while not necessarily doing a require of this host. This is usually referred to as a plugin. Notably, your module may be exposing a specific interface, expected and specified by the host documentation.
+
+optionalDependencies§
+If a dependency can be used, but you would like npm to proceed if it cannot be found or fails to install, then you may put it in the optionalDependencies object. This is a map of package name to version or url, just like the dependencies object. The difference is that build failures do not cause installation to fail.
+
+engines§
+You can specify the version of node that your stuff works on:
+
+{ "engines" : { "node" : ">=0.10.3 <0.12" } }
+And, like with dependencies, if you don’t specify the version (or if you specify “*” as the version), then any version of node will do.
+
+If you specify an “engines” field, then npm will require that “node” be somewhere on that list. If “engines” is omitted, then npm will just assume that it works on node.
+
+You can also use the “engines” field to specify which versions of npm are capable of properly installing your program. For example:
+
+{ "engines" : { "npm" : "~1.0.20" } }
+Unless the user has set the engine-strict config flag, this field is advisory only and will only produce warnings when your package is installed as a dependency.
+
+"scripts": {"start": "node server.js"}
+
+If there is a server.js file in the root of your package, then npm will default the start command to node server.js.
+
+"scripts":{"install": "node-gyp rebuild"}
+
+If there is a binding.gyp file in the root of your package and you have not defined an install or preinstall script, npm will default the install command to compile using node-gyp.
+
+"contributors": [...]
+
+If there is an AUTHORS file in the root of your package, npm will treat each line as a Name <email> (url) format, where email and url are optional. Lines which start with a # or are blank, will be ignored.
+
+index=>server
 ----
