@@ -6,16 +6,19 @@
   "module": "index.js",
   "scripts": {
     "sleep": "npm start",
-    "start": "node --unhandled-rejections=strict --trace-warnings server.js",
+    "start": "node --unhandled-rejections=strict --trace-warnings index.js",
     "sleep-atomic": "npm start",
+    "test": "node --unhandled-rejections=strict --trace-warnings test.js",
     "version": "echo \"$npm_package_version\""
   },
   "exports": {
-    ".": "./server.js",
-    "./index": "./server.js",
-    "./server.js": "./server.js",
-    "./sleep": "./server.js",
-    "./sleep.js": "./server.js",
+    ".": "./index.js",
+    "./index": "./index.js",
+    "./index.js": "./index.js",
+    "./server": "./index.js",
+    "./server.js": "./index.js",
+    "./sleep": "./index.js",
+    "./sleep.js": "./index.js",
     "./package.json": "./package.json"
   },
   "files": [
@@ -25,7 +28,7 @@
     "./LICENSE",
     "./NOTICE.LICENSE.md",
     "./README.md",
-    "./server.js",
+    "./index.js",
     "./package.json"
   ],
   "repository": {

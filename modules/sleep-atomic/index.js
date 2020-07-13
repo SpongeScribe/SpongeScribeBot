@@ -7,8 +7,8 @@ import { fileURLToPath } from 'url';
 export default async function sleep (ms) {
     return new Promise(resolve => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms));
 }
-async function logSignatureDetails () {
-    console.log('{ "app" : "' + path.basename(path.dirname(process.argv[1])) + '" } , "details" : { "parameters": ' + JSON.stringify(process.argv) + ' } }' );
+async function logSignatureDetails (ms) {
+    console.log('{ "app" : "' + path.basename(path.dirname(process.argv[1])) + '" } , "details" : { "sleep_milliseconds" : "' + ms + '" , "parameters": ' + JSON.stringify(process.argv) + ' } }' );
 }
 export async function sleepWithLog (ms) {
     logSignatureDetails(ms);

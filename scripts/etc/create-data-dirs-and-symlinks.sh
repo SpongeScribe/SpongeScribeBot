@@ -23,5 +23,5 @@ ln -s ../app/scripts/ scripts/scripts
 find ./ -type d -not -path "./*/*" -not -path "./modules" -not -path "*/data" -not -path "./.yarn*" -not -path "./.git*" -not -path "*/node_modules" -not -path "./" -exec sh -c "find {} -type f -name \".*\"" \; | xargs -I % sh -c 'ln -s % ./'
 find ./ -type d -not -path "./*/*" -not -path "./modules" -not -path "*/data" -not -path "./.yarn*" -not -path "./.git*" -not -path "*/node_modules" -not -path "./" -exec sh -c "find {} -type f -name \"*.js\"" \; | xargs -I % sh -c 'ln -s % ./'
 ln -s ../data app/data
-ln -s package.json package
+#ln -s package.json package
 ln -s scripts/etc/create-data-dirs-and-symlinks.sh init

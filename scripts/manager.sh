@@ -23,75 +23,80 @@ if  [ "$1" = "--final" ] ; then
     NO_RECURSE=TRUE
     shift
 fi
+MODULE_ROOT="./modules"
+APP="sleep-atomic"
+APP_PATH="$MODULE_ROOT/$APP"
+TARGET="install"
+
 ##################
-if [[ ! -e "./package.json" ]] ; then
+if [[ ! -e "$APP_PATH/package.json" ]] ; then
     echo "ERROR: 'package.json' not found."
-    if [[ -s "./package.json.temp" ]] ; then
+    if [[ -s "$APP_PATH/package.json.temp" ]] ; then
         echo "Found: 'package.json.temp'"
         echo "Attempting to continue with 'package.json.temp'."
         echo "Copying 'package.json.temp' to 'package.json' ..."
-        cp ./package.json.temp ./package.json
+        cp $APP_PATH/package.json.temp $APP_PATH/package.json
     else
         echo "ERROR: 'package.json.temp' not found."
         exit 1
     fi
 fi
-if [[ ! -e "./.yarnrc" ]] ; then
+if [[ ! -e "$APP_PATH/.yarnrc" ]] ; then
     echo "ERROR: '.yarnrc' not found."
-    if [[ -s "./.yarnrc.temp" ]] ; then
+    if [[ -s "$APP_PATH/.yarnrc.temp" ]] ; then
         echo "Found: '.yarnrc.temp'"
         echo "Attempting to continue with '.yarnrc.temp'."
         echo "Copying '.yarnrc.temp' to '.yarnrc' ..."
-        cp ./.yarnrc.temp ./.yarnrc
+        cp $APP_PATH/.yarnrc.temp $APP_PATH/.yarnrc
     fi
 fi
-if [[ ! -e "./.yarnrc.yml" ]] ; then
+if [[ ! -e "$APP_PATH/.yarnrc.yml" ]] ; then
     echo "ERROR: '.yarnrc.yml' not found."
-    if [[ -s "./.yarnrc.yml.temp" ]] ; then
+    if [[ -s "$APP_PATH/.yarnrc.yml.temp" ]] ; then
         echo "Found: '.yarnrc.yml.temp'"
         echo "Attempting to continue with '.yarnrc.yml.temp'."
         echo "Moving '.yarnrc.yml.temp' to '.yarnrc.yml' ..."
-        mv ./.yarnrc.yml.temp ./.yarnrc.yml
+        mv $APP_PATH/.yarnrc.yml.temp $APP_PATH/.yarnrc.yml
     fi
 fi
-if [[ ! -d "./.yarn/" ]] ; then
+if [[ ! -d "$APP_PATH/.yarn/" ]] ; then
     echo "ERROR: '.yarn/' not found."
 
-    if [[ -d "./.yarn.temp/" ]] ; then
+    if [[ -d "$APP_PATH/.yarn.temp/" ]] ; then
         echo "Found: '.yarn.temp/'"
         echo "Attempting to continue with '.yarn.temp/'."
         echo "Moving '.yarn.temp/' to '.yarn/' ..."
-        mv ./.yarn.temp/ ./.yarn/
+        mv $APP_PATH/.yarn.temp/ $APP_PATH/.yarn/
     else
         echo "ERROR: '.yarn.temp/' not found."
         echo "Attempting to continue with clean run."
 
         echo "Creating empty '.yarn/' directory for Dockerfile ..."
-        mkdir ./.yarn/
+        mkdir $APP_PATH/.yarn/
 
-        if [[ -e "./.yarnrc" ]] ; then
+        if [[ -e "$APP_PATH/.yarnrc" ]] ; then
             echo "Found: '.yarnrc'"
             echo "Moving '.yarnrc' to '.yarnrc.clean.temp' ..."
-            if [[ -s "./.yarnrc.clean.temp" ]] ; then
+            if [[ -s "$APP_PATH/.yarnrc.clean.temp" ]] ; then
                 echo "ERROR: Previous '.yarnrc.clean.temp' found. Exiting ..."
                 exit 1
-            elif [[ -e "./.yarnrc.clean.temp" ]] ; then
-                rm ./yarnrc.clean.temp
+            elif [[ -e "$APP_PATH/.yarnrc.clean.temp" ]] ; then
+                rm $APP_PATH/yarnrc.clean.temp
             fi
-            mv ./.yarnrc ./.yarnrc.clean.temp
+            mv $APP_PATH/.yarnrc $APP_PATH/.yarnrc.clean.temp
             echo "This file must be cleaned up manually: '.yarnrc.clean.temp'"
         fi
 
-        if [[ -e "./.yarnrc.yml" ]] ; then
+        if [[ -e "$APP_PATH/.yarnrc.yml" ]] ; then
             echo "Found: '.yarnrc.yml'"
             echo "Moving '.yarnrc.yml' to '.yarnrc.yml.clean.temp' ..."
-            if [[ -s "./.yarnrc.yml.clean.temp" ]] ; then
+            if [[ -s "$APP_PATH/.yarnrc.yml.clean.temp" ]] ; then
                 echo "ERROR: Previous '.yarnrc.yml.clean.temp' found. Exiting ..."
                 exit 1
-            elif [[ -e "./.yarnrc.yml.clean.temp" ]] ; then
-                rm ./yarnrc.yml.clean.temp
+            elif [[ -e "$APP_PATH/.yarnrc.yml.clean.temp" ]] ; then
+                rm $APP_PATH/yarnrc.yml.clean.temp
             fi
-            mv ./.yarnrc.yml ./.yarnrc.yml.clean.temp
+            mv $APP_PATH/.yarnrc.yml $APP_PATH/.yarnrc.yml.clean.temp
             echo "This file must be cleaned up manually: '.yarnrc.yml.clean.temp'"
         fi
     fi
@@ -100,25 +105,25 @@ fi
 echo "Build Install Image ..."
 docker build --build-arg MANAGER="$MANAGER" . --target install
 echo "Run Install Image, Kill Log Follow When Image Sleeps ..."
-DOCKER_CONTAINER_ID=$(docker run -d $(docker build --build-arg MANAGER="$MANAGER" . -q --target install) "$@");
+DOCKER_CONTAINER_ID=$(docker run -d $(docker build --build-arg MANAGER="$MANAGER" . -q --target $TARGET) "$@");
 { sed /sleep\ /q; kill $!; } < <(exec docker logs --details --follow --timestamps "$DOCKER_CONTAINER_ID")
 ##################
 echo "Updating 'package.json' ..."
-if [[ -e "./package.json.temp" ]] ; then
+if [[ -e "$APP_PATH/package.json.temp" ]] ; then
     echo "Previous 'package.json.temp' found. Deleting ..."
-    rm ./package.json.temp
+    rm $APP_PATH/package.json.temp
 fi
-echo "Docker Copy: FROM='container:./package.json' TO='local:./package.json.temp' ..."
-docker cp "$DOCKER_CONTAINER_ID":"$DOCKER_CONTAINER_WORKDIR/package.json" ./package.json.temp
+echo "Docker Copy: FROM='container:$DOCKER_CONTAINER_WORKDIR/package.json' TO='local:$APP_PATH/package.json.temp' ..."
+docker cp "$DOCKER_CONTAINER_ID":"$DOCKER_CONTAINER_WORKDIR/package.json" $APP_PATH/package.json.temp
 echo "Moving 'package.json.temp' to 'package.json' ..."
-if [[ -e "./package.json.temp" ]] ; then
-    if [[ -e "./package.json" ]] ; then
+if [[ -e "$APP_PATH/package.json.temp" ]] ; then
+    if [[ -e "$APP_PATH/package.json" ]] ; then
         echo "Deleting 'package.json'..."
-        rm ./package.json
+        rm $APP_PATH/package.json
     fi
     echo "Moving 'package.json.temp' ..."
-    cp ./package.json.temp ./package.json
-    rm ./package.json.temp
+    cp $APP_PATH/package.json.temp $APP_PATH/package.json
+    rm $APP_PATH/package.json.temp
 else
     echo "ERROR: 'package.json.temp' not found."
     exit 1
@@ -126,84 +131,84 @@ fi
 ##################
 if [ "$MANAGER" = "yarn" ] ; then
     echo "Updating 'yarn.lock' ..."
-    if [[ -e "./yarn.lock.temp" ]] ; then
+    if [[ -e "$APP_PATH/yarn.lock.temp" ]] ; then
         echo "Previous 'yarn.lock.temp' found. Deleting ..."
-        rm -r ./yarn.lock.temp
+        rm -r $APP_PATH/yarn.lock.temp
     fi
-    echo "Docker Copy: FROM='container:./yarn.lock' TO='local:./yarn.lock.temp' ..."
-    docker cp "$DOCKER_CONTAINER_ID":"$DOCKER_CONTAINER_WORKDIR/yarn.lock" ./yarn.lock.temp
+    echo "Docker Copy: FROM='container:$DOCKER_CONTAINER_WORKDIR/yarn.lock' TO='local:$APP_PATH/yarn.lock.temp' ..."
+    docker cp "$DOCKER_CONTAINER_ID":"$DOCKER_CONTAINER_WORKDIR/yarn.lock" $APP_PATH/yarn.lock.temp
     echo "Moving 'yarn.lock.temp' to 'yarn.lock' ..."
-    if [[ -e "./yarn.lock.temp" ]] ; then
-        if [[ -e "./yarn.lock" ]] ; then
+    if [[ -e "$APP_PATH/yarn.lock.temp" ]] ; then
+        if [[ -e "$APP_PATH/yarn.lock" ]] ; then
             echo "Deleting 'yarn.lock'..."
-            rm ./yarn.lock
+            rm $APP_PATH/yarn.lock
         fi
         echo "Moving 'yarn.lock.temp' ..."
-        cp ./yarn.lock.temp ./yarn.lock
-        rm -r ./yarn.lock.temp
+        cp $APP_PATH/yarn.lock.temp $APP_PATH/yarn.lock
+        rm -r $APP_PATH/yarn.lock.temp
     else
         echo "ERROR: 'yarn.lock.temp' not found."
         exit 1
     fi
 
     echo "Updating '.yarn/' ..."
-    if [[ -e "./.yarn.temp/" ]] ; then
+    if [[ -e "$APP_PATH/.yarn.temp/" ]] ; then
         echo "Previous '.yarn.temp/' found. Deleting ..."
-        rm -r ./.yarn.temp/
+        rm -r $APP_PATH/.yarn.temp/
     fi
-    echo "Docker Copy: FROM='container:./.yarn' TO='local:./.yarn.temp' ..."
-    docker cp "$DOCKER_CONTAINER_ID":"$DOCKER_CONTAINER_WORKDIR/.yarn/" ./.yarn.temp/
+    echo "Docker Copy: FROM='container:$DOCKER_CONTAINER_WORKDIR/.yarn' TO='local:$APP_PATH/.yarn.temp' ..."
+    docker cp "$DOCKER_CONTAINER_ID":"$DOCKER_CONTAINER_WORKDIR/.yarn/" $APP_PATH/.yarn.temp/
     echo "Moving '.yarn.temp/' to '.yarn/'..."
-    if [[ -e "./.yarn.temp/" ]] ; then
-        if [[ -d "./.yarn/" ]] ; then
+    if [[ -e "$APP_PATH/.yarn.temp/" ]] ; then
+        if [[ -d "$APP_PATH/.yarn/" ]] ; then
             echo "Deleting '.yarn/'..."
-            rm -r ./.yarn/
+            rm -r $APP_PATH/.yarn/
         fi
         echo "Moving '.yarn.temp/' ..."
-        cp -r ./.yarn.temp/ ./.yarn/
-        rm -r ./.yarn.temp/
+        cp -r $APP_PATH/.yarn.temp/ $APP_PATH/.yarn/
+        rm -r $APP_PATH/.yarn.temp/
     else
         echo "ERROR: '.yarn.temp/' not found."
         exit 1
     fi
 
     echo "Updating '.yarnrc' ..."
-    if [[ -e "./.yarnrc.temp" ]] ; then
+    if [[ -e "$APP_PATH/.yarnrc.temp" ]] ; then
         echo "Previous '.yarnrc.temp' found. Deleting ..."
-        rm ./.yarnrc.temp
+        rm $APP_PATH/.yarnrc.temp
     fi
-    echo "Docker Copy: FROM='container:./.yarnrc' TO='local:./.yarnrc.temp' ..."
-    docker cp "$DOCKER_CONTAINER_ID":"$DOCKER_CONTAINER_WORKDIR/.yarnrc" ./.yarnrc.temp
+    echo "Docker Copy: FROM='container:$DOCKER_CONTAINER_WORKDIR/.yarnrc' TO='local:$APP_PATH/.yarnrc.temp' ..."
+    docker cp "$DOCKER_CONTAINER_ID":"$DOCKER_CONTAINER_WORKDIR/.yarnrc" $APP_PATH/.yarnrc.temp
     echo "Moving '.yarnrc.temp' to '.yarnrc' ..."
-    if [[ -e "./.yarnrc.temp" ]] ; then
-        if [[ -e "./.yarnrc" ]] ; then
+    if [[ -e "$APP_PATH/.yarnrc.temp" ]] ; then
+        if [[ -e "$APP_PATH/.yarnrc" ]] ; then
             echo "Deleting '.yarnrc' ..."
-            rm ./.yarnrc
+            rm $APP_PATH/.yarnrc
         fi
         echo "Moving '.yarnrc.temp' ..."
-        cp ./.yarnrc.temp ./.yarnrc
-        rm ./.yarnrc.temp
+        cp $APP_PATH/.yarnrc.temp $APP_PATH/.yarnrc
+        rm $APP_PATH/.yarnrc.temp
     else
         echo "ERROR: '.yarnrc.temp' not found."
         exit 1
     fi
 
     echo "Updating '.yarnrc.yml' ..."
-    if [[ -e "./.yarnrc.yml.temp" ]] ; then
+    if [[ -e "$APP_PATH/.yarnrc.yml.temp" ]] ; then
         echo "Previous '.yarnrc.yml.temp' found. Deleting ..."
-        rm ./.yarnrc.yml.temp
+        rm $APP_PATH/.yarnrc.yml.temp
     fi
-    echo "Docker Copy: FROM='container:./.yarnrc.yml' TO='local:./.yarnrc.yml.temp' ..."
-    docker cp "$DOCKER_CONTAINER_ID":"$DOCKER_CONTAINER_WORKDIR/.yarnrc.yml" ./.yarnrc.yml.temp
+    echo "Docker Copy: FROM='container:$DOCKER_CONTAINER_WORKDIR/.yarnrc.yml' TO='local:$APP_PATH/.yarnrc.yml.temp' ..."
+    docker cp "$DOCKER_CONTAINER_ID":"$DOCKER_CONTAINER_WORKDIR/.yarnrc.yml" $APP_PATH/.yarnrc.yml.temp
     echo "Moving '.yarnrc.yml.temp' to '.yarnrc.yml' ..."
-    if [[ -e "./.yarnrc.yml.temp" ]] ; then
-        if [[ -e "./.yarnrc.yml" ]] ; then
+    if [[ -e "$APP_PATH/.yarnrc.yml.temp" ]] ; then
+        if [[ -e "$APP_PATH/.yarnrc.yml" ]] ; then
             echo "Deleting '.yarnrc.yml' ..."
-            rm ./.yarnrc.yml
+            rm $APP_PATH/.yarnrc.yml
         fi
         echo "Moving '.yarnrc.yml.temp' ..."
-        cp ./.yarnrc.yml.temp ./.yarnrc.yml
-        rm ./.yarnrc.yml.temp
+        cp $APP_PATH/.yarnrc.yml.temp $APP_PATH/.yarnrc.yml
+        rm $APP_PATH/.yarnrc.yml.temp
     else
         echo "ERROR: '.yarnrc.yml.temp' not found."
         exit 1
@@ -211,21 +216,21 @@ if [ "$MANAGER" = "yarn" ] ; then
 ##################
 elif [ "$MANAGER" = "npm" ] ; then
     echo "Updating 'package-lock.json' ..."
-    if [[ -e "./package-lock.json.temp" ]] ; then
+    if [[ -e "$APP_PATH/package-lock.json.temp" ]] ; then
         echo "Previous 'package-lock.json.temp' found. Deleting ..."
-        rm ./package-lock.json.temp
+        rm $APP_PATH/package-lock.json.temp
     fi
-    echo "Docker Copy: FROM='container:./package-lock.json' TO='local:./package-lock.json.temp' ..."
-    docker cp "$DOCKER_CONTAINER_ID":"$DOCKER_CONTAINER_WORKDIR/package-lock.json" ./package-lock.json.temp
+    echo "Docker Copy: FROM='container:$DOCKER_CONTAINER_WORKDIR/package-lock.json' TO='local:$APP_PATH/package-lock.json.temp' ..."
+    docker cp "$DOCKER_CONTAINER_ID":"$DOCKER_CONTAINER_WORKDIR/package-lock.json" $APP_PATH/package-lock.json.temp
     echo "Moving 'package-lock.json.temp' to 'package-lock.json'..."
-    if [[ -e "./package-lock.json.temp" ]] ; then
-        if [[ -e "./package-lock.json" ]] ; then
+    if [[ -e "$APP_PATH/package-lock.json.temp" ]] ; then
+        if [[ -e "$APP_PATH/package-lock.json" ]] ; then
             echo "Deleting 'package-lock.json'..."
-            rm ./package-lock.json
+            rm $APP_PATH/package-lock.json
         fi
         echo "Moving 'package-lock.json.temp'..."
-        cp ./package-lock.json.temp ./package-lock.json
-        rm ./package-lock.json.temp
+        cp $APP_PATH/package-lock.json.temp $APP_PATH/package-lock.json
+        rm $APP_PATH/package-lock.json.temp
     else
         echo "ERROR: 'package-lock.json.temp' not found."
         exit 1
@@ -235,23 +240,23 @@ else
 fi
 ##################
 echo "Updating 'VERSION.$MANAGER' ..."
-if [ -e "./VERSION.temp" ] ; then
+if [ -e "$APP_PATH/VERSION.temp" ] ; then
     echo "Previous 'VERSION.temp' found. Deleting ..."
     rm VERSION.temp
 fi
-echo "Run Image, Docker Copy: FROM='container:./VERSION' TO='local:./VERSION.temp' ..."
-docker cp "$DOCKER_CONTAINER_ID":"$DOCKER_CONTAINER_WORKDIR/VERSION" "VERSION.temp"
-echo "Moving 'VERSION.temp' to 'VERSION.$MANAGER' ..."
-if [ -e "./VERSION.temp" ] ; then
-    if [ -e "./VERSION.$MANAGER" ] ; then
+echo "Run Image, Docker Copy: FROM='container:$DOCKER_CONTAINER_WORKDIR/VERSION' TO='local:$APP_PATH/VERSION.temp' ..."
+docker cp "$DOCKER_CONTAINER_ID":"$DOCKER_CONTAINER_WORKDIR/VERSION" "$APP_PATH/VERSION.$MANAGER.temp"
+echo "Moving 'VERSION.$MANAGER.temp' to 'VERSION.$MANAGER' ..."
+if [ -e "$APP_PATH/VERSION.$MANAGER.temp" ] ; then
+    if [ -e "$APP_PATH/VERSION.$MANAGER" ] ; then
     echo "Deleting 'VERSION.$MANAGER' ..."
-        rm ./VERSION.$MANAGER
-        echo "Moving 'VERSION.temp' ..."
+        rm $APP_PATH/VERSION.$MANAGER
+        echo "Moving 'VERSION.$MANAGER.temp' ..."
     fi
-    cp ./VERSION.temp ./VERSION.$MANAGER
-    rm ./VERSION.temp
+    cp $APP_PATH/VERSION.$MANAGER.temp $APP_PATH/VERSION.$MANAGER
+    rm $APP_PATH/VERSION.$MANAGER.temp
 else
-    echo "ERROR: 'VERSION.temp' not found."
+    echo "ERROR: 'VERSION.$MANAGER.temp' not found."
     exit 1
 fi
 ##################

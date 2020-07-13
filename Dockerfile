@@ -78,8 +78,8 @@ RUN ["npm", "install"]
 CMD ["/bin/bash"]
 
 FROM dependencies-$MANAGER AS build
-COPY $APP_PATH/scripts/build.sh $APP_PATH/scripts/entrypoint.sh $APP_PATH/scripts/install.sh $APP_PATH/scripts/sleep.sh $APP_PATH/scripts/twitter.sh $APP_PATH/scripts/twitter-autohook.sh $APP_PATH/scripts/version.sh ./scripts/
-COPY ./Dockerfile $APP_PATH/server.js ./
+COPY $APP_PATH/scripts/build.sh $APP_PATH/scripts/entrypoint.sh $APP_PATH/scripts/install.sh $APP_PATH/scripts/sleep.sh $APP_PATH/scripts/version.sh ./scripts/
+COPY ./Dockerfile $APP_PATH/index.js $APP_PATH/test.js ./
 ARG BUILD
 ENV BUILD "$BUILD"
 ARG RELEASE
@@ -89,7 +89,7 @@ CMD ["/bin/bash"]
 
 FROM dependencies-$MANAGER AS cmd
 COPY --from=build "$WORKDIR/scripts/entrypoint.sh" ./scripts/
-COPY --from=build "$WORKDIR/Dockerfile" "$WORKDIR/server.js" ./
+COPY --from=build "$WORKDIR/Dockerfile" "$WORKDIR/index.js" "$WORKDIR/test.js" ./
 ENTRYPOINT ["/bin/bash"]
 CMD ["./scripts/entrypoint.sh"]
 
