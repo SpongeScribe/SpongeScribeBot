@@ -244,3 +244,45 @@ https://github.com/microsoft/TypeScript
 find good patterns here
 
 ----
+
+/
+^ only policy docs and dirs to stuff?
+
+.git
+^ just ignore, later main with submodules
+
+.yarn
+^ not existing anymore? maybe put only one yarn instead of in each app? copy into each, for updates, copy, mount separate, then copy all files to .yarn, then to prune run for all apps and then delete .yarn and copy all in? for now, .yarn in each app
+
+.scripts/
+^ doesn't exist? unused, could include meta scripts to build easy mode scripts as symlinks in root (./reply-bot, ./tweet, ./sleep, ./yarn, ./docker, ./spongescribe, ./like-bot)
+
+scripts/
+^ doesn't exist? unused
+
+modules/scripts/
+^ what is the difference? unused
+
+modules/.scripts/
+^ why not in scripts? why not in root?
+
+modules/{app}/.scripts/
+^ ? what would this be for? unused
+
+modules/{app}/scripts/
+^ should these just go in modules/{app}/ ?
+- 2020-07-13 dsp: No, because scripts are needed for docker, not npm, approot is npm, approot + scripts is docker in-container. later if scripts is another repo, those two repos combined is docker. later is main module with scripts for running docker plus scripts for running scripts in container plus {app} with an npm module
+- 2020-07-13 dsp: scripts need a flag,
+if flagged     then assume in {meta/main root}
+if not flagged then assume in {app}
+
+
+modules/{app}/.git/
+^ just ignore, later submodule within main repo
+
+modules/{app}/.yarn/
+^ one for each app is the exact bad thing, but at least deps are in git?
+
+
+fix .env sleep command....
+remove need for import {} from 'dotenv/config.js' ; in replybot

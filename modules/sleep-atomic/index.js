@@ -4,7 +4,7 @@
  * https://creativecommons.org/publicdomain/zero/1.0/ */
 import process from 'process';
 import path from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from 'url'; // only needed for direct call check, can skip if copying code
 export default async function sleep (ms) {
     return new Promise(resolve => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms));
 }

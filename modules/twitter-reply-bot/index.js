@@ -6,10 +6,15 @@ import {} from 'dotenv/config.js' ;
 import pkg from 'twitter-autohook' ;
 import Twitter from 'twitter-lite' ;
 import fs from 'fs' ;
-// import path from 'path' ;
-// import moveFile from 'move-file' ;
-// import text2png from 'text2png' ;
-// import { v1 as uuidv1 , v4 as uuidv4 , v5 as uuidv5 } from 'uuid'
+function processError(reason) {
+  if (process.env.HEADLESS === "TRUE") {
+    console.error( JSON.stringify(reason) )
+  } else {
+    console.dir(reason , { depth: null } ) ;
+    console.error(JSON.stringify(reason)) ;
+  }
+  // process.exit(1) ;
+}
 async function verifyCredentials(client) {
   client
     .get("account/verify_credentials")
@@ -22,136 +27,161 @@ async function verifyCredentials(client) {
           }
         }
     )
-    .catch(console.error) ;
+    .catch(processError) ;
+  client.get("statuses/home_timeline").then(
+        results => {
+          console.log('{ "home_timeline" : { "x-rate-limit-remaining" : ' + results._headers.get('x-rate-limit-remaining') + ' } }');
+          console.log('{ "home_timeline" : { "x-rate-limit-limit" : '     + results._headers.get('x-rate-limit-limit') + ' } }');
+          console.log('{ "home_timeline" : { "x-rate-limit-reset" : '     + ((results._headers.get('x-rate-limit-reset') * 1000) - Date.now()) + ' } }');
+        }
+    )
+    .catch(processError) ;
 } ;
 async function tweetThreadReply(client , inputTweetID , thread) {
-  let lastTweetID = inputTweetID.toString() ;
+  let lastTweetID = inputTweetID ;
   for (const status of thread) {
-    const tweet = await client.post("statuses/update" , {
-      status: status + "\n[" + lastTweetID + "]" ,
-      in_reply_to_status_id_str: lastTweetID.toString() ,
+    const tweet = await new Twitter({
+          subdomain: "api" ,
+          version: "1.1" ,
+          consumer_key: process.env.TWITTER_CONSUMER_KEY ,
+          consumer_secret: process.env.TWITTER_CONSUMER_SECRET ,
+          access_token_key: process.env.TWITTER_ACCESS_TOKEN || process.env.ACCESS_TOKEN , // oauth
+          access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET || process.env.ACCESS_TOKEN_SECRET // oauth
+        }).post("statuses/update" , {
+      status: status + "\n[" + lastTweetID.toString() + "]" ,
+      in_reply_to_status_id: BigInt(lastTweetID) ,
       auto_populate_reply_metadata: true
-    }).catch(console.error) ;
-    lastTweetID = tweet.id_str ;
+    }).catch(processError) ;
+    lastTweetID = BigInt(tweet.id) ;
   }
 }
-async function tweetThread(client , thread) {
-    tweetThreadReply(client , '' , thread) ;
-}
+// async function tweetThread(client , thread) {
+    // tweetThreadReply(client , '' , thread).catch(processError) ;
+// }
 function stringify(json) {
   return JSON.stringify(json) + "\n" ;
 }
+function getSignature(user_screen_name, bot_screen_name, signature) {
+  if (signature === "none" || !signature) {
+    return "" ;
+  }
+  return signature
+    .replace("USER_SCREEN_NAME", user_screen_name || "Twitter Human")
+    .replace("BOT_SCREEN_NAME", bot_screen_name || "twetJs") ;
+}
+function appendLog(log_dir, module_name, log_name, jsonObject, optional_date_time) {
+  fs.appendFile(log_dir + module_name + '.' + log_name + '.' + (optional_date_time || new Date().toISOString().slice(0,10)) + '.json' , stringify(jsonObject) , 'utf8' , (err , fd) => {
+    if (err) throw err ;
+  }) ;
+}
+function processTweetText(tweet_text) {
+  return tweet_text.toString().toLowerCase() ;
+}
+function getProperty(obj, prop, optional_fallback) {
+  // bot_user_mentions === null || bot_user_mentions === undefined || bot_user_mentions.length == 0
+  const fallback = typeof optional_fallback === "undefined" ? null : optional_fallback ;
+  if (typeof obj !== "object" || obj === null) {
+    return fallback ;
+  } else {
+    if (obj.hasOwnProperty("length") && obj.length == 0) {
+      return fallback ;
+    } else {
+      return obj.hasOwnProperty(prop) ? obj[prop] : fallback ;
+    }
+  }
+}
+// export async function
 try {
   (async start => {
     try {
-      const { Autohook } = pkg ,
+      // user_SCREEN_NAME is replaced with the user's name.
+      // bot_screen_name is replaced by the bot's twitter handle in reply.
+      // Set SIGNATURE to 'none' to actually have no signature.
+      // 'at' @twetJs if you need 'none' as a signature and we'll see.
+      const module_screen_name = process.env.MODULE_SCREEN_NAME || 'twetJs' ,
+        signature = process.env.SIGNATURE || "\"\n\nThanks, USER_SCREEN_NAME!\n\n@BOT_SCREEN_NAME #BOT_SCREEN_NAME" ,
+        bot_name = process.env.BOT_NAME || module_screen_name ,
+        log_dir = process.env.LOG_DIR || './data/logs/' ,
+        { Autohook } = pkg ,
         client = new Twitter({
           subdomain: "api" ,
           version: "1.1" ,
           consumer_key: process.env.TWITTER_CONSUMER_KEY ,
           consumer_secret: process.env.TWITTER_CONSUMER_SECRET ,
-          access_token_key: process.env.ACCESS_TOKEN , // oauth
-          access_token_secret: process.env.ACCESS_TOKEN_SECRET // oauth
-      }) ,
-      webhook = new Autohook() ;
+          access_token_key: process.env.TWITTER_ACCESS_TOKEN || process.env.ACCESS_TOKEN , // oauth
+          access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET || process.env.ACCESS_TOKEN_SECRET // oauth
+        }) ,
+        webhook = new Autohook() ;
       console.log("Verifying credentials…") ;
       verifyCredentials(client) ;
       await webhook.removeWebhooks() ;
       webhook.on('event' , async event => {
         try {
+          appendLog(log_dir, bot_name, 'event', event);
           if (process.env.HEADLESS === "TRUE") {
             console.log( JSON.stringify(event) )
           } else {
             console.dir(event , { depth: null } )
           }
-          fs.appendFile('./data/logs/event.json' , stringify(event) , 'utf8' , (err , fd) => {
-            if (err) throw err ;
-          }) ;
-
-          if (event.direct_message_events) {
-            fs.appendFile('./data/logs/direct.message.json' , stringify(event) , 'utf8' , (err , fd) => {
-              if (err) throw err ;
-            }) ;
-          }
-
-          if (event.tweet_delete_events) {
-            fs.appendFile('./data/logs/tweet.delete.json' , stringify(event) , 'utf8' , (err , fd) => {
-              if (err) throw err ;
-            }) ;
-          }
-
-          if (event.tweet_create_events) {
-            fs.appendFile('./data/logs/tweet.create.json' , stringify(event) , 'utf8' , (err , fd) => {
-              if (err) throw err ;
-            }) ;
-            const bot_user_id = event.for_user_id ,
-             tweet_create_events = event.tweet_create_events.map(async (tweet) => {
-              if (tweet.user.id_str === bot_user_id) {
-                fs.appendFile('./data/logs/tweet.create.self.json' , stringify(tweet) + "\n" , 'utf8' , (err , fd) => {
-                  if (err) throw err ;
+          for (let [key, value] of Object.entries(event)) {
+            console.log( '{ "isoString" : "' + new Date().toISOString() + '" }' ) ;
+            if (Array.isArray(value)) {
+              appendLog(log_dir, bot_name, key, value);
+              console.log('{ "array" : "' + key + '" }');
+              if (event.tweet_create_events) {
+                const bot_user_id = event.for_user_id ,
+                 tweet_create_events = event.tweet_create_events.map(async (tweet) => {
+                  if (tweet.user.id_str === bot_user_id) {
+                    appendLog(log_dir, bot_name, key + '.self', value);
+                  } else {
+                    appendLog(log_dir, bot_name, key + '.other', value);
+                    const tweet_id = BigInt(tweet.id),
+                      user_screen_name = tweet.user.screen_name.toString() ,
+                      extended_tweet = getProperty(tweet, "extended_tweet", tweet) ,
+                      user_tweet_text = getProperty(extended_tweet, "full_text", extended_tweet.text) ,
+                      user_tweet_text_processed = processTweetText(user_tweet_text) ,
+                      entities = getProperty(extended_tweet, "entities") ,
+                      user_mentions = getProperty(entities, "user_mentions") ,
+                      bot_user_mentions = user_mentions === null || user_mentions === undefined ? null : user_mentions.find(obj => { return obj.id_str === bot_user_id }) ,
+                      bot_screen_name = getProperty(bot_user_mentions, "screen_name", module_screen_name) ;
+                    tweetThreadReply(
+                      client ,
+                      tweet_id ,
+                      [
+                        "@" + user_screen_name  + " : \"" +
+                        user_tweet_text_processed  +
+                        getSignature(user_screen_name, bot_screen_name, signature)
+    		              ]
+                    ).catch(processError)
+                  }
+                  return tweet.id_str ;
                 }) ;
-              } else {
-                fs.appendFile('./data/logs/tweet.create.other.json' , stringify(tweet) + "\n" , 'utf8' , (err , fd) => {
-                  if (err) throw err ;
-                }) ;
-
-                const extended_tweet = tweet.hasOwnProperty("extended_tweet") ? tweet.extended_tweet : tweet ,
-                  entities = extended_tweet.hasOwnProperty("entities") ? extended_tweet.entities : null ,
-                  user_mentions = entities.hasOwnProperty("user_mentions") ? entities.user_mentions : null ,
-                  bot_user_mentions = user_mentions === null || user_mentions === undefined ? null : user_mentions.find(obj => { return obj.id_str === bot_user_id }) ,
-                  bot_user_name = bot_user_mentions === null || bot_user_mentions === undefined || bot_user_mentions.length == 0 ? "Robot" : "@" + bot_user_mentions.screen_name ,
-                  tweet_text = extended_tweet.full_text ? extended_tweet.full_text : extended_tweet.text ,
-                  tweet_id = tweet.id ,
-                  tweet_id_str = tweet.id_str.toString() ,
-                  tweet_in_reply_to_status_id = tweet.in_reply_to_status_id ,
-                  tweet_in_reply_to_status_id_str = tweet.in_reply_to_status_id_str ,
-                  tweet_in_reply_to_user_id_str = tweet.in_reply_to_user_id_str ,
-                  tweet_in_reply_to_screen_name = tweet.in_reply_to_screen_name ;
-
-                console.log( "id " + tweet_id ) ;
-                console.log( "id_str " + tweet_id_str ) ;
-                console.log( "in_reply_to_status_id " + tweet_in_reply_to_status_id ) ;
-                console.log( "in_reply_to_status_id_str " + tweet_in_reply_to_status_id_str ) ;
-                console.log( "in_reply_to_user_id_str " + tweet_in_reply_to_user_id_str ) ;
-                console.log( "in_reply_to_screen_name " + tweet_in_reply_to_screen_name ) ;
-                tweetThreadReply(
-                  client ,
-                  tweet_id_str ,
-                  [
-                    "@" + tweet.user.screen_name.toString() + " : \"" +
-                      tweet_text.toString().toLowerCase() +
-                    "\"\n\nThanks, " + tweet.user.name + "!\n\n" + bot_user_name + " " + bot_user_name.replace("\@", "#")
-                  ]
-                );
+                Promise.all(tweet_create_events).then((completed) => console.log(JSON.stringify(completed))) ;
               }
-              return tweet.id_str ;
-            }) ;
-            Promise.all(tweet_create_events).then((completed) => console.log(JSON.stringify(completed))) ;
+            } else {
+              // likely "for_user_id:", "user_has_blocked:"...
+              const keyValue = '{ "' + key + '" : ' + value + ' }'
+              appendLog(log_dir, bot_name, 'non-array', keyValue);
+              console.log(keyValue);
+            }
           }
-        } catch (e) {
-          // Display the error and quit
-          console.dir(event , { depth: null } ) ;
-          console.error(e) ;
-          process.exit(1) ;
-        }
+        } catch (e) {processError(e)}
       }) ;
       await webhook.start() ;
       await webhook.subscribe( { oauth_token: process.env.TWITTER_ACCESS_TOKEN , oauth_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET } ) ;
-    } catch (e) {
-      console.error(e) ;
-      process.exit(1) ;
-    }
+    } catch (e) {processError(e)}
   })() ;
 } catch (e) {
   if ('errors' in e) {
     if (e.errors[0].code === 88) // Twitter API error
-      console.log("Rate limit will reset on" , new Date(e._headers.get("x-rate-limit-reset") * 1000)) ; // rate limit exceeded
+      console.log('{ "error" : { "x-rate-limit-reset" : ' + new Date(e._headers.get("x-rate-limit-reset") * 1000) + ' } }');
     else {
       // some other kind of error , e.g. read-only API trying to POST
     }
   } else {
     // non-API error , e.g. network problem or invalid JSON in response
   }
+  processError(e);
 }
 
 ///////////////////////////////////////
