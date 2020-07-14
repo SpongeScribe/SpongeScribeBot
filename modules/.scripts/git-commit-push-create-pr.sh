@@ -7,7 +7,7 @@ if [ -z "$*" ] || [ -z "$1" ] || [ "$1" = "help" ] || [ "$1" = "-help" ] || [ "$
 	printf '\n\nUsage:\n\n./auto-commit-push-create-pr.sh [--headless] <commit-msg> \n\n'
 	printf 'Prerequisites: '"'"'git'"'"', '"'"'gh'"'"' \n\n'
 	printf 'This script will: \n\n'
-	printf '  # \/  \/ Adds all files. Use care !! !! \n'
+	printf '  # \/  \/ Add all files. Use care !! !! \n'
 	printf '    git add . \n\n'
 	printf '  # \/ You must provide \/ <commit-msg> !! \n'
 	printf '    git commit -am <commit-msg> \n\n'

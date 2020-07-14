@@ -6,5 +6,9 @@
 set -ex
 WORKDIR=/usr/local/app
 MANAGER=yarn
+APP=".scripts"
+MODULE_ROOT="."
+APP_PATH="$MODULE_ROOT/$APP"
 echo "Update started. [$MANAGER]"
-MANAGER="$MANAGER" `pwd`/scripts/manager.sh --$MANAGER "$@"
+MANAGER="$MANAGER" $APP_PATH/manager.sh --$MANAGER "$@"
+#TODO: factor out the similarity between yarn and npm, one or two line function

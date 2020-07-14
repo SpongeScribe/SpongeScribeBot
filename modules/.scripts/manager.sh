@@ -23,8 +23,14 @@ if  [ "$1" = "--final" ] ; then
     NO_RECURSE=TRUE
     shift
 fi
-MODULE_ROOT="./modules"
-APP="sleep-atomic"
+
+# APP="sleep-atomic"
+# if  [ "$1" = "--app" ] || [ "$1" = "-a" ] ; then
+    # shift
+    APP=$1
+    shift
+# fi
+MODULE_ROOT="."
 APP_PATH="$MODULE_ROOT/$APP"
 TARGET="install"
 
