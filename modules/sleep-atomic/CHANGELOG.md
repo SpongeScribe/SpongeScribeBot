@@ -18,7 +18,12 @@ https://github.com/olivierlacan/keep-a-changelog
 
 ## [Dev Unreleased]
 ### Added
-- TODO: Cleanup/separate sleep-atomic module. Add/update links.
+- TODO: Add/update links.
+
+## [0.9.7] - 2020-07-16
+### Changed
+- Cleanup/separate sleep-atomic module.
+- Fix bug in 'directly called' logic.
 
 ## [0.9.4] - 2020-07-12
 ### Changed

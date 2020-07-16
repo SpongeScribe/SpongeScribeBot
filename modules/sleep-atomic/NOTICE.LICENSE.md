@@ -5,7 +5,7 @@
 ----
 
 # sleep-atomic
-sleep-atomic
+Sleep in NodeJs
  - source: https://github.com/twitter-base/sleep-atomic/tree/main#readme
  - owner/author/contact: https://twitter.com/dezren39
  - code_of_conduct: https://github.com/twitter-base/sleep-atomic/blob/main/CODE_OF_CONDUCT.md

@@ -11,8 +11,8 @@ Thank you for your participation.
 
 ----
 
-# SpongeScribeBot
-strangetext transcription
+# Sleep-Atomic
+Sleep in NodeJs
  - source: https://github.com/SpongeScribe/SpongeScribeBot/tree/main/modules/sleep-atomic#readme
  - bot: https://twitter.com/SpongeScribe
  - owner/author/contact: https://twitter.com/dezren39
