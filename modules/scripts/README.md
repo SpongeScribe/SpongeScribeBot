@@ -7,14 +7,14 @@
 
 # SpongeScribeBot
 strangetext transcription
- - source: https://github.com/twitter-base/image-generation/tree/main#readme
+ - source: https://github.com/SpongeScribe/SpongeScribeBot/tree/main#readme
  - bot: https://twitter.com/SpongeScribe
  - owner/author/contact: https://twitter.com/dezren39
- - code_of_conduct: https://github.com/twitter-base/image-generation/blob/main/CODE_OF_CONDUCT.md
- - contributors: https://github.com/twitter-base/image-generation/blob/main/CONTRIBUTORS.md
- - license: https://github.com/twitter-base/image-generation/blob/main/LICENSE
- - license.NOTICE: https://github.com/twitter-base/image-generation/blob/main/NOTICE.LICENSE.md
- - changelog: https://github.com/twitter-base/image-generation/blob/main/CHANGELOG.md
+ - code_of_conduct: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CODE_OF_CONDUCT.md
+ - contributors: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CONTRIBUTORS.md
+ - license: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/LICENSE
+ - license.NOTICE: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/NOTICE.LICENSE.md
+ - changelog: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CHANGELOG.md
 
 ----
 
@@ -31,8 +31,8 @@ By participating in this project you agree to abide by its terms.
 
 Thank you for your participation.
 
- - code_of_conduct: https://github.com/twitter-base/image-generation/blob/main/CODE_OF_CONDUCT.md
- - contributors: https://github.com/twitter-base/image-generation/blob/main/CONTRIBUTORS.md
+ - code_of_conduct: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CODE_OF_CONDUCT.md
+ - contributors: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CONTRIBUTORS.md
 
 ----
 
@@ -48,8 +48,8 @@ The License file will associate each particular file's name with the appropriate
 
 Source Code Form License Notice and any relevant Copyright or other notices.
 
- - license: https://github.com/twitter-base/image-generation/blob/main/LICENSE
- - license.NOTICE: https://github.com/twitter-base/image-generation/blob/main/NOTICE.LICENSE.md
+ - license: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/LICENSE
+ - license.NOTICE: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/NOTICE.LICENSE.md
 
 ----
 
@@ -87,13 +87,13 @@ To cleanup symlinks, run `scripts/etc/cleanup-delete-all-symlinks.sh`
 todo: rename data to dat
 
 todo: lib vs dist
-    src: (uncompiled)
-    lib: compiled-node
-    dist: compiled-browser
-    https://2ality.com/2017/07/npm-packages-via-babel.html
-    https://gist.github.com/ncochard/6cce17272a069fdb4ac92569d85508f4
-    # Allow files and folders with a pattern starting with !
-    !lib/**/*.js
+	src: (uncompiled)
+	lib: compiled-node
+	dist: compiled-browser
+	https://2ality.com/2017/07/npm-packages-via-babel.html
+	https://gist.github.com/ncochard/6cce17272a069fdb4ac92569d85508f4
+	# Allow files and folders with a pattern starting with !
+	!lib/**/*.js
 
 
 check files merge

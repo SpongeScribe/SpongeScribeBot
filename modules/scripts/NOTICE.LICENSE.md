@@ -3,7 +3,7 @@
     License, v. 2.0. If a copy of the MPL was not distributed with this
     file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-<!-- ---- -->
+----
 
 # SpongeScribeBot
 strangetext transcription
@@ -32,6 +32,55 @@ using file masks, wildcards, or other standard methods of grouping file names.
 ----
 
 ### NOTICE OF PARTICULAR FILES WITHIN THE PARENT DIRECTORY OF THIS FILE WHICH ARE
+### MPL-2.0 LICENSED FILES WITH "Drewry Pope" COPYRIGHT
+### AND WHICH MAY NOT HAVE NOTICES WITHIN THEM:
+
+ - https://github.com/SpongeScribe/SpongeScribeBot/blob/main/LICENSE
+
+ - https://www.mozilla.org/en-US/MPL/2.0/
+ - https://www.mozilla.org/en-US/MPL/headers/
+ - https://www.mozilla.org/en-US/MPL/2.0/FAQ/
+ - https://www.mozilla.org/en-US/MPL/
+ - https://www.mozilla.org/media/MPL/2.0/index.815ca599c9df.txt
+ - https://www.mozilla.org/en-US/foundation/licensing/
+
+### This Notice:
+    Copyright 2020 Drewry Pope
+    This Source Code Form is subject to the terms of the Mozilla Public
+    License, v. 2.0. If a copy of the MPL was not distributed with this
+    file, You can obtain one at http://mozilla.org/MPL/2.0/.
+### Applies For The Below Listed File(s) Within The Parent Directory Of This File WHICH MAY NOT HAVE NOTICES WITHIN THEM:
+-
+      package.json
+
+----
+
+### NOTICE OF PARTICULAR FILES WITHIN THE PARENT DIRECTORY OF THIS FILE WHICH ARE
+### MPL-2.0 LICENSED FILES
+### AND WHICH MAY NOT HAVE NOTICES WITHIN THEM:
+
+### Copyright Mozilla Foundation
+### Mozilla Foundation is the license steward.
+### Mozilla Public License 2.0
+
+ - https://www.mozilla.org/en-US/MPL/2.0/
+ - https://www.mozilla.org/en-US/MPL/headers/
+ - https://www.mozilla.org/en-US/MPL/2.0/FAQ/
+ - https://www.mozilla.org/en-US/MPL/
+ - https://www.mozilla.org/media/MPL/2.0/index.815ca599c9df.txt
+ - https://www.mozilla.org/en-US/foundation/licensing/
+
+### This Notice:
+    This Source Code Form is subject to the terms of the Mozilla Public
+    License, v. 2.0. If a copy of the MPL was not distributed with this
+    file, You can obtain one at http://mozilla.org/MPL/2.0/.
+### Applies For The Below Listed File(s) Within The Parent Directory Of This File WHICH MAY NOT HAVE NOTICES WITHIN THEM:
+-
+      LICENSE
+
+----
+
+### NOTICE OF PARTICULAR FILES WITHIN THE PARENT DIRECTORY OF THIS FILE WHICH ARE
 ### DEDICATED TO THE Public Domain
 ### AND WHICH MAY NOT HAVE NOTICES WITHIN THEM:
 
@@ -44,17 +93,16 @@ using file masks, wildcards, or other standard methods of grouping file names.
     https://creativecommons.org/publicdomain/zero/1.0/
 ### Applies For The Below-Listed File(s) Within The Parent Directory Of This File WHICH MAY NOT HAVE NOTICES WITHIN THEM:
 -
-      .yarnrc
+      .dockerignore
 -
-      .yarnrc.yml
+      .gitignore
 -
-      package.json
+      appversion
+-
+      out.png
 -
       package-lock.json
 -
-      VERSION.npm
--
-      VERSION.yarn
--
-      yarn.lock
+      version
+
 ----

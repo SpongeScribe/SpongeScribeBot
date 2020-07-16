@@ -1,10 +1,3 @@
-    Copyright 2020 Drewry Pope
-    This Source Code Form is subject to the terms of the Mozilla Public
-    License, v. 2.0. If a copy of the MPL was not distributed with this
-    file, You can obtain one at http://mozilla.org/MPL/2.0/.
-
-<!-- ---- -->
-
 # IMPORTANT NOTE:
 Please note that this project is released with a
 Contributor Code of Conduct, located in the root
@@ -20,13 +13,13 @@ Thank you for your participation.
 
 # SpongeScribeBot
 strangetext transcription
- - source: https://github.com/SpongeScribe/SpongeScribeBot/tree/main/modules/sleep-atomic#readme
+ - source: https://github.com/SpongeScribe/SpongeScribeBot/tree/main#readme
  - bot: https://twitter.com/SpongeScribe
  - owner/author/contact: https://twitter.com/dezren39
- - code\_of\_conduct: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/modules/sleep-atomic/CODE_OF_CONDUCT.md
- - contributors: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/modules/sleep-atomic/CONTRIBUTORS.md
- - license: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/modules/sleep-atomic/LICENSE
- - license.NOTICE: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/modules/sleep-atomic/NOTICE.LICENSE.md
+ - code\_of\_conduct: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CODE_OF_CONDUCT.md
+ - contributors: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CONTRIBUTORS.md
+ - license: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/LICENSE
+ - license.NOTICE: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/NOTICE.LICENSE.md
 
 ### Copyright ContributorCovenant
 ### Creative Commons Attribution 4.0 International Public License
