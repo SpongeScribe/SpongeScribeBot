@@ -207,5 +207,5 @@ ARG NODE_ENV
 ENV NODE_ENV "$NODE_ENV"
 ARG NPM_CONFIG_LOGLEVEL
 ENV NPM_CONFIG_LOGLEVEL "$NPM_CONFIG_LOGLEVEL"
-ENTRYPOINT ["/bin/bash"]
-CMD ["./scripts/entrypoint.sh"]
+ENTRYPOINT ["/bin/bash", "./scripts/entrypoint.sh"]
+CMD [""]
