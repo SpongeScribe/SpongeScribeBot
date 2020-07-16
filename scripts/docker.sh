@@ -11,6 +11,10 @@ echo "\$TARGET=\"$TARGET\""
 echo "\$APP=\"$APP\""
 
 echo "PARAMETERS=[[$@]]"
+if  [ "$1" = "--no-cache" ] ; then
+    DOCKER_NO_CACHE="$1"
+    shift
+fi
 if [ -z "$MANAGER" ] ; then
     MANAGER="yarn"
 fi
@@ -36,4 +40,4 @@ echo "\$MANAGER=\"$MANAGER\""
 echo "\$TARGET=\"$TARGET\""
 echo "\$APP=\"$APP\""
 echo "\$COMMAND=\"$@\""
-docker run -v "$PWD/data/":"$WORKDIR/data/" -v "$PWD/.env":"$WORKDIR/.env" -it $(docker build -q . --build-arg WORKDIR="$WORKDIR" --build-arg MANAGER="$MANAGER" --target "$TARGET" --build-arg APP="$APP") "$@"
+docker run -v "$PWD/data/":"$WORKDIR/data/" -v "$PWD/.env":"$WORKDIR/.env" -it $(docker build $DOCKER_NO_CACHE -q . --build-arg WORKDIR="$WORKDIR" --build-arg MANAGER="$MANAGER" --target "$TARGET" --build-arg APP="$APP") "$@"
