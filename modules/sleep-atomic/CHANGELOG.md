@@ -14,7 +14,7 @@ https://github.com/olivierlacan/keep-a-changelog
 - [Example Changelog (Markdown Source)](https://raw.githubusercontent.com/olivierlacan/keep-a-changelog/master/CHANGELOG.md)
 - [Example Changelog (Markdown Viewer)](https://github.com/olivierlacan/keep-a-changelog/blob/master/CHANGELOG.md)
 
-- https://github.com/SpongeScribe/SpongeScribeBot/tree/main/modules/sleep-atomic#readme
+- https://github.com/twitter-base/sleep-atomic/tree/main/modules/sleep-atomic#readme
 
 ## [Dev Unreleased]
 ### Added

@@ -14,7 +14,7 @@ By participating in this project you agree to abide by its terms.
 
 Thank you for your participation.
 
-https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CODE_OF_CONDUCT.md
+https://github.com/twitter-base/sleep-atomic/blob/main/CODE_OF_CONDUCT.md
 
 # Contributor Lists
 

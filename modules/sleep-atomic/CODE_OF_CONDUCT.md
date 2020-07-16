@@ -13,13 +13,13 @@ Thank you for your participation.
 
 # Sleep-Atomic
 Sleep in NodeJs
- - source: https://github.com/SpongeScribe/SpongeScribeBot/tree/main/modules/sleep-atomic#readme
+ - source: https://github.com/twitter-base/sleep-atomic/tree/main/modules/sleep-atomic#readme
  - bot: https://twitter.com/SpongeScribe
  - owner/author/contact: https://twitter.com/dezren39
- - code\_of\_conduct: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/modules/sleep-atomic/CODE_OF_CONDUCT.md
- - contributors: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/modules/sleep-atomic/CONTRIBUTORS.md
- - license: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/modules/sleep-atomic/LICENSE
- - license.NOTICE: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/modules/sleep-atomic/NOTICE.LICENSE.md
+ - code\_of\_conduct: https://github.com/twitter-base/sleep-atomic/blob/main/modules/sleep-atomic/CODE_OF_CONDUCT.md
+ - contributors: https://github.com/twitter-base/sleep-atomic/blob/main/modules/sleep-atomic/CONTRIBUTORS.md
+ - license: https://github.com/twitter-base/sleep-atomic/blob/main/modules/sleep-atomic/LICENSE
+ - license.NOTICE: https://github.com/twitter-base/sleep-atomic/blob/main/modules/sleep-atomic/NOTICE.LICENSE.md
 
 ### Copyright ContributorCovenant
 ### Creative Commons Attribution 4.0 International Public License
