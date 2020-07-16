@@ -13,7 +13,7 @@ async function logSignatureDetails (ms) {
 }
 export async function sleepWithLog (ms) {
     logSignatureDetails(ms);
-    return new Promise(resolve => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms));
+    return sleep(ms);
 }
 async function logDirectCalls () {
 	console.log('{ "app" : "' + path.basename(path.dirname(process.argv[1])) + '" } , "details" : { "directly-called": true } }');
