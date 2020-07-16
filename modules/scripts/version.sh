@@ -7,21 +7,38 @@ rm -f VERSION;
 touch VERSION;
 
 printf "node=" >> VERSION;
-node -v >> VERSION;
+if command -v npm &> /dev/null
+then
+	node -v >> VERSION;
+else
+	printf '\n' >> VERSION;
+fi
 
 printf "npm=" >> VERSION;
-npm -v >> VERSION;
+if command -v npm &> /dev/null
+then
+	npm -v >> VERSION;
+else
+	printf '\n' >> VERSION;
+fi
 
 printf "yarn=" >> VERSION;
-yarn -v >> VERSION;
+if command -v yarn &> /dev/null
+then
+	yarn -v >> VERSION;
+else
+	printf '\n' >> VERSION;
+fi
 
+#TODO:auto-increment
 printf "app=" >>VERSION;
-#TODO:auto-incr, pull from package.json (choose option from version-check.sh), delete appversion file.
-npm run version --silent >> VERSION;
-echo '' >> VERSION;
+if command -v npm &> /dev/null
+then
+	npm run version --silent >> VERSION;
+fi
+printf '\n' >> VERSION;
 
 cat VERSION;
-
 # these can all be npm scripts, but anything can be an npm script
 
 # # a

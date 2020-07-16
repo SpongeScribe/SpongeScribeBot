@@ -143,8 +143,8 @@ CMD ["up"]
 
 FROM dev-dependencies-$MANAGER as dev
 RUN DEBIAN_FRONTEND=noninteractive apt install -y vim
-COPY ./modules/ ./modules/
-# COPY ./scripts/ ./scripts/
+COPY ./modules/ ./.modules/
+COPY ./scripts/ ./.scripts/
 COPY ./Dockerfile $APP_PATH/package.json $APP_PATH/package*-lock.json $APP_PATH/*.json $APP_PATH/*.yml ./*LICENSE* ./*README* ./*NOTICE* $APP_PATH/*.md ./*.md $APP_PATH/*.temp* ./*.temp.* ./
 COPY --from=build "$WORKDIR/Dockerfile" "$WORKDIR/*.*" "$WORKDIR/.*" ./
 ARG MANAGER
