@@ -46,5 +46,7 @@ using file masks, wildcards, or other standard methods of grouping file names.
       package.json
 -
       package-lock.json
+-
+      yarn.lock
 
 ----

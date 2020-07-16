@@ -43,8 +43,17 @@ using file masks, wildcards, or other standard methods of grouping file names.
     https://creativecommons.org/publicdomain/zero/1.0/
 ### Applies For The Below-Listed File(s) Within The Parent Directory Of This File WHICH MAY NOT HAVE NOTICES WITHIN THEM:
 -
+      .yarnrc
+-
+      .yarnrc.yml
+-
       package.json
 -
       package-lock.json
-
+-
+      VERSION.npm
+-
+      VERSION.yarn
+-
+      yarn.lock
 ----

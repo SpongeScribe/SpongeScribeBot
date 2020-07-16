@@ -286,3 +286,19 @@ modules/{app}/.yarn/
 
 fix .env sleep command....
 remove need for import {} from 'dotenv/config.js' ; in replybot
+
+
+twetjs.com
+twet.app
+tweet.dev 360
+twet.dev
+twet.run
+twet.tips
+twet.today
+twitter-base.com *
+twet.in **
+twet.codes
+twet.directory <-- directory has potential, so does codes, best, fail, win, democrat, republic lmao
+gosnake.run
+snakego.run
+figure out i'm already using esm

@@ -4,7 +4,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 set -ex
-DOCKER_CONTAINER_WORKDIR=/usr/local/app
+WORKDIR=/usr/local/app
 ##################
 echo "Checking parameters ..."
 echo "\$MANAGER=$MANAGER"
@@ -23,17 +23,21 @@ if  [ "$1" = "--final" ] ; then
     NO_RECURSE=TRUE
     shift
 fi
-
 # APP="sleep-atomic"
 # if  [ "$1" = "--app" ] || [ "$1" = "-a" ] ; then
     # shift
     APP=$1
     shift
 # fi
-MODULE_ROOT="."
-APP_PATH="$MODULE_ROOT/$APP"
-TARGET="install"
-
+if [ -z "$MODULE_ROOT" ] ; then
+    MODULE_ROOT="./modules"
+fi
+if [ -z "$APP_PATH" ] ; then
+    APP_PATH="$MODULE_ROOT/$APP"
+fi
+if [ -z "$TARGET" ] ; then
+    TARGET="install"
+fi
 ##################
 if [[ ! -e "$APP_PATH/package.json" ]] ; then
     echo "ERROR: 'package.json' not found."
@@ -111,7 +115,7 @@ fi
 echo "Build Install Image ..."
 docker build --build-arg MANAGER="$MANAGER" . --target install
 echo "Run Install Image, Kill Log Follow When Image Sleeps ..."
-DOCKER_CONTAINER_ID=$(docker run -d $(docker build --build-arg MANAGER="$MANAGER" . -q --target $TARGET) "$@");
+DOCKER_CONTAINER_ID=$(docker run -d $(docker build --build-arg WORKDIR="$WORKDIR" --build-arg MANAGER="$MANAGER" --build-arg APP="$APP" . -q --target $TARGET) "$@");
 { sed /sleep\ /q; kill $!; } < <(exec docker logs --details --follow --timestamps "$DOCKER_CONTAINER_ID")
 ##################
 echo "Updating 'package.json' ..."
@@ -119,8 +123,8 @@ if [[ -e "$APP_PATH/package.json.temp" ]] ; then
     echo "Previous 'package.json.temp' found. Deleting ..."
     rm $APP_PATH/package.json.temp
 fi
-echo "Docker Copy: FROM='container:$DOCKER_CONTAINER_WORKDIR/package.json' TO='local:$APP_PATH/package.json.temp' ..."
-docker cp "$DOCKER_CONTAINER_ID":"$DOCKER_CONTAINER_WORKDIR/package.json" $APP_PATH/package.json.temp
+echo "Docker Copy: FROM='container:$WORKDIR/package.json' TO='local:$APP_PATH/package.json.temp' ..."
+docker cp "$DOCKER_CONTAINER_ID":"$WORKDIR/package.json" $APP_PATH/package.json.temp
 echo "Moving 'package.json.temp' to 'package.json' ..."
 if [[ -e "$APP_PATH/package.json.temp" ]] ; then
     if [[ -e "$APP_PATH/package.json" ]] ; then
@@ -135,14 +139,14 @@ else
     exit 1
 fi
 ##################
-if [ "$MANAGER" = "yarn" ] ; then
+if [ "$MANAGER" == "yarn" ] ; then
     echo "Updating 'yarn.lock' ..."
     if [[ -e "$APP_PATH/yarn.lock.temp" ]] ; then
         echo "Previous 'yarn.lock.temp' found. Deleting ..."
         rm -r $APP_PATH/yarn.lock.temp
     fi
-    echo "Docker Copy: FROM='container:$DOCKER_CONTAINER_WORKDIR/yarn.lock' TO='local:$APP_PATH/yarn.lock.temp' ..."
-    docker cp "$DOCKER_CONTAINER_ID":"$DOCKER_CONTAINER_WORKDIR/yarn.lock" $APP_PATH/yarn.lock.temp
+    echo "Docker Copy: FROM='container:$WORKDIR/yarn.lock' TO='local:$APP_PATH/yarn.lock.temp' ..."
+    docker cp "$DOCKER_CONTAINER_ID":"$WORKDIR/yarn.lock" $APP_PATH/yarn.lock.temp
     echo "Moving 'yarn.lock.temp' to 'yarn.lock' ..."
     if [[ -e "$APP_PATH/yarn.lock.temp" ]] ; then
         if [[ -e "$APP_PATH/yarn.lock" ]] ; then
@@ -162,8 +166,8 @@ if [ "$MANAGER" = "yarn" ] ; then
         echo "Previous '.yarn.temp/' found. Deleting ..."
         rm -r $APP_PATH/.yarn.temp/
     fi
-    echo "Docker Copy: FROM='container:$DOCKER_CONTAINER_WORKDIR/.yarn' TO='local:$APP_PATH/.yarn.temp' ..."
-    docker cp "$DOCKER_CONTAINER_ID":"$DOCKER_CONTAINER_WORKDIR/.yarn/" $APP_PATH/.yarn.temp/
+    echo "Docker Copy: FROM='container:$WORKDIR/.yarn' TO='local:$APP_PATH/.yarn.temp' ..."
+    docker cp "$DOCKER_CONTAINER_ID":"$WORKDIR/.yarn/" $APP_PATH/.yarn.temp/
     echo "Moving '.yarn.temp/' to '.yarn/'..."
     if [[ -e "$APP_PATH/.yarn.temp/" ]] ; then
         if [[ -d "$APP_PATH/.yarn/" ]] ; then
@@ -183,8 +187,8 @@ if [ "$MANAGER" = "yarn" ] ; then
         echo "Previous '.yarnrc.temp' found. Deleting ..."
         rm $APP_PATH/.yarnrc.temp
     fi
-    echo "Docker Copy: FROM='container:$DOCKER_CONTAINER_WORKDIR/.yarnrc' TO='local:$APP_PATH/.yarnrc.temp' ..."
-    docker cp "$DOCKER_CONTAINER_ID":"$DOCKER_CONTAINER_WORKDIR/.yarnrc" $APP_PATH/.yarnrc.temp
+    echo "Docker Copy: FROM='container:$WORKDIR/.yarnrc' TO='local:$APP_PATH/.yarnrc.temp' ..."
+    docker cp "$DOCKER_CONTAINER_ID":"$WORKDIR/.yarnrc" $APP_PATH/.yarnrc.temp
     echo "Moving '.yarnrc.temp' to '.yarnrc' ..."
     if [[ -e "$APP_PATH/.yarnrc.temp" ]] ; then
         if [[ -e "$APP_PATH/.yarnrc" ]] ; then
@@ -204,8 +208,8 @@ if [ "$MANAGER" = "yarn" ] ; then
         echo "Previous '.yarnrc.yml.temp' found. Deleting ..."
         rm $APP_PATH/.yarnrc.yml.temp
     fi
-    echo "Docker Copy: FROM='container:$DOCKER_CONTAINER_WORKDIR/.yarnrc.yml' TO='local:$APP_PATH/.yarnrc.yml.temp' ..."
-    docker cp "$DOCKER_CONTAINER_ID":"$DOCKER_CONTAINER_WORKDIR/.yarnrc.yml" $APP_PATH/.yarnrc.yml.temp
+    echo "Docker Copy: FROM='container:$WORKDIR/.yarnrc.yml' TO='local:$APP_PATH/.yarnrc.yml.temp' ..."
+    docker cp "$DOCKER_CONTAINER_ID":"$WORKDIR/.yarnrc.yml" $APP_PATH/.yarnrc.yml.temp
     echo "Moving '.yarnrc.yml.temp' to '.yarnrc.yml' ..."
     if [[ -e "$APP_PATH/.yarnrc.yml.temp" ]] ; then
         if [[ -e "$APP_PATH/.yarnrc.yml" ]] ; then
@@ -220,14 +224,14 @@ if [ "$MANAGER" = "yarn" ] ; then
         exit 1
     fi
 ##################
-elif [ "$MANAGER" = "npm" ] ; then
+elif [ "$MANAGER" == "npm" ] ; then
     echo "Updating 'package-lock.json' ..."
     if [[ -e "$APP_PATH/package-lock.json.temp" ]] ; then
         echo "Previous 'package-lock.json.temp' found. Deleting ..."
         rm $APP_PATH/package-lock.json.temp
     fi
-    echo "Docker Copy: FROM='container:$DOCKER_CONTAINER_WORKDIR/package-lock.json' TO='local:$APP_PATH/package-lock.json.temp' ..."
-    docker cp "$DOCKER_CONTAINER_ID":"$DOCKER_CONTAINER_WORKDIR/package-lock.json" $APP_PATH/package-lock.json.temp
+    echo "Docker Copy: FROM='container:$WORKDIR/package-lock.json' TO='local:$APP_PATH/package-lock.json.temp' ..."
+    docker cp "$DOCKER_CONTAINER_ID":"$WORKDIR/package-lock.json" $APP_PATH/package-lock.json.temp
     echo "Moving 'package-lock.json.temp' to 'package-lock.json'..."
     if [[ -e "$APP_PATH/package-lock.json.temp" ]] ; then
         if [[ -e "$APP_PATH/package-lock.json" ]] ; then
@@ -250,8 +254,8 @@ if [ -e "$APP_PATH/VERSION.temp" ] ; then
     echo "Previous 'VERSION.temp' found. Deleting ..."
     rm VERSION.temp
 fi
-echo "Run Image, Docker Copy: FROM='container:$DOCKER_CONTAINER_WORKDIR/VERSION' TO='local:$APP_PATH/VERSION.temp' ..."
-docker cp "$DOCKER_CONTAINER_ID":"$DOCKER_CONTAINER_WORKDIR/VERSION" "$APP_PATH/VERSION.$MANAGER.temp"
+echo "Run Image, Docker Copy: FROM='container:$WORKDIR/VERSION' TO='local:$APP_PATH/VERSION.temp' ..."
+docker cp "$DOCKER_CONTAINER_ID":"$WORKDIR/VERSION" "$APP_PATH/VERSION.$MANAGER.temp"
 echo "Moving 'VERSION.$MANAGER.temp' to 'VERSION.$MANAGER' ..."
 if [ -e "$APP_PATH/VERSION.$MANAGER.temp" ] ; then
     if [ -e "$APP_PATH/VERSION.$MANAGER" ] ; then
@@ -266,24 +270,24 @@ else
     exit 1
 fi
 ##################
-echo "Recursively deleting all empty (0-length) files not in a 'node_modules' directory."
-EMPTY_FILE_COUNT=$(find . -type d -name node_modules -prune -false -o -type f -size 0 | wc -l)
-echo "$EMPTY_FILE_COUNT empty files to recursively delete."
-if [ $EMPTY_FILE_COUNT -gt 0 ] ; then
-    find . -type d -name node_modules -prune -false -o -type f -size 0 | tee /dev/tty | xargs rm
-fi
+# echo "Recursively deleting all empty (0-length) files not in a 'node_modules' directory."
+# EMPTY_FILE_COUNT=$(find . -type d -name node_modules -prune -false -o -type f -size 0 | wc -l)
+# echo "$EMPTY_FILE_COUNT empty files to recursively delete."
+# if [ $EMPTY_FILE_COUNT -gt 0 ] ; then
+#     find . -type d -name node_modules -prune -false -o -type f -size 0 | tee /dev/tty | xargs rm
+# fi
 ##################
 echo "Update complete. [$MANAGER]"
 ##################
-if [ $NO_RECURSE = "TRUE" ] ; then
+if [ $NO_RECURSE == "TRUE" ] ; then
     echo "Skipping manager update recursion."
     echo "Update complete."
 else
-    if [ $MANAGER = "yarn" ] ; then
+    if [ $MANAGER == "yarn" ] ; then
         echo "Backtracking update to npm ..."
-        ./scripts/manager.sh --npm --final
+        ./scripts/manager.sh --npm --final $APP
     else
         echo "Backtracking update yarn ..."
-        ./scripts/manager.sh --yarn --final
+        ./scripts/manager.sh --yarn --final $APP
     fi
 fi

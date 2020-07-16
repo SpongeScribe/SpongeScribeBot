@@ -6,7 +6,7 @@
 set -ex
 WORKDIR=/usr/local/app
 MANAGER=yarn
-APP=".scripts"
+APP="scripts"
 MODULE_ROOT="."
 APP_PATH="$MODULE_ROOT/$APP"
 echo "Update started. [$MANAGER]"
