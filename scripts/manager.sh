@@ -23,12 +23,12 @@ if  [ "$1" = "--final" ] ; then
     NO_RECURSE=TRUE
     shift
 fi
-# APP="sleep-atomic"
-# if  [ "$1" = "--app" ] || [ "$1" = "-a" ] ; then
-    # shift
+if  [ -z "$1" ] ; then
+    APP="node"
+else
     APP=$1
     shift
-# fi
+fi
 if [ -z "$MODULE_ROOT" ] ; then
     MODULE_ROOT="./modules"
 fi
