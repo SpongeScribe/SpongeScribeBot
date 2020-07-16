@@ -3,7 +3,7 @@
 # Any copyright is dedicated to the Public Domain.
 # https://creativecommons.org/publicdomain/zero/1.0/
 set -ex
-WORKDIR=/usr/local/app
+WORKDIR="/usr/local/app"
 touch .env
 
 echo "\$MANAGER=\"$MANAGER\""
@@ -12,21 +12,25 @@ echo "\$APP=\"$APP\""
 
 echo "PARAMETERS=[[$@]]"
 if [ -z "$MANAGER" ] ; then
-    MANAGER=yarn
+    MANAGER="yarn"
 fi
 if  [ "$1" = "--yarn" ] ; then
-    MANAGER=yarn
+    MANAGER="yarn"
     shift
 elif  [ "$1" = "--npm" ] ; then
-    MANAGER=npm
+    MANAGER="npm"
     shift
 fi
 
-TARGET=$1
+APP="$1"
 shift
 
-APP=$1
-shift
+if [ -z "$1" ] ; then
+	TARGET="default"
+else
+	TARGET="$1"
+	shift
+fi
 
 echo "\$MANAGER=\"$MANAGER\""
 echo "\$TARGET=\"$TARGET\""
