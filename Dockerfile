@@ -5,16 +5,19 @@
 ARG VERSION=latest
 ARG NPM_CONFIG_LOGLEVEL=
 ARG WORKDIR=/usr/local/app
-ARG MODULE_ROOT="./modules"
-ARG APP="sleep-atomic"
-ARG APP_PATH="$MODULE_ROOT/$APP"
 ARG NODE_ENV=production
 ARG NODE_ENV_DEV=development
 ARG MANAGER=yarn
-ARG YARN_PROD=
-ARG NPM_PROD=
+ARG PROD_YARN=
+ARG PROD_NPM=
 ARG BUILD='./scripts/build.sh'
 ARG RELEASE=
+ARG MODULE_ROOT="./modules"
+ARG SCRIPT_ROOT="$MODULE_ROOT"
+ARG SCRIPT_DIR=scripts
+ARG SCRIPT_PATH="$SCRIPT_ROOT/$SCRIPT_DIR"
+ARG APP="sleep-atomic"
+ARG APP_PATH="$MODULE_ROOT/$APP"
 
 FROM "node:$VERSION" AS base
 ARG WORKDIR
@@ -32,28 +35,49 @@ RUN curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
 # ENV PATH=$PATH:/home/node/.npm-global/bin
 ARG APP_PATH
 ENV APP_PATH "$APP_PATH"
-COPY $APP_PATH/package.json $APP_PATH/.yarn*rc $APP_PATH/.yarnrc*.yml $APP_PATH/yarn*.lock ./
+COPY $APP_PATH/package.json $APP_PATH/.yarn*rc $APP_PATH/.yarnrc*.yml $APP_PATH/yarn*.lock ./scripts/semver ./
 COPY $APP_PATH/.yarn/ ./.yarn/
-ARG YARN_PROD
-ENV YARN_PROD "$YARN_PROD"
+ARG PROD_YARN
+ENV PROD_YARN "$PROD_YARN"
 ARG NODE_ENV
 ENV NODE_ENV "$NODE_ENV"
 ARG NPM_CONFIG_LOGLEVEL
 ENV NPM_CONFIG_LOGLEVEL "$NPM_CONFIG_LOGLEVEL"
 RUN \
-  if [ -s "$APP_PATH/.yarnrc.yml" ] ; then \
-    if [ -n "$YARN_PROD" ] ; then \
-      NODE_ENV="$NODE_ENV" NPM_CONFIG_LOGLEVEL="$NPM_CONFIG_LOGLEVEL" yarn install --json --inline-builds --immutable --immutable-cache --check-cache ; \
-    else \
-      NODE_ENV="$NODE_ENV" NPM_CONFIG_LOGLEVEL="$NPM_CONFIG_LOGLEVEL" yarn install --json --inline-builds ; \
-    fi ; \
-  else \
-    if [ -n "$YARN_PROD" ] ; then \
+  echo "YARN_VERSION='$(yarn -v)'" ; \
+  echo "PROD_YARN=$PROD_YARN"; \
+  if [ $(./semver get major $(yarn -v)) -lt 2 ]; then \
+    echo 'YARN VERSION <2'; \
+    echo "yarn config -v" ; \
+    yarn config -v ; \
+    echo "" ; \
+    echo "yarn config list" ; \
+    yarn config list ; \
+    echo "" ; \
+    echo "yarn config current" ; \
+    yarn config current ; \
+    echo "" ; \
+    echo "" ; \
+    NODE_ENV="$NODE_ENV" NPM_CONFIG_LOGLEVEL="$NPM_CONFIG_LOGLEVEL" yarn upgrade ; \
+    if [ -n "$PROD_YARN" ]; then \
+      echo "PROD RUN"; \
       NODE_ENV="$NODE_ENV" NPM_CONFIG_LOGLEVEL="$NPM_CONFIG_LOGLEVEL" yarn install --verbose --non-interactive --frozen-lockfile --production ; \
     else \
+      echo "DEV RUN"; \
       NODE_ENV="$NODE_ENV" NPM_CONFIG_LOGLEVEL="$NPM_CONFIG_LOGLEVEL" yarn install --verbose --non-interactive ; \
     fi ; \
-  fi ;
+  else \
+    echo 'YARN VERSION >=2'; \
+    echo "yarn config --verbose --why --json" ; \
+    yarn config --verbose --why --json ; \
+    if [ -n "$PROD_YARN" ]; then \
+      echo "PROD RUN"; \
+      NODE_ENV="$NODE_ENV" NPM_CONFIG_LOGLEVEL="$NPM_CONFIG_LOGLEVEL" yarn install --json --inline-builds --immutable --immutable-cache --check-cache ; \
+    else \
+      echo "DEV RUN"; \
+      NODE_ENV="$NODE_ENV" NPM_CONFIG_LOGLEVEL="$NPM_CONFIG_LOGLEVEL" yarn install --json --inline-builds ; \
+    fi ; \
+  fi;
 CMD ["/bin/bash"]
 
 FROM base AS dependencies-npm
@@ -63,16 +87,19 @@ FROM base AS dependencies-npm
 ARG APP_PATH
 ENV APP_PATH "$APP_PATH"
 COPY $APP_PATH/package.json $APP_PATH/package*-lock.json ./
-ARG NPM_PROD
-ENV NPM_PROD "$NPM_PROD"
+ARG PROD_NPM
+ENV PROD_NPM "$PROD_NPM"
 ARG NODE_ENV
 ENV NODE_ENV "$NODE_ENV"
 ARG NPM_CONFIG_LOGLEVEL
 ENV NPM_CONFIG_LOGLEVEL "$NPM_CONFIG_LOGLEVEL"
 RUN \
-  if [ -n "$NPM_PROD" ] ; then \
+  echo "PROD_NPM=$PROD_NPM"; \
+  if [ -n "$PROD_NPM" ] ; then \
+    echo "PROD RUN"; \
     NODE_ENV="$NODE_ENV" NPM_CONFIG_LOGLEVEL="$NPM_CONFIG_LOGLEVEL" npm ci --only=prod ; \
   else \
+    echo "DEV RUN"; \
     NODE_ENV="$NODE_ENV" NPM_CONFIG_LOGLEVEL="$NPM_CONFIG_LOGLEVEL" npm install --only=prod ; \
   fi ;
 CMD ["/bin/bash"]
@@ -83,11 +110,27 @@ ENV NODE_ENV "$NODE_ENV_DEV"
 ARG NPM_CONFIG_LOGLEVEL
 ENV NPM_CONFIG_LOGLEVEL "$NPM_CONFIG_LOGLEVEL"
 RUN \
-  if [ -s "./.yarnrc.yml" ] ; then \
-    yarn up --verbose ; \
+  echo "YARN_VERSION='$(yarn -v)'" ; \
+  echo "PROD_YARN=$PROD_YARN"; \
+  if [ $(./semver get major $(yarn -v)) -lt 2 ]; then \
+    echo 'YARN VERSION <2'; \
+    echo "yarn config -v" ; \
+    yarn config -v ; \
+    echo "" ; \
+    echo "yarn config list" ; \
+    yarn config list ; \
+    echo "" ; \
+    echo "yarn config current" ; \
+    yarn config current ; \
+    echo "" ; \
+    NODE_ENV="$NODE_ENV" NPM_CONFIG_LOGLEVEL="$NPM_CONFIG_LOGLEVEL" yarn install --verbose --non-interactive ; \
   else \
-    yarn upgrade ; \
-  fi
+    echo 'YARN VERSION >=2'; \
+    echo "yarn config --verbose --why --json" ; \
+    yarn config --verbose --why --json ; \
+    echo "" ; \
+    NODE_ENV="$NODE_ENV" NPM_CONFIG_LOGLEVEL="$NPM_CONFIG_LOGLEVEL" yarn install --json --inline-builds ; \
+  fi;
 CMD ["/bin/bash"]
 
 FROM dependencies-npm AS dev-dependencies-npm
@@ -99,16 +142,18 @@ RUN NODE_ENV="$NODE_ENV" NPM_CONFIG_LOGLEVEL="$NPM_CONFIG_LOGLEVEL" npm install
 CMD ["/bin/bash"]
 
 FROM dependencies-$MANAGER AS build
-ARG NODE_ENV
-ENV NODE_ENV "$NODE_ENV"
-ARG NPM_CONFIG_LOGLEVEL
-ENV NPM_CONFIG_LOGLEVEL "$NPM_CONFIG_LOGLEVEL"
-COPY $APP_PATH/scripts/build.sh $APP_PATH/scripts/entrypoint.sh $APP_PATH/scripts/install.sh $APP_PATH/scripts/version.sh ./scripts/
+ARG SCRIPT_PATH
+ENV SCRIPT_PATH "$SCRIPT_PATH"
+COPY $SCRIPT_PATH/build.sh $SCRIPT_PATH/entrypoint.sh $SCRIPT_PATH/install.sh $SCRIPT_PATH/version.sh ./scripts/
 COPY ./Dockerfile $APP_PATH/index.js $APP_PATH/sleep.js $APP_PATH/test.js ./
 ARG BUILD
 ENV BUILD "$BUILD"
 ARG RELEASE
 ENV RELEASE "$RELEASE"
+ARG NODE_ENV
+ENV NODE_ENV "$NODE_ENV"
+ARG NPM_CONFIG_LOGLEVEL
+ENV NPM_CONFIG_LOGLEVEL "$NPM_CONFIG_LOGLEVEL"
 RUN /bin/bash "$BUILD" "$RELEASE"
 CMD ["/bin/bash"]
 
@@ -143,8 +188,7 @@ CMD ["up"]
 
 FROM dev-dependencies-$MANAGER as dev
 RUN DEBIAN_FRONTEND=noninteractive apt install -y vim
-COPY ./modules/ ./.modules/
-COPY ./scripts/ ./.scripts/
+COPY ./. ./.root
 COPY ./Dockerfile $APP_PATH/package.json $APP_PATH/package*-lock.json $APP_PATH/*.json $APP_PATH/*.yml ./*LICENSE* ./*README* ./*NOTICE* $APP_PATH/*.md ./*.md $APP_PATH/*.temp* ./*.temp.* ./
 COPY --from=build "$WORKDIR/Dockerfile" "$WORKDIR/*.*" "$WORKDIR/.*" ./
 ARG MANAGER

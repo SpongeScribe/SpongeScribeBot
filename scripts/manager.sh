@@ -111,6 +111,41 @@ if [[ ! -d "$APP_PATH/.yarn/" ]] ; then
         fi
     fi
 fi
+
+if [[ -s "./scripts/semver.temp" ]] && [[ ! -s "./scripts/semver" ]] ; then
+    echo "ERROR: Previous 'scripts/semver.temp' found but 'scripts/semver' is missing."
+    echo "Copying 'scripts/semver.temp' to 'scripts/semver' ..."
+    cp ./scripts/semver.temp ./scripts/semver
+    echo "Deleting 'scripts/semver.temp'..."
+    rm ./scripts/semver.temp
+fi
+if [[ -s "./scripts/semver" ]] ; then
+    if [[ -s "./scripts/semver.temp" ]] ; then
+        echo "Previous 'scripts/semver.temp' found. Deleting ..."
+        rm ./scripts/semver.temp
+    fi
+fi
+
+wget "https://raw.githubusercontent.com/fsaintjacques/semver-tool/master/src/semver" -O ./scripts/semver.temp
+chmod +x ./scripts/semver.temp
+
+if [[ -s "./scripts/semver.temp" ]] ; then
+    echo "Deleting 'scripts/semver' ..."
+    rm -f ./scripts/semver
+    echo "Copying 'scripts/semver.temp' to 'scripts/semver' ..."
+    cp ./scripts/semver.temp ./scripts/semver
+fi
+if [[ -s "./scripts/semver" ]] ; then
+    echo "Deleting 'scripts/semver.temp'..."
+    rm ./scripts/semver.temp
+else
+    echo "ERROR: Required 'semver' script missing! Exiting ..."
+    exit 1
+fi
+if [ -z "$APP" ] ; then
+    echo "ERROR: Must provide \$APP module! Exiting ..."
+    exit 1
+fi
 ##################
 echo "Build Install Image ..."
 docker build --build-arg MANAGER="$MANAGER" . --target install
@@ -259,7 +294,7 @@ docker cp "$DOCKER_CONTAINER_ID":"$WORKDIR/VERSION" "$APP_PATH/VERSION.$MANAGER.
 echo "Moving 'VERSION.$MANAGER.temp' to 'VERSION.$MANAGER' ..."
 if [ -e "$APP_PATH/VERSION.$MANAGER.temp" ] ; then
     if [ -e "$APP_PATH/VERSION.$MANAGER" ] ; then
-    echo "Deleting 'VERSION.$MANAGER' ..."
+        echo "Deleting 'VERSION.$MANAGER' ..."
         rm $APP_PATH/VERSION.$MANAGER
         echo "Moving 'VERSION.$MANAGER.temp' ..."
     fi
