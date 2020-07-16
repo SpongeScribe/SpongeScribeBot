@@ -147,7 +147,7 @@ FROM dependencies-$MANAGER AS build
 ARG SCRIPT_PATH
 ENV SCRIPT_PATH "$SCRIPT_PATH"
 COPY $SCRIPT_PATH/build.sh $SCRIPT_PATH/entrypoint.sh $SCRIPT_PATH/install.sh $SCRIPT_PATH/version.sh ./scripts/
-COPY ./Dockerfile $APP_PATH/index.js $APP_PATH/sleep.js $APP_PATH/test.js ./
+COPY ./Dockerfile $APP_PATH/index.js $APP_PATH/server.js $APP_PATH/test.js ./
 ARG BUILD
 ENV BUILD "$BUILD"
 ARG RELEASE
@@ -161,7 +161,7 @@ CMD ["/bin/bash"]
 
 FROM dependencies-$MANAGER AS cmd
 COPY --from=build "$WORKDIR/scripts/entrypoint.sh" ./scripts/
-COPY --from=build "$WORKDIR/Dockerfile" "$WORKDIR/index.js" ./
+COPY --from=build "$WORKDIR/Dockerfile" "$WORKDIR/server.js" "$WORKDIR/index.js" ./
 ARG NODE_ENV
 ENV NODE_ENV "$NODE_ENV"
 ARG NPM_CONFIG_LOGLEVEL

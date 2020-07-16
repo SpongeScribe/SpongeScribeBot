@@ -5,18 +5,20 @@
 set -ex
 echo "entrypoint.sh start."
 echo "PARAMETERS=[[$@]]"
-if [ -z "$@" ] ; then
+if [ -n "$1" ] ; then
 	if command -v npm &> /dev/null
 	then
-		echo "npm found, using 'npm run-script start' action."
-		if npm run | grep -q "$1"; then
+		echo "npm found."
+		if [ $(if npm run | grep -q "$1"; then echo "true" ; else echo "false" ; fi) == "true" ] ; then
+			echo "run-script found, using 'npm run-script $1'"
 			npm run-script "$@"
 		else
+			echo "no run-script found, using 'npm run-script start $@'"
 			npm run-script start "$@"
 		fi
 	elif command -v node &> /dev/null
 	then
-	    echo "npm not found, using 'node' command"
+	    echo "npm not found, using 'node $@' command"
 	    node "$@"
 	# order chosen because: https://stackoverflow.com/questions/36002413/conventions-for-app-js-index-js-and-server-js-in-node-js
 	elif [ -s "$1" ]
@@ -25,7 +27,7 @@ if [ -z "$@" ] ; then
 		"$@"
 	elif [ -s Makefile ] && command -v make &> /dev/null
 	then
-		echo "Makefile present, trying make ..."]
+		echo "Makefile present, trying 'make ; $@' ..."]
 		make
 		"$@"
 	else
@@ -47,11 +49,10 @@ if [ -z "$@" ] ; then
 			exit 99999999999
 		fi
 	fi
-fi
-if command -v npm &> /dev/null
+elif command -v npm &> /dev/null
 then
 	echo "npm found, using 'npm run-script start' action."
-	npm run-script "$@"
+	npm run-script start "$@"
 elif command -v node &> /dev/null
 then
     echo "npm not found, using 'node' command"

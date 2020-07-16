@@ -6,13 +6,16 @@
 set -ex
 printf "\n\n\n\tTEST SCRIPT: Let's see if we're good ...\t🤔\n\n\n\n🗿\n\t🗿\n\t\t🗿\n\t\t\t🗿\n\t\t\t\t🗿\n\t\t\t\t\t🗿\n\t\t\t\t\t\t🗿\n\t\t\t\t\t\t\t🗿\n\t\t\t\t\t\t\t\t🗿\n\n\n\n"
 SECONDS=0
-if ./scripts/docker.sh "$@"
+if [ ! -z $1 ] ; then
+    TARGET="$1"
+    shift
+fi
+if ./scripts/docker.sh "$TARGET" entrypoint "$@"
 then
     RESULTS="\n\n\n\tTEST SCRIPT: All Good!\t🍕"
 else
     RESULTS="\n\n\n\tTEST SCRIPT: Not Good!\t😱😬😅😓😭🤷"
 fi
-
 if (( $SECONDS > 3600 )) ; then
     let "hours=SECONDS/3600"
     let "minutes=(SECONDS%3600)/60"
@@ -25,4 +28,3 @@ elif (( $SECONDS > 60 )) ; then
 else
     printf "$RESULTS\n\n\tCompleted in $SECONDS second(s).\n\n\n\n"
 fi
-

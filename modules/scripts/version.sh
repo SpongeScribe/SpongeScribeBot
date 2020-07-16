@@ -5,7 +5,6 @@
 set -ex
 rm -f VERSION;
 touch VERSION;
-
 printf "node=" >> VERSION;
 if command -v npm &> /dev/null
 then
@@ -13,7 +12,6 @@ then
 else
 	printf '\n' >> VERSION;
 fi
-
 printf "npm=" >> VERSION;
 if command -v npm &> /dev/null
 then
@@ -21,7 +19,6 @@ then
 else
 	printf '\n' >> VERSION;
 fi
-
 printf "yarn=" >> VERSION;
 if command -v yarn &> /dev/null
 then
@@ -29,16 +26,15 @@ then
 else
 	printf '\n' >> VERSION;
 fi
-
-#TODO:auto-increment
-printf "app=" >>VERSION;
+printf "app=" >>VERSION; #TODO:auto-increment
 if command -v npm &> /dev/null
 then
 	npm run version --silent >> VERSION;
 fi
 printf '\n' >> VERSION;
-
 cat VERSION;
+
+#############################################################################
 # these can all be npm scripts, but anything can be an npm script
 
 # # a

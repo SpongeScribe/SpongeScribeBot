@@ -5,11 +5,11 @@
   "description": "Sleep w/Atomics.wait (ES Module)",
   "module": "index.js",
   "bin": {
-    "sleep": "index.js"
+    "sleep": "server.js"
   },
   "scripts": {
     "sleep": "npm start",
-    "start": "node --unhandled-rejections=strict --trace-warnings index.js",
+    "start": "node --unhandled-rejections=strict --trace-warnings server.js",
     "sleep-atomic": "npm start",
     "test": "node --unhandled-rejections=strict --trace-warnings test.js",
     "version": "echo \"$npm_package_version\""
@@ -18,10 +18,10 @@
     ".": "./index.js",
     "./index": "./index.js",
     "./index.js": "./index.js",
-    "./server": "./index.js",
-    "./server.js": "./index.js",
-    "./sleep": "./index.js",
-    "./sleep.js": "./index.js",
+    "./server": "./server.js",
+    "./server.js": "./server.js",
+    "./sleep": "./server.js",
+    "./sleep.js": "./server.js",
     "./package.json": "./package.json"
   },
   "files": [

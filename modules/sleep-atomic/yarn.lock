@@ -8,6 +8,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "sleep-atomic@workspace:."
   bin:
-    sleep: index.js
+    sleep: server.js
   languageName: unknown
   linkType: soft
