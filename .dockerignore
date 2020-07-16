@@ -45,34 +45,15 @@
 !LICENSE
 !NOTICE.LICENSE.md
 !README.md
-!app/.babelrc
-!app/babel.config.json
-!app/index.js
-!app/modules/image-generation.js
-!app/modules/sleep.js
-!app/scripts/build.sh
-!app/scripts/cleanup-data-folder.sh
-!app/scripts/dev-entrypoint.sh
-!app/scripts/entrypoint.sh
-!app/scripts/in-files-count.sh
-!app/scripts/install.sh
-!app/scripts/out-files-count.sh
-!app/scripts/randomInput.sh
-!app/scripts/sleep.sh
-!app/scripts/twitter.sh
-!app/scripts/twitter-autohook.sh
-!app/scripts/version.sh
-!app/scripts/yarnloader.sh
-!app/sleep.js
-!app/twitter-autohook.js
-!app/twitter.js
 !modules/*
-!package.json
-!package-lock.json
-!yarn.lock
-!.yarnrc
-!.yarnrc.yml
-!.yarn/
+!scripts/semver
+# !scripts/semver
+# !package.json
+# !package-lock.json
+# !yarn.lock
+# !.yarnrc
+# !.yarnrc.yml
+# !.yarn/
 
 #######################
 #######################
