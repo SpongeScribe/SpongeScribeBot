@@ -1,0 +1,64 @@
+{
+  "name": "node",
+  "private": "true",
+  "type": "module",
+  "version": "0.9.5",
+  "description": "Sleep w/Atomics.wait (ES Module)",
+  "module": "index.js",
+  "bin": {
+    "sleep": "index.js"
+  },
+  "scripts": {
+    "sleep": "npm start",
+    "start": "node --unhandled-rejections=strict --trace-warnings index.js",
+    "sleep-atomic": "npm start",
+    "test": "node --unhandled-rejections=strict --trace-warnings test.js",
+    "version": "echo \"$npm_package_version\""
+  },
+  "exports": {
+    ".": "./index.js",
+    "./index": "./index.js",
+    "./index.js": "./index.js",
+    "./server": "./index.js",
+    "./server.js": "./index.js",
+    "./sleep": "./index.js",
+    "./sleep.js": "./index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "/CHANGELOG.md",
+    "/CODE_OF_CONDUCT.md",
+    "/CONTRIBUTORS.md",
+    "/LICENSE",
+    "/NOTICE.LICENSE.md",
+    "/README.md",
+    "/index.js",
+    "/package.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twitter-base/sleep-atomic.git"
+  },
+  "keywords": [
+    "sleep",
+    "wait",
+    "timeout",
+    "accessibility",
+    "atomics",
+    "atomic",
+    "CC0-1.0"
+  ],
+  "author": "dezren39",
+  "contributors": [
+    "Drewry Pope <drewry@developing.today> (https://drewrypope.com/)"
+  ],
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/twitter-base/sleep-atomic/issues",
+    "email": "sleep-atomic-bugs@developing.today"
+  },
+  "homepage": "https://github.com/twitter-base/sleep-atomic#readme",
+  "dependencies": {
+    "sleep-atomic": "^0.9.5"
+  }
+}

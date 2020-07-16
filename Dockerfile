@@ -19,7 +19,9 @@ ARG SCRIPT_PATH="$SCRIPT_ROOT/$SCRIPT_DIR"
 ARG APP="sleep-atomic"
 ARG APP_PATH="$MODULE_ROOT/$APP"
 
-FROM "node:$VERSION" AS base
+FROM "node:$VERSION" AS node
+
+FROM node AS base
 ARG WORKDIR
 ENV WORKDIR "$WORKDIR"
 # RUN mkdir -p "$WORKDIR" && chown -R node:node "$WORKDIR"

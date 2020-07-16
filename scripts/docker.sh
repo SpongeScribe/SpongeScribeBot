@@ -26,8 +26,12 @@ elif  [ "$1" = "--npm" ] ; then
     shift
 fi
 
-APP="$1"
-shift
+if [ -z "$1" ] ; then
+	APP="node"
+else
+	APP="$1"
+	shift
+fi
 
 if [ -z "$1" ] ; then
 	TARGET="default"
