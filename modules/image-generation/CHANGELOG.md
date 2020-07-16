@@ -1,6 +1,7 @@
-    Author: Drewry Pope
-    Any copyright is dedicated to the Public Domain.
-    https://creativecommons.org/publicdomain/zero/1.0/
+    Copyright 2020 Drewry Pope
+    This Source Code Form is subject to the terms of the Mozilla Public
+    License, v. 2.0. If a copy of the MPL was not distributed with this
+    file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 <!-- ---- -->
 
@@ -14,7 +15,7 @@ https://github.com/olivierlacan/keep-a-changelog
 - [Example Changelog (Markdown Source)](https://raw.githubusercontent.com/olivierlacan/keep-a-changelog/master/CHANGELOG.md)
 - [Example Changelog (Markdown Viewer)](https://github.com/olivierlacan/keep-a-changelog/blob/master/CHANGELOG.md)
 
-- https://github.com/SpongeScribe/SpongeScribeBot/tree/main/modules/sleep-atomic#readme
+- https://github.com/twitter-base/image-generation/tree/main#readmetwitter-base/image-generation/tree/main#readme
 
 ## [Dev Unreleased]
 ### Added

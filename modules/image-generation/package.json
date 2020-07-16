@@ -1,8 +1,8 @@
 {
-  "name": "twitter-like-bot",
+  "name": "image-generation",
   "type": "module",
   "version": "0.0.1",
-  "description": "Sleep w/Atomics.wait (ES Module)",
+  "description": "json=>txt2pn image-generation",
   "module": "index.js",
   "scripts": {
     "start": "node --unhandled-rejections=strict --trace-warnings server.js",
@@ -25,7 +25,7 @@
     "./package.json"
   ], "repository": {
     "type": "git",
-    "url": "git+https://github.com/SpongeScribe/SpongeScribeBot.git"
+    "url": "git+https://github.com/twitter-base/image-generation.git"
   }, "keywords": [
     "sleep",
     "wait",
@@ -37,7 +37,7 @@
   ], "author": "dezren39",
   "license": "CC0-1.0",
   "bugs": {
-    "url": "https://github.com/SpongeScribe/SpongeScribeBot/issues",
+    "url": "https://github.com/twitter-base/image-generation/issues",
     "email" : "dezren39@developing.today"
-  }, "homepage": "https://github.com/SpongeScribe/SpongeScribeBot/tree/main/modules/sleep-atomic#readme"
+  }, "homepage": "https://github.com/twitter-base/image-generation/tree/main#readme"
 }

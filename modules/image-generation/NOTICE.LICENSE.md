@@ -1,18 +1,19 @@
-    Author: Drewry Pope
-    Any copyright is dedicated to the Public Domain.
-    https://creativecommons.org/publicdomain/zero/1.0/
+    Copyright 2020 Drewry Pope
+    This Source Code Form is subject to the terms of the Mozilla Public
+    License, v. 2.0. If a copy of the MPL was not distributed with this
+    file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 ----
 
 # SpongeScribeBot
 strangetext transcription
- - source: https://github.com/SpongeScribe/SpongeScribeBot/tree/main#readme
+ - source: https://github.com/twitter-base/image-generation/tree/main#readme
  - bot: https://twitter.com/SpongeScribe
  - owner/author/contact: https://twitter.com/dezren39
- - code_of_conduct: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CODE_OF_CONDUCT.md
- - contributors: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CONTRIBUTORS.md
- - license: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/LICENSE
- - license.NOTICE: https://github.com/SpongeScribe/SpongeScribeBot/blob/main/NOTICE.LICENSE.md
+ - code_of_conduct: https://github.com/twitter-base/image-generation/blob/main/CODE_OF_CONDUCT.md
+ - contributors: https://github.com/twitter-base/image-generation/blob/main/CONTRIBUTORS.md
+ - license: https://github.com/twitter-base/image-generation/blob/main/LICENSE
+ - license.NOTICE: https://github.com/twitter-base/image-generation/blob/main/NOTICE.LICENSE.md
 
 ----
 
