@@ -59,6 +59,6 @@
   },
   "homepage": "https://github.com/twitter-base/sleep-atomic#readme",
   "dependencies": {
-    "sleep-atomic": "^0.9.5"
+    "sleep-atomic": "^0.9.7"
   }
 }

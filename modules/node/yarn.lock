@@ -3,6 +3,6 @@
 
 
 sleep-atomic@^0.9.5:
-  version "0.9.5"
-  resolved "https://registry.yarnpkg.com/sleep-atomic/-/sleep-atomic-0.9.5.tgz#3318404b53eb2d602b19fa03ea7b437fbbde49ab"
-  integrity sha512-ZMNo0ZDlUZHEQozOoOzat6bOWwlMsZfGqDz01YA+OWJh4UbBumACGnDYP03Siq9N9akiOYCKWzI3EqTOvL6cDw==
+  version "0.9.7"
+  resolved "https://registry.yarnpkg.com/sleep-atomic/-/sleep-atomic-0.9.7.tgz#a6d29e22318489dfd0946f07ec002314aec08809"
+  integrity sha512-KTDI0eoNup+QVmlApsXQEz6Ti0bK/5ztHCETGj1MhI9USMns1rrgLmttVSay5sVswN0VNY57lKYyR/m8By/B6g==
