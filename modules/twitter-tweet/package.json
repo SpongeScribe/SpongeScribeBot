@@ -1,5 +1,6 @@
 {
   "name": "twitter-tweet",
+  "type": "module",
   "version": "0.0.1",
   "description": "a module to get and send tweets",
   "main": "index.js",
@@ -101,6 +102,6 @@
     "twitter-lite": "^0.14.0"
   },
   "devDependencies": {
-    "sleep-atomic": "^0.9.3"
+    "sleep-atomic": "^0.9.5"
   }
 }

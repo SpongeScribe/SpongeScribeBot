@@ -52,10 +52,7 @@ const tweet = await client.post("statuses/update", {
     in_reply_to_status_id: "",
     auto_populate_reply_metadata: true
 });
-const response = await client.post('friendships/create', {
-  screen_name: 'twetJs',
-});
-return await {"tweet": tweet, "response":  response};
+return await {"tweet": tweet};
 })().then(
     text => {
         console.dir(text, {depth:null});

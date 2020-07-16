@@ -35,7 +35,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sleep-atomic@npm:^0.9.3":
+"sleep-atomic@npm:^0.9.5":
   version: 0.9.5
   resolution: "sleep-atomic@npm:0.9.5"
   bin:
@@ -59,7 +59,7 @@ __metadata:
   resolution: "twitter-tweet@workspace:."
   dependencies:
     dotenv: ^8.2.0
-    sleep-atomic: ^0.9.3
+    sleep-atomic: ^0.9.5
     twitter-lite: ^0.14.0
   languageName: unknown
   linkType: soft
