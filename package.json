@@ -1,0 +1,43 @@
+{
+  "name": "twitter-like-bot",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "Sleep w/Atomics.wait (ES Module)",
+  "module": "index.js",
+  "scripts": {
+    "start": "node --unhandled-rejections=strict --trace-warnings server.js",
+    "version": "echo \"$npm_package_version\""
+  }, "exports": {
+    ".": "./server.js",
+    "./index": "./server.js",
+    "./server.js": "./server.js",
+    "./sleep": "./server.js",
+    "./sleep.js": "./server.js",
+    "./package.json": "./package.json"
+  }, "files": [
+    "./CHANGELOG.md",
+    "./CODE_OF_CONDUCT.md",
+    "./CONTRIBUTORS.md",
+    "./LICENSE",
+    "./NOTICE.LICENSE.md",
+    "./README.md",
+    "./server.js",
+    "./package.json"
+  ], "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpongeScribe/SpongeScribeBot.git"
+  }, "keywords": [
+    "sleep",
+    "wait",
+    "timeout",
+    "accessibility",
+    "atomics",
+    "atomic",
+    "CC0-1.0"
+  ], "author": "dezren39",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/SpongeScribe/SpongeScribeBot/issues",
+    "email" : "dezren39@developing.today"
+  }, "homepage": "https://github.com/SpongeScribe/SpongeScribeBot/tree/main/modules/sleep-atomic#readme"
+}
