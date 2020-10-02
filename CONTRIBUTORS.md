@@ -14,7 +14,7 @@ By participating in this project you agree to abide by its terms.
 
 Thank you for your participation.
 
-https://github.com/SpongeScribe/SpongeScribeBot/blob/main/CODE_OF_CONDUCT.md
+https://github.com/twitter-base/reply-bot/blob/main/CODE_OF_CONDUCT.md
 
 # Contributor Lists
 
@@ -22,7 +22,7 @@ Each person in the below list(s) are a:
 - Contributor in the sense of: [Wonderful Person Who Has Contributed To This Project]
 - Contributor in the sense of: [Mozilla Public License Version 2.0 Section 1.1. "Contributor"]
 
-https://github.com/SpongeScribe/SpongeScribeBot/blob/main/LICENSE
+https://github.com/twitter-base/reply-bot/blob/main/LICENSE
 
 https://www.mozilla.org/en-US/MPL/2.0/
 https://www.mozilla.org/en-US/MPL/headers/
